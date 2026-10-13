@@ -1,0 +1,307 @@
+letter_number,where,before,after
+1,salutation,M1 Querimo Amico,Mi Querido Amigo
+2,salutation,M1 Queripo Amico,Mi Querido Amigo
+2,"text, rule R020",1 occurrence(s),Mariano
+2,signature line,Mariano Ponce CoLLANTES.,Mariano Ponce Collantes.
+3,salutation,Quermo Amigo,Querido Amigo
+5,salutation,Mf Muy Quero Amico,Mi Muy Querido Amigo
+6,salutation,Mi Muy Queripa ConsueLo,Mi Muy Querida Consuelo
+6,"text, rule R023",1 occurrence(s),Naning
+7,salutation,Mi Muy Quero AmiGo,Mi Muy Querido Amigo
+8,salutation,M1 Mur Queripo Amico,Mi Muy Querido Amigo
+9,salutation,Mi Mur Queripo Amico,Mi Muy Querido Amigo
+9,"text, rule R023",1 occurrence(s),Naning
+10,salutation,Mi Muy ExceLenTe AmiGo,Mi Muy Excelente Amigo
+10,"text, rule R022",1 occurrence(s),Ponce
+11,salutation,Mi Muy Querimo IrorteL*,Mi Muy Querido Ifortel
+11,"text, rule R024",1 occurrence(s),Samper
+12,"text, rule R022",1 occurrence(s),Ponce
+13,salutation,Quermo Amico,Querido Amigo
+14,salutation,M1 Muy Disrincuino Amico,Mi Muy Distinguido Amigo
+15,salutation,M1 EsrimaDo Amico y Paisano,Mi Estimado Amigo y Paisano
+16,salutation,Mi Muy Quermo Amico,Mi Muy Querido Amigo
+17,salutation,Mi Muy Querimo Amico,Mi Muy Querido Amigo
+17,signature line,VazLr.,Vale.
+18,salutation,Mi Muy ArreciapiE Ámico lrortEL,Mi Muy Apreciable Amigo Ifortel
+18,"text, rule R024",1 occurrence(s),Samper
+18,signature line,RoberT Samper.,Robert Samper.
+20,salutation,Mi Muy Querimo Amico Y Paisano,Mi Muy Querido Amigo y Paisano
+20,"text, rule R022",1 occurrence(s),Ponce
+21,salutation,Queripo Amico IrorreL,Querido Amigo Ifortel
+21,"text, rule R024",1 occurrence(s),Samper
+21,signature line,RoberT Samper.,Robert Samper.
+22,salutation,Mi Mur Querimo Amico,Mi Muy Querido Amigo
+23,salutation,Mis Muy Quermos Amicos,Mis Muy Queridos Amigos
+23,signature line,P. Marro.,P. Mario.
+24,salutation,Queripísimo Amico ÍzquierDo,Queridísimo Amigo Izquierdo
+25,salutation,M1 Muy Quero Amico VercEL,Mi Muy Querido Amigo Vergel
+25,"text, rule R023",1 occurrence(s),Naning
+26,salutation,Muy Sr. Mio y Esrimano Amico,Muy Sr. Mio y Estimado Amigo
+27,salutation,Muy Sr. Mio y Resrerase Amigo,Muy Sr. Mio y Respetable Amigo
+28,salutation,M1 Mur ResrerabLE Amico,Mi Muy Respetable Amigo
+29,salutation,Queripo Amico,Querido Amigo
+29,"text, rule R022",1 occurrence(s),Ponce
+30,salutation,Querma Ereva,Querida Ereva
+30,"text, rule R020",1 occurrence(s),Mariano
+31,salutation,M1 Queripo ÍrorTeEL,Mi Querido Ifortel
+32,salutation,M1 Queripo Amico,Mi Querido Amigo
+33,salutation,Quero Amico,Querido Amigo
+34,salutation,Queripo Amico VerceL,Querido Amigo Vergel
+34,"text, rule R023",1 occurrence(s),Naning
+35,salutation,Mi Muy Resrerabte Ámico,Mi Muy Respetable Amigo
+36,salutation,M1 Querimo Amico Y Parsano,Mi Querido Amigo y Paisano
+37,salutation,M1 Muy Queripo ÍrorreL,Mi Muy Querido Ifortel
+37,"text, rule R024",1 occurrence(s),Samper
+38,salutation,Mi Muy Querino Amico,Mi Muy Querido Amigo
+39,salutation,Querimo IrorreL,Querido Ifortel
+40,salutation,M1 Mur Queripo Amico,Mi Muy Querido Amigo
+41,salutation,Quero IrorTEL,Querido Ifortel
+42,salutation,Querino Amico VercEL,Querido Amigo Vergel
+42,"text, rule R023",1 occurrence(s),Naning
+43,salutation,M1 Muy Qurrimo Amico,Mi Muy Querido Amigo
+44,salutation,M1 Querimo Amigo Y CorrELIGIONARIO,Mi Querido Amigo y Correligionario
+45,salutation,M1 DisriscuiDO Sr. Y Amico,Mi Distinguido Sr. y Amigo
+46,salutation,Mi Muy Resrerante Amico,Mi Muy Respetable Amigo
+47,salutation,M1 Muy Querimo Amico,Mi Muy Querido Amigo
+48,salutation,Queripo Amico ÍrorteL,Querido Amigo Ifortel
+48,"text, rule R024",1 occurrence(s),Samper
+49,salutation,Mi Muy ResreramtE Sr.,Mi Muy Respetable Sr.
+49,"text, rule R020",1 occurrence(s),Mariano
+50,salutation,Querimo VercEL,Querido Vergel
+50,"text, rule R023",1 occurrence(s),Naning
+51,salutation,Mi Muy Qurrino AmiGo,Mi Muy Querido Amigo
+52,salutation,M1 Muy Quero Amico,Mi Muy Querido Amigo
+53,salutation,Queripo Amigo,Querido Amigo
+54,salutation,Mis Muy Qurripos Amicos,Mis Muy Queridos Amigos
+56,salutation,M1 Querimo AmiGo,Mi Querido Amigo
+57,salutation,Quero Amico,Querido Amigo
+58,salutation,Nuestro Querino Amico,Nuestro Querido Amigo
+59,salutation,M1 Muy Esrimano Amico,Mi Muy Estimado Amigo
+60,salutation,Nuesrero Muy Queripo Amico,Nuestro Muy Querido Amigo
+60,"text, rule R026",1 occurrence(s),Lichauco
+61,salutation,M1 Querino Amico,Mi Querido Amigo
+61,"text, rule R023",1 occurrence(s),Naning
+63,salutation,M1 Muy Querimo Amico,Mi Muy Querido Amigo
+64,salutation,Mi Muy AbrreciaDo ÍrorreL,Mi Muy Apreciado Ifortel
+65,salutation,Queripo Amico,Querido Amigo
+65,"text, rule R024",1 occurrence(s),Samper
+66,salutation,Mi Muy ResrerasE Amico,Mi Muy Respetable Amigo
+67,salutation,Nuesrro Muy Queripo Amico,Nuestro Muy Querido Amigo
+67,"text, rule R022",1 occurrence(s),Ponce
+67,"text, rule R026",1 occurrence(s),Lichauco
+68,salutation,Nuestro Muy Queripo Amico,Nuestro Muy Querido Amigo
+68,"text, rule R026",1 occurrence(s),Lichauco
+69,salutation,Nuestro Muy Disriscuino Amico,Nuestro Muy Distinguido Amigo
+69,"text, rule R026",1 occurrence(s),Lichauco
+70,salutation,Nuestro Muy Quero Amico,Nuestro Muy Querido Amigo
+71,salutation,Nuestro Muy Queripo Amico,Nuestro Muy Querido Amigo
+72,salutation,Querino Amico VerGeL,Querido Amigo Vergel
+72,"text, rule R023",1 occurrence(s),Naning
+73,salutation,M1 Mur Querimo Amico,Mi Muy Querido Amigo
+74,salutation,Mr Muy Esrimano Señor,Mi Muy Estimado Señor
+74,"text, rule R020",1 occurrence(s),Mariano
+75,salutation,Muy Quero Amico NuesTro,Muy Querido Amigo Nuestro
+75,"text, rule R022",1 occurrence(s),Ponce
+75,"text, rule R026",1 occurrence(s),Lichauco
+76,salutation,M1 Queripo Amico,Mi Querido Amigo
+77,salutation,M1 Mur Queripo Kanoy,Mi Muy Querido Kanoy
+78,salutation,Nuesrro Muy Querimo Amico,Nuestro Muy Querido Amigo
+79,salutation,M1 Disrincuimo Amico,Mi Distinguido Amigo
+79,"text, rule R026",1 occurrence(s),Lichauco
+80,salutation,M1 DistiscuIDO Ámico,Mi Distinguido Amigo
+80,signature line,ramos órdenes. —VALr.,ramos órdenes. —Vale.
+81,salutation,Nuestro Muuy Queripo Amico,Nuestro Muy Querido Amigo
+81,"text, rule R026",1 occurrence(s),Lichauco
+83,salutation,Mur Disrincuipo Sr.,Muy Distinguido Sr.
+84,salutation,Mi Muy Queripo Amico,Mi Muy Querido Amigo
+85,salutation,Queripo IrorTeL,Querido Ifortel
+85,"text, rule R024",1 occurrence(s),Samper
+86,salutation,Nuesrko Muy Esrimapo Amico,Nuestro Muy Estimado Amigo
+86,"text, rule R024",1 occurrence(s),Samper
+87,salutation,Nuestro Muy Disriscummo Amico,Nuestro Muy Distinguido Amigo
+87,"text, rule R026",1 occurrence(s),Lichauco
+88,salutation,M1 Muy Querino Amico,Mi Muy Querido Amigo
+89,salutation,M1 Mur Queripo Ixkis,Mi Muy Querido Ikkis
+89,"text, rule R023",1 occurrence(s),Naning
+90,salutation,Queripísimo Awtronio,Queridísimo Awtronio
+90,"text, rule R022",1 occurrence(s),Ponce
+91,salutation,Mr Mur Queripo Amico,Mi Muy Querido Amigo
+93,salutation,Mur Sr. Mio,Muy Sr. Mio
+93,"text, rule R022",1 occurrence(s),Ponce
+94,salutation,Nuestro Muy Querimo Amico,Nuestro Muy Querido Amigo
+94,"text, rule R026",1 occurrence(s),Lichauco
+95,salutation,M1 Querimo Amico,Mi Querido Amigo
+96,salutation,Mi Mur Quermo VercGEL,Mi Muy Querido Vergel
+97,salutation,Nuestro Muy Queripo Amico,Nuestro Muy Querido Amigo
+98,salutation,Nuestro Muy Queripo Amico,Nuestro Muy Querido Amigo
+98,signature line,GREGORIO ÁGONCILLO.,Gregorio Agoncillo.
+99,salutation,Mi Mur Querino Amico,Mi Muy Querido Amigo
+99,"text, rule R023",1 occurrence(s),Naning
+101,salutation,Mi Muy Quero Amico,Mi Muy Querido Amigo
+102,salutation,Querino VercEL,Querido Vergel
+103,salutation,Mi Muy Qurripo Amico,Mi Muy Querido Amigo
+104,salutation,Nuestro Muy Queripo Amico,Nuestro Muy Querido Amigo
+104,"text, rule R022",1 occurrence(s),Ponce
+105,salutation,M1 Muy Quero Amico,Mi Muy Querido Amigo
+106,salutation,Nuestro Muy Esrimapo Amico,Nuestro Muy Estimado Amigo
+107,salutation,Mi Muy Esrimapo Amico,Mi Muy Estimado Amigo
+108,salutation,Mi Muy Queripo Amico,Mi Muy Querido Amigo
+109,salutation,Queripo VercEL,Querido Vergel
+109,"text, rule R023",1 occurrence(s),Naning
+109,signature line,SS Naning.,Naning.
+110,salutation,M1 Muy Quermo Amico,Mi Muy Querido Amigo
+111,salutation,M1 Quero Amico,Mi Querido Amigo
+112,salutation,Mi Querimo Amico,Mi Querido Amigo
+112,"text, rule R022",1 occurrence(s),Ponce
+113,salutation,Nuestro Muy Querimo Amico,Nuestro Muy Querido Amigo
+113,"text, rule R022",1 occurrence(s),Ponce
+113,signature line,EF. Rivero.,F. Rivero.
+114,salutation,M1 Mur Querimo Amico,Mi Muy Querido Amigo
+115,salutation,M1 Quero Amico,Mi Querido Amigo
+116,salutation,Nuestro Muy Queripo Amico,Nuestro Muy Querido Amigo
+117,"text, rule R022",1 occurrence(s),Ponce
+118,salutation,Mi Muy Queripo Amico,Mi Muy Querido Amigo
+119,"text, rule R022",2 occurrence(s),Ponce
+121,salutation,M1 Disrincuimo Amico,Mi Distinguido Amigo
+122,salutation,Querino Amico,Querido Amigo
+123,salutation,Mi Muy Queripo CorreLiGiONARIO Y AÁmiGo,Mi Muy Querido Correligionario y Aámigo
+124,salutation,Mi Mur Quermo Amico,Mi Muy Querido Amigo
+125,salutation,Mi Muy Disrincuino Amico,Mi Muy Distinguido Amigo
+126,salutation,Quero VercEL,Querido Vergel
+126,signature line,SN M. Ponce.,M. Ponce.
+127,salutation,M1 Querrimo Amico ÍrorTEL,Mi Querido Amigo Ifortel
+131,salutation,Nuestro Queripo Amico,Nuestro Querido Amigo
+132,salutation,Queripo KanoY,Querido Kanoy
+132,"text, rule R023",1 occurrence(s),Naning
+133,salutation,Queripo Amico,Querido Amigo
+134,salutation,Quero Oronc,Querido Orong
+136,"text, rule R022",1 occurrence(s),Ponce
+139,salutation,M1 Querino Amico,Mi Querido Amigo
+140,salutation,Queripo Kanoy,Querido Kanoy
+140,"text, rule R023",1 occurrence(s),Naning
+141,salutation,Quero Amico,Querido Amigo
+142,salutation,M1 Querino Amico,Mi Querido Amigo
+143,salutation,M1 DistincuIDO AmiGO,Mi Distinguido Amigo
+144,salutation,Querino Amico,Querido Amigo
+145,salutation,Queripo VeErGEL,Querido Vergel
+146,salutation,M1 Muy Querimo Amico,Mi Muy Querido Amigo
+147,salutation,Mi Muy Querimo Amico,Mi Muy Querido Amigo
+148,signature line,NX M. Ponce.,M. Ponce.
+149,salutation,Nuestro Muy Quero Amico,Nuestro Muy Querido Amigo
+150,salutation,Querino Kanoy,Querido Kanoy
+151,salutation,Querimo Amico,Querido Amigo
+152,salutation,Queripisimmo Amico,Queridísimo Amigo
+153,salutation,Queripo Amigo,Querido Amigo
+155,salutation,Querino Amico,Querido Amigo
+156,salutation,Queripo Oronc,Querido Orong
+156,"text, rule R023",1 occurrence(s),Naning
+157,salutation,M1 Muy Quero Amico,Mi Muy Querido Amigo
+158,salutation,Quero Amico,Querido Amigo
+161,salutation,Querino Orona,Querido Orong
+161,"text, rule R023",1 occurrence(s),Naning
+163,salutation,M1 Muy Querimo Amico,Mi Muy Querido Amigo
+165,salutation,Queripo Kano,Querido Kanoy
+166,salutation,Quero ToñinG,Querido Toñing
+167,salutation,Queripisimo Kanor,Queridísimo Kanoy
+168,salutation,Queripo AÁmico,Querido Amigo
+169,salutation,Querino VercEL,Querido Vergel
+169,"text, rule R023",1 occurrence(s),Naning
+170,salutation,Queripísimo Amico,Queridísimo Amigo
+171,salutation,Querimísimo Amico,Queridísimo Amigo
+172,salutation,Mis Muy Queripos AmiGos,Mis Muy Queridos Amigos
+174,salutation,Mr Drar Sir,My Dear Sir
+175,salutation,M1 Queripo Amico,Mi Querido Amigo
+176,salutation,IGUINAGALANG Ko PONG Puno,Iguinagalang Ko Pong Puno
+177,salutation,Querimo Amico,Querido Amigo
+178,salutation,IGUINAGALANG KO PONG Puno,Iguinagalang Ko Pong Puno
+179,salutation,M1 Esrimapo Y Quero Amico,Mi Estimado y Querido Amigo
+180,salutation,Quero Amico,Querido Amigo
+181,salutation,Queripo VERGEL,Querido Vergel
+181,"text, rule R022",1 occurrence(s),Ponce
+183,salutation,Queripos Amicos,Queridos Amigos
+183,"text, rule R022",2 occurrence(s),Ponce
+184,salutation,Quermos Amicos,Queridos Amigos
+184,"text, rule R022",1 occurrence(s),Ponce
+185,salutation,M1 Muy Querimo Parsano,Mi Muy Querido Paisano
+186,salutation,M1 Muy DistiscuiDO Amico,Mi Muy Distinguido Amigo
+186,"text, rule R022",1 occurrence(s),Ponce
+187,salutation,My Deax Sir,My Dear Sir
+187,"text, rule R022",1 occurrence(s),Ponce
+188,salutation,Queripo Amico,Querido Amigo
+188,"text, rule R022",1 occurrence(s),Ponce
+190,salutation,Queripo Amico,Querido Amigo
+191,salutation,Mis Muy Queripos Amicos,Mis Muy Queridos Amigos
+192,salutation,Mis Querimos Amicos,Mis Queridos Amigos
+192,"text, rule R022",1 occurrence(s),Ponce
+193,salutation,Queripo Amico Y Paisano,Querido Amigo y Paisano
+194,salutation,Mi Mur ResrerabtE Amico,Mi Muy Respetable Amigo
+194,"text, rule R020",1 occurrence(s),Mariano
+194,"text, rule R022",1 occurrence(s),Ponce
+195,salutation,M1 Muy Querimo Amico,Mi Muy Querido Amigo
+196,salutation,Mis Querinos Amicos,Mis Queridos Amigos
+196,"text, rule R022",1 occurrence(s),Ponce
+197,salutation,Querimo Amico,Querido Amigo
+197,"text, rule R022",1 occurrence(s),Ponce
+198,salutation,Queripisimo Amico,Queridísimo Amigo
+199,salutation,Queripo VerGEL,Querido Vergel
+199,"text, rule R023",1 occurrence(s),Naning
+200,salutation,Queripo Amico,Querido Amigo
+201,salutation,Queripo Amico,Querido Amigo
+202,salutation,M1 Quero Amico,Mi Querido Amigo
+203,salutation,M1 Esrimapo AÁmico,Mi Estimado Amigo
+205,salutation,M1 Disriscuimo Señor,Mi Distinguido Señor
+205,"text, rule R020",1 occurrence(s),Mariano
+205,"text, rule R022",1 occurrence(s),Ponce
+206,salutation,Querimo ToÑinG,Querido Toñing
+207,salutation,My Dear Si,My Dear Sir
+207,"text, rule R022",2 occurrence(s),Ponce
+208,salutation,My Dear FrienD,My Dear Friend
+208,"text, rule R022",1 occurrence(s),Ponce
+208,"text, rule R097",1 occurrence(s),Sun Yat
+209,salutation,M1 Disriscuimo AÁmico y Compañero,Mi Distinguido Amigo y Compañero
+210,salutation,M1 Querimo Amico,Mi Querido Amigo
+211,salutation,Muy Señor Mio Y Disrincuipo Amico,Muy Señor Mio y Distinguido Amigo
+212,salutation,Mi Muy Queripo Amico,Mi Muy Querido Amigo
+213,salutation,M1 Queripo Ámico,Mi Querido Amigo
+214,salutation,M1 Muy Queripo Amico,Mi Muy Querido Amigo
+215,salutation,Mi Muy Querimo Amico,Mi Muy Querido Amigo
+215,"text, rule R022",1 occurrence(s),Ponce
+216,salutation,M1 Muy Disriscuipo Amico y CompraÑero,Mi Muy Distinguido Amigo y Compañero
+217,"text, rule R022",1 occurrence(s),Ponce
+218,"text, rule R022",1 occurrence(s),Ponce
+219,salutation,Muy Señor Mio y Amico,Muy Señor Mio y Amigo
+220,salutation,M1 Muy Queripo Amico,Mi Muy Querido Amigo
+222,salutation,M1 Querimo Amico,Mi Querido Amigo
+222,"text, rule R022",1 occurrence(s),Ponce
+223,"text, rule R022",1 occurrence(s),Ponce
+224,"text, rule R022",1 occurrence(s),Ponce
+225,salutation,Queripísimo HerMANO,Queridísimo Hermano
+225,"text, rule R022",1 occurrence(s),Ponce
+226,salutation,Mi Mur Querimo Hermano,Mi Muy Querido Hermano
+227,salutation,Mi Mur Quermo Amico,Mi Muy Querido Amigo
+227,"text, rule R022",1 occurrence(s),Ponce
+228,salutation,M1 Muy Disrincuipo AÁmico Y ComPAÑero,Mi Muy Distinguido Amigo y Compañero
+229,salutation,M1 Mur Quermo Amico,Mi Muy Querido Amigo
+230,salutation,M1 Muy Querino y Disriscuino CompPaÑero,Mi Muy Querido y Distinguido Compañero
+231,salutation,Mi Quermo Amico Y CompPaÑero,Mi Querido Amigo y Compañero
+232,salutation,M1 Mur Queripo Amico,Mi Muy Querido Amigo
+233,salutation,M1 muy Queripo Amico,Mi muy Querido Amigo
+234,salutation,M1 Disriscumo Amico y ComrAÑero,Mi Distinguido Amigo y Compañero
+235,salutation,My Dear FrienD,My Dear Friend
+235,"text, rule R022",1 occurrence(s),Ponce
+236,salutation,My Dear FriewD,My Dear Friend
+236,"text, rule R022",1 occurrence(s),Ponce
+236,"text, rule R097",2 occurrence(s),Sun Yat
+237,salutation,M1 Muy Querimo Amico,Mi Muy Querido Amigo
+238,salutation,Mr Drar FrienD,My Dear Friend
+239,salutation,Mis Muy Queripos Amicos,Mis Muy Queridos Amigos
+239,"text, rule R022",1 occurrence(s),Ponce
+240,salutation,Queripo OroncG,Querido Orong
+240,"text, rule R023",1 occurrence(s),Naning
+241,salutation,Mi Muy Queripo Amico,Mi Muy Querido Amigo
+241,"text, rule R020",1 occurrence(s),Mariano
+242,salutation,Mi Quermo Amico Y Hermano,Mi Querido Amigo y Hermano
+242,"text, rule R020",1 occurrence(s),Mariano
+243,salutation,M1 Mur Quero Amico,Mi Muy Querido Amigo
+244,salutation,M1 Querimo Amico lrorTEL,Mi Querido Amigo Ifortel
+244,"text, rule R024",1 occurrence(s),Samper

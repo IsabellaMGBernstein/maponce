@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapping Maponce</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Archivo+Narrow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one-screen instrument. Header strip, map + letter register side by side, chronotope timeline across the foot. */
+:root{
+  --paper:#eef1f3; --panel:#f8f9fa; --ink:#1c2430; --muted:#5b6675; --rule:#cfd5dc;
+  --hk:#b3262e;      /* letters sent from Hong Kong  */
+  --yk:#1f4f9a;      /* letters sent from Yokohama   */
+  --sun:#c8961a;     /* selection highlight          */
+  --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
+  --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
+  --ui:"Archivo Narrow", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --node:#d5dbe1; --trace:#5d6774; --band:#232a33; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --node:#d5dbe1; --trace:#5d6774; --band:#232a33; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:15px/1.4 var(--ui);display:flex;flex-direction:column;overflow:hidden}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;padding:12px 18px 10px;border-bottom:1px solid var(--rule)}
+h1{font:700 22px/1.1 var(--display);margin:0;text-wrap:balance}
+h1 em{font-weight:400}
+.sub{color:var(--muted);font-size:14px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-left:auto;font-size:13px;color:var(--muted);align-items:center}
+.key{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:3px solid currentColor;display:inline-block}
+.sw.dash{border-top-style:dashed}
+
+main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 360px}
+#map{min-height:0;background:var(--paper)}
+aside{min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--panel);border-left:1px solid var(--rule)}
+.reg-head{padding:12px 16px 8px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+.reg-head h2{font:700 17px/1.2 var(--display);margin:0}
+.reg-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--band);border:1px solid var(--rule);border-radius:999px;padding:1px 4px 1px 10px;font-size:13px;color:var(--ink)}
+.chip button{border:0;background:none;cursor:pointer;padding:0 6px;font-size:15px;line-height:1;color:var(--muted)}
+#list{list-style:none;margin:0;padding:0;overflow-y:auto;flex:1}
+#list li{border-bottom:1px solid var(--rule)}
+#list button{all:unset;display:grid;grid-template-columns:44px 1fr;gap:2px 10px;padding:9px 16px;cursor:pointer;width:100%;box-sizing:border-box}
+#list button:hover{background:var(--band)}
+#list button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+#list li.on button{background:var(--band);box-shadow:inset 3px 0 0 var(--sun)}
+.no{font:700 15px/1.2 var(--display);grid-row:span 3;padding-top:1px}
+.no small{display:block;font:500 11px var(--ui);color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.who{font-weight:600}
+.where{font-size:13px;color:var(--muted)}
+.where .o{font-weight:600}
+.o.hk{color:var(--hk)} .o.yk{color:var(--yk)}
+.tag{font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--rule);border-radius:3px;padding:0 4px;margin-left:4px;color:var(--muted)}
+.sum{font:italic 14px/1.35 var(--display);color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:20px 16px;color:var(--muted)}
+
+footer{border-top:1px solid var(--rule);background:var(--panel);padding:8px 18px 10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:14px;margin-bottom:4px}
+.btn{border:1px solid var(--rule);background:var(--paper);border-radius:4px;padding:3px 12px;cursor:pointer;font-weight:600}
+.btn:hover{border-color:var(--muted)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.controls label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}
+.controls select{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:2px 4px}
+#range{font:700 15px var(--display);margin-left:auto;font-variant-numeric:tabular-nums}
+#tl{width:100%;height:118px;display:block;touch-action:none;cursor:crosshair;user-select:none}
+#tl text{font-family:var(--ui);font-size:11px;fill:var(--muted)}
+#tl .yr{font-size:12px;font-weight:600;fill:var(--ink)}
+#tl .bandlab{font-size:11px;font-weight:600}
+.hint{font-size:12px;color:var(--muted)}
+
+/* Map key (bottom-left control) */
+.map-key{background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 8px rgb(0 0 0 / .18);width:250px;font:12px/1.3 var(--ui);margin-bottom:14px!important}
+.map-key summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font:700 14px var(--display)}
+.map-key summary::-webkit-details-marker{display:none}
+.map-key summary::after{content:"–";font:600 15px var(--ui);color:var(--muted)}
+.map-key:not([open]) summary::after{content:"+"}
+.map-key ul{list-style:none;margin:0;padding:2px 10px 8px;display:grid;gap:5px;border-top:1px solid var(--rule);padding-top:8px}
+.map-key li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:center}
+.map-key svg{width:30px;height:16px;display:block;margin-top:1px}
+.map-key b{font-weight:600}
+.map-key .act{color:var(--muted)}
+.map-key .foot{padding:6px 10px 8px;border-top:1px solid var(--rule);color:var(--muted)}
+/* Leaflet skinning */
+.osm-dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6)}
+.leaflet-tile-pane{opacity:.85}
+.leaflet-container{font:13px/1.35 var(--ui);background:var(--paper)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);border-radius:6px;box-shadow:0 2px 14px rgb(0 0 0 / .25)}
+.leaflet-popup-content{margin:12px 14px;max-height:340px;overflow:auto}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-bar a{background:var(--panel);color:var(--ink);border-bottom-color:var(--rule)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 80%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--muted)}
+.plabel{background:none;border:0;box-shadow:none;padding:0;color:var(--ink);font:600 12px var(--ui);text-shadow:0 0 3px var(--paper),0 0 3px var(--paper),0 0 2px var(--paper)}
+.plabel::before{display:none}
+.plabel.origin{font:700 14px var(--display)}
+.osq{width:14px;height:14px;border:2px solid var(--panel);box-shadow:0 0 0 1px var(--ink)}
+.osq.hk{background:var(--hk)} .osq.yk{background:var(--yk)}
+.osq.away{opacity:.35}
+.pop h3{font:700 16px/1.2 var(--display);margin:0 0 4px}
+.pop .meta{color:var(--muted);margin-bottom:6px}
+.pop .sum{-webkit-line-clamp:unset;display:block;margin:6px 0;color:var(--ink)}
+.pop dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:6px 0 0;font-size:12px}
+.pop dt{color:var(--muted)} .pop dd{margin:0}
+.pop ul{margin:4px 0 0;padding-left:16px}
+.pop li{margin:2px 0}
+.pop .lk{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+
+@media (max-width:800px){
+  body{overflow:auto;height:auto}
+  main{grid-template-columns:1fr;flex:none}
+  #map{height:58vh}
+  aside{border-left:0;border-top:1px solid var(--rule)}
+  #list{max-height:none;overflow:visible}
+  footer{order:-1;position:sticky;top:0;z-index:1000}
+  .legend{margin-left:0}
+  header{order:-2}
+  h1{font-size:19px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
+  <span class="sub" id="stats"></span>
+  <div class="legend" aria-label="Legend">
+    <span class="key" style="color:var(--hk)"><span class="sw"></span>sent from Hong Kong</span>
+    <span class="key" style="color:var(--yk)"><span class="sw"></span>sent from Yokohama</span>
+    <span class="key"><span class="sw dash"></span>destination inferred</span>
+    <span class="key">line width = number of letters</span>
+  </div>
+</header>
+
+<main>
+  <div id="map" role="region" aria-label="Map of letters"></div>
+  <aside>
+    <div class="reg-head">
+      <h2>Letters in view</h2>
+      <div class="reg-meta"><span id="count"></span><span id="filter"></span></div>
+    </div>
+    <ul id="list"></ul>
+  </aside>
+</main>
+
+<footer>
+  <div class="controls">
+    <button class="btn" id="play" aria-pressed="false">▶ Play</button>
+    <label for="win">Window
+      <select id="win">
+        <option value="1">1 month</option>
+        <option value="3" selected>3 months</option>
+        <option value="6">6 months</option>
+        <option value="12">12 months</option>
+      </select></label>
+    <button class="btn" id="all">Show all</button>
+    <label><input type="checkbox" id="trace" checked> Earlier letters as faint trace</label>
+    <label><input type="checkbox" id="inf" checked> Include inferred destinations</label>
+    <span id="range"></span>
+  </div>
+  <svg id="tl" aria-label="Timeline of letters per month. Drag to choose a period."></svg>
+  <div class="hint">Drag across the timeline to choose a period, or click a month. The band above the bars shows where Ponce was living.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+// ===== Background map ========================================================
+// Default: OpenStreetMap standard tiles. No API key needed; the
+// "© OpenStreetMap contributors" credit must stay visible.
+// Optional: to use the plainer CARTO style instead, paste a free key from
+// https://carto.com/basemaps/apikey/ between the quotes below.
+const CARTO_KEY = '';
+// =============================================================================
+(function(){
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const P = DATA.places, LET = DATA.letters;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MES = ['enero','feb.','marzo','abril','mayo','junio','julio','agosto','sept.','oct.','nov.','dic.'];
+const fmtDate = s => { const [y,m,d] = s.split('-').map(Number); return `${d} ${MON[m-1]} ${y}`; };
+const oKey = o => o === 'Hong Kong' ? 'hk' : 'yk';
+const shiftLon = lon => lon < -30 ? lon + 360 : lon;   // put the Americas east of Asia (trans-Pacific mail)
+const ll = name => [P[name].lat, shiftLon(P[name].lon)];
+
+// ---------- months ----------
+const mIdx = s => { const [y,m] = s.split('-').map(Number); return y*12 + (m-1); };
+LET.forEach(l => l.m = mIdx(l.date));
+const M0 = Math.min(...LET.map(l=>l.m)), M1 = Math.max(...LET.map(l=>l.m));
+const NM = M1 - M0 + 1;
+const mLabel = i => { const a = M0 + i; return `${MON[a%12]} ${Math.floor(a/12)}`; };
+
+// Ponce's residence bands from the book's four parts
+const PARTS = {}; LET.forEach(l => { const p = PARTS[l.part] ||= {part:l.part, a:l.m, b:l.m, origin:l.origin}; p.a = Math.min(p.a,l.m); p.b = Math.max(p.b,l.m); });
+const BANDS = Object.values(PARTS).sort((x,y)=>x.a-y.a);
+const BAND_NAME = {'PONCE EN HONGKONG':'Hong Kong','PONCE EN YOKOHAMA (JAPÓN)':'Yokohama','PONCE CON LICENCIA, EN HONGKONG':'Hong Kong (on leave)','PONCE DE VUELTA EN JAPÓN':'Japan'};
+
+const S = { a:0, b:NM-1, place:null, sel:null, playing:false, timer:null };
+
+document.getElementById('stats').textContent =
+  `${LET.length} letters · ${new Set(LET.map(l=>l.recipient)).size} correspondents · ${new Set(LET.filter(l=>l.dest).map(l=>l.dest)).size} destinations`;
+
+// ---------- map ----------
+const map = L.map('map', { worldCopyJump:false, zoomSnap:0.25, minZoom:1.5, attributionControl:true }).setView([30, 100], 2);
+const dark = matchMedia('(prefers-color-scheme: dark)');
+let tiles;
+function setTiles(){
+  if (tiles) map.removeLayer(tiles);
+  const isDark = (document.documentElement.dataset.theme || (dark.matches ? 'dark':'light')) === 'dark';
+  const credit = ' · Data: Ponce, <i>Cartas sobre la revolución</i> (1932)';
+  document.body.classList.toggle('osm-dark', !CARTO_KEY && isDark);
+  if (CARTO_KEY){
+    tiles = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${isDark ? 'dark_nolabels' : 'light_nolabels'}/{z}/{x}/{y}{r}.png?key=${encodeURIComponent(CARTO_KEY)}`, {
+      subdomains:'abcd', maxZoom:10,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>' + credit
+    });
+  } else {
+    tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom:10,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' + credit
+    });
+  }
+  tiles.addTo(map);
+}
+setTiles(); dark.addEventListener('change', () => { setTiles(); render(); });
+
+
+// ---------- map key ----------
+const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
+  const d = L.DomUtil.create('details','map-key');
+  if (innerWidth > 800) d.open = true;
+  const sq = c => `<svg viewBox="0 0 30 16" aria-hidden="true"><rect x="9" y="1" width="13" height="13" style="fill:var(${c});stroke:var(--panel);stroke-width:2"/><rect x="9" y="1" width="13" height="13" style="fill:none;stroke:var(--ink);stroke-width:.8"/></svg>`;
+  const ln = (c,w,dash,o=1) => `<svg viewBox="0 0 30 16" aria-hidden="true"><path d="M2 12 Q15 2 28 10" style="fill:none;stroke:var(${c});stroke-width:${w};stroke-linecap:round;opacity:${o}" ${dash?'stroke-dasharray="4 4"':''}/></svg>`;
+  d.innerHTML = `<summary>Map key</summary><ul>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true"><rect x="1" y="2" width="11" height="11" style="fill:var(--hk);stroke:var(--ink);stroke-width:.8"/><rect x="17" y="2" width="11" height="11" style="fill:var(--yk);stroke:var(--ink);stroke-width:.8"/></svg>
+      <span><b>Ponce's base</b> <span class="act">· click: letters sent from here</span></span></li>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="9" r="3.5" style="fill:var(--node)"/><circle cx="21" cy="8" r="6.5" style="fill:var(--node)"/></svg>
+      <span><b>Destination</b>, sized by letters <span class="act">· click: letters and recipients</span></span></li>
+    <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: its letters</span></span></li>
+    <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
+    <li>${ln('--trace',1.5,false,.6)}<span><b>Grey</b>: earlier letters (trace)</span></li>
+    <li>${ln('--sun',4)}<span><b>Gold</b>: letter picked in the list</span></li>
+  </ul><div class="foot">Click a square or circle again to clear its filter.</div>`;
+  L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+  return d;
+}});
+new KeyCtl().addTo(map);
+const routeLayer = L.layerGroup().addTo(map);
+const nodeLayer = L.layerGroup().addTo(map);
+const hiLayer = L.layerGroup().addTo(map);
+
+function curve(a, b, bend=0.18, n=40){
+  const [y1,x1]=a, [y2,x2]=b, dx=x2-x1, dy=y2-y1;
+  const cx=(x1+x2)/2 - dy*bend, cy=(y1+y2)/2 + dx*bend;
+  const pts=[]; for(let i=0;i<=n;i++){ const t=i/n, u=1-t; pts.push([u*u*y1+2*u*t*cy+t*t*y2, u*u*x1+2*u*t*cx+t*t*x2]); }
+  return pts;
+}
+// fit to every place once
+map.fitBounds(L.latLngBounds(Object.keys(P).map(ll)).pad(0.08));
+
+// ---------- selection ----------
+function inRange(l){ return l.m >= M0+S.a && l.m <= M0+S.b; }
+function shown(l){ return l.dest && (l.dest_kind !== 'inferred' || document.getElementById('inf').checked); }
+function visibleLetters(){
+  return LET.filter(l => inRange(l) && (!S.place || l.dest === S.place || (S.place.startsWith('from:') && l.origin === S.place.slice(5))));
+}
+
+function render(){
+  routeLayer.clearLayers(); nodeLayer.clearLayers(); hiLayer.clearLayers();
+  const cur = LET.filter(inRange), trace = document.getElementById('trace').checked;
+  const routes = new Map();
+  const add = (l, past) => {
+    const k = `${past?1:0}|${l.origin}|${l.dest}|${l.dest_kind==='inferred'?'i':'p'}`;
+    (routes.get(k) || routes.set(k, {past, origin:l.origin, dest:l.dest, inf:l.dest_kind==='inferred', ls:[]}).get(k)).ls.push(l);
+  };
+  if (trace && S.a > 0) LET.filter(l => l.m < M0+S.a && shown(l)).forEach(l => add(l, true));
+  cur.filter(shown).forEach(l => add(l, false));
+  const sorted = [...routes.values()].sort((x,y)=> (y.past-x.past) || (y.ls.length-x.ls.length));
+  for (const r of sorted){
+    if (r.origin === r.dest) continue;
+    const w = r.past ? 1 : 1.4 + Math.sqrt(r.ls.length)*1.5;
+    const col = r.past ? css('--trace') : css(r.origin==='Hong Kong' ? '--hk' : '--yk');
+    const line = L.polyline(curve(ll(r.origin), ll(r.dest)), {
+      color:col, weight:w, opacity: r.past ? .35 : .8, dashArray: r.inf ? '5 6' : null, lineCap:'round', interactive: !r.past
+    }).addTo(routeLayer);
+    if (!r.past){
+      line.bindTooltip(`${esc(r.origin)} → ${esc(P[r.dest].label)}: ${r.ls.length} letter${r.ls.length>1?'s':''}${r.inf?' (inferred)':''}`, {sticky:true});
+      line.on('click', e => L.popup().setLatLng(e.latlng).setContent(routePopup(r)).openOn(map));
+    }
+  }
+  // destination nodes
+  const byPlace = {}; cur.filter(shown).forEach(l => (byPlace[l.dest] ||= []).push(l));
+  const origins = new Set(cur.map(l=>l.origin));
+  for (const [name, ls] of Object.entries(byPlace)){
+    const m = L.circleMarker(ll(name), { radius: 3 + Math.sqrt(ls.length)*2.2, color:css('--panel'), weight:1.5,
+      fillColor: css('--node'), fillOpacity: S.place===name ? 1 : .85 }).addTo(nodeLayer);
+    m.bindTooltip(`${esc(P[name].label)} <span style="opacity:.7">${ls.length}</span>`, {permanent:true, direction:'right', offset:[6,0], className:'plabel'});
+    m.on('click', () => { setPlace(S.place===name ? null : name); placePopup(name); });
+  }
+  // Ponce's two bases
+  for (const o of ['Hong Kong','Yokohama']){
+    const here = origins.has(o);
+    const mk = L.marker(ll(o), { icon: L.divIcon({className:'', html:`<div class="osq ${oKey(o)} ${here?'':'away'}"></div>`, iconSize:[14,14], iconAnchor:[7,7]}), zIndexOffset:1000, keyboard:true, title:`Ponce in ${o}` }).addTo(nodeLayer);
+    mk.bindTooltip(`Ponce · ${o}`, {permanent:true, direction:'left', offset:[-8,0], className:'plabel origin'});
+    mk.on('click', () => setPlace(S.place===`from:${o}` ? null : `from:${o}`));
+  }
+  if (S.sel) highlight(S.sel, false);
+  renderList(); drawTimeline();
+}
+
+function letterHTML(l){
+  const dest = l.dest ? `${esc(P[l.dest].label)}` : 'destination not identified';
+  return `<div class="pop"><h3>No. ${l.n} · ${fmtDate(l.date)}</h3>
+    <div class="meta">To <b>${esc(l.recipient)}</b> → ${dest}<br>From ${esc(l.origin)}${l.signed?` · signed “${esc(l.signed)}”`:''}</div>
+    ${l.summary?`<div class="sum">${esc(l.summary)}</div>`:''}
+    <dl>
+      <dt>Dateline</dt><dd>${esc(l.dateline)}</dd>
+      ${l.addressee?`<dt>Addressee</dt><dd>${esc(l.addressee).replace(/\n/g,' / ')}</dd>`:''}
+      <dt>Destination</dt><dd>${esc(l.dest_basis)}</dd>
+      <dt>Printed pp.</dt><dd>${esc(l.pages)} · ${esc(l.images)}</dd>
+      ${l.flags?`<dt>Review</dt><dd>${esc(l.flags)}</dd>`:''}
+    </dl></div>`;
+}
+function routePopup(r){
+  return `<div class="pop"><h3>${esc(r.origin)} → ${esc(P[r.dest].label)}</h3>
+    <div class="meta">${r.ls.length} letter${r.ls.length>1?'s':''} in this period${r.inf?' · destination inferred':''}</div>
+    <ul>${r.ls.sort((a,b)=>a.date<b.date?-1:1).map(l=>`<li><button class="lk" data-n="${l.n}">No. ${l.n}</button>, ${fmtDate(l.date)}, to ${esc(l.recipient)}</li>`).join('')}</ul></div>`;
+}
+function placePopup(name){
+  const ls = LET.filter(l => inRange(l) && l.dest===name && shown(l));
+  const who = {}; ls.forEach(l => who[l.recipient]=(who[l.recipient]||0)+1);
+  L.popup().setLatLng(ll(name)).setContent(`<div class="pop"><h3>${esc(P[name].label)}</h3>
+    <div class="meta">${ls.length} letter${ls.length>1?'s':''} received in this period</div>
+    <ul>${Object.entries(who).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<li>${esc(k)} <span style="opacity:.7">(${v})</span></li>`).join('')}</ul></div>`).openOn(map);
+}
+map.on('popupopen', e => e.popup.getElement().querySelectorAll('.lk').forEach(b => b.addEventListener('click', () => selectLetter(+b.dataset.n, true))));
+
+function highlight(l, open){
+  hiLayer.clearLayers();
+  if (l.dest && l.origin !== l.dest){
+    L.polyline(curve(ll(l.origin), ll(l.dest)), {color:css('--sun'), weight:5, opacity:.95, dashArray: l.dest_kind==='inferred'?'5 6':null, interactive:false}).addTo(hiLayer);
+  }
+  if (open) L.popup({maxWidth:340}).setLatLng(l.dest ? ll(l.dest) : ll(l.origin)).setContent(letterHTML(l)).openOn(map);
+}
+function selectLetter(n, open){
+  const l = LET.find(x=>x.n===n); S.sel = l; highlight(l, open);
+  document.querySelectorAll('#list li').forEach(li => li.classList.toggle('on', +li.dataset.n===n));
+  const li = document.querySelector(`#list li[data-n="${n}"]`); if (li) li.scrollIntoView({block:'nearest'});
+}
+
+// ---------- register ----------
+function renderList(){
+  const ls = visibleLetters().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:a.n-b.n);
+  document.getElementById('count').textContent = `${ls.length} letter${ls.length===1?'':'s'}`;
+  const f = document.getElementById('filter');
+  f.innerHTML = S.place ? `<span class="chip">${S.place.startsWith('from:')?'sent from '+esc(S.place.slice(5)):'to '+esc(P[S.place].label)}<button aria-label="Clear place filter">×</button></span>` : '';
+  if (S.place) f.querySelector('button').onclick = () => setPlace(null);
+  const ul = document.getElementById('list');
+  ul.innerHTML = ls.length ? ls.map(l => `<li data-n="${l.n}" class="${S.sel&&S.sel.n===l.n?'on':''}"><button>
+      <span class="no">${l.n}<small>${l.date.slice(0,4)}</small></span>
+      <span class="who">${esc(l.recipient)}</span>
+      <span class="where"><span class="o ${oKey(l.origin)}">${esc(l.origin)}</span> → ${l.dest?esc(P[l.dest].label):'place unknown'}${l.dest_kind==='inferred'?'<span class="tag">inferred</span>':''}${l.dest_kind==='unlocated'?'<span class="tag">unplaced</span>':''} · ${fmtDate(l.date)}</span>
+      ${l.summary?`<span class="sum">${esc(l.summary)}</span>`:'<span></span>'}
+    </button></li>`).join('') : '<li class="empty">No letters in this period.</li>';
+  ul.querySelectorAll('li[data-n] button').forEach(b => b.onclick = () => selectLetter(+b.parentElement.dataset.n, true));
+}
+function setPlace(p){ S.place = p; renderList(); render(); }
+
+// ---------- chronotope timeline ----------
+const svg = document.getElementById('tl'), NS='http://www.w3.org/2000/svg';
+const counts = Array.from({length:NM}, () => ({hk:0, yk:0, un:0}));
+LET.forEach(l => { const c = counts[l.m-M0]; if (!l.dest) c.un++; else c[oKey(l.origin)]++; });
+const maxC = Math.max(...counts.map(c=>c.hk+c.yk+c.un));
+let geo = null;
+function el(t, a, parent=svg){ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); parent.appendChild(e); return e; }
+function drawTimeline(){
+  const W = svg.clientWidth || 800, H = 118, padL = 4, padR = 4, top = 22, base = 92;
+  const bw = (W-padL-padR)/NM; geo = {padL, bw};
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML='';
+  // residence band
+  BANDS.forEach(b => {
+    const x = padL + (b.a-M0)*bw, w = (b.b-b.a+1)*bw;
+    el('rect',{x:x+.5,y:2,width:Math.max(w-1,1),height:14,fill:css(b.origin==='Hong Kong'?'--hk':'--yk'),opacity:.16});
+    const t = el('text',{x:x+4,y:13,class:'bandlab',fill:css(b.origin==='Hong Kong'?'--hk':'--yk')}); t.textContent = BAND_NAME[b.part]||b.part;
+    if (t.getComputedTextLength() > w-6) t.textContent = w > 40 ? (b.origin==='Hong Kong'?'HK':'JP') : '';
+  });
+  // selection window
+  el('rect',{x:padL+S.a*bw, y:top-4, width:(S.b-S.a+1)*bw, height:base-top+6, fill:css('--sun'), opacity:.16});
+  // bars
+  const sc = (base-top)/maxC;
+  counts.forEach((c,i) => {
+    const x = padL + i*bw + bw*.14, w = bw*.72, on = i>=S.a && i<=S.b; let y = base;
+    for (const [k,col] of [['hk','--hk'],['yk','--yk'],['un','--trace']]){
+      if (!c[k]) continue; const h = c[k]*sc; y -= h;
+      el('rect',{x, y, width:w, height:h, fill:css(col), opacity:on?1:.3});
+    }
+  });
+  el('line',{x1:padL,x2:W-padR,y1:base+.5,y2:base+.5,stroke:css('--rule')});
+  // month & year ticks
+  for (let i=0;i<NM;i++){
+    const a = M0+i, mo = a%12, x = padL + i*bw;
+    if (mo===0 || i===0){ el('line',{x1:x,x2:x,y1:base,y2:base+16,stroke:css('--muted')}); el('text',{x:x+3,y:base+26,class:'yr'}).textContent = Math.floor(a/12); }
+    if (bw > 22 || (bw > 11 && mo%3===0)) el('text',{x:x+bw/2,y:base+12,'text-anchor':'middle'}).textContent = MON[mo][0];
+  }
+  el('text',{x:W-padR,y:top+6,'text-anchor':'end'}).textContent = `max ${maxC}/month`;
+  document.getElementById('range').textContent = (S.a===0 && S.b===NM-1) ? 'May 1897 – Mar 1900 (all)' : (S.a===S.b ? mLabel(S.a) : `${mLabel(S.a)} – ${mLabel(S.b)}`);
+}
+// drag to select
+let drag = null;
+const monthAt = e => { const r = svg.getBoundingClientRect(); const x = (e.clientX - r.left) * (svg.viewBox.baseVal.width / r.width); return Math.max(0, Math.min(NM-1, Math.floor((x-geo.padL)/geo.bw))); };
+svg.addEventListener('pointerdown', e => { stop(); drag = monthAt(e); svg.setPointerCapture(e.pointerId); S.a = S.b = drag; drawTimeline(); });
+svg.addEventListener('pointermove', e => { if (drag===null) return; const m = monthAt(e); S.a = Math.min(drag,m); S.b = Math.max(drag,m); drawTimeline(); });
+svg.addEventListener('pointerup', () => { if (drag===null) return; drag = null; render(); });
+
+// ---------- play ----------
+const playBtn = document.getElementById('play');
+function stop(){ S.playing=false; clearInterval(S.timer); playBtn.setAttribute('aria-pressed','false'); playBtn.textContent='▶ Play'; }
+function step(){
+  const w = +document.getElementById('win').value;
+  if (S.b >= NM-1){ stop(); return; }
+  S.b = Math.min(NM-1, S.b+1); S.a = Math.max(0, S.b-w+1); render();
+}
+playBtn.onclick = () => {
+  if (S.playing){ stop(); return; }
+  const w = +document.getElementById('win').value;
+  if (S.b >= NM-1 || (S.a===0 && S.b===NM-1)){ S.a = 0; S.b = w-1; render(); }
+  S.playing = true; playBtn.setAttribute('aria-pressed','true'); playBtn.textContent='❚❚ Pause';
+  S.timer = setInterval(step, matchMedia('(prefers-reduced-motion: reduce)').matches ? 2000 : 1100);
+};
+document.getElementById('all').onclick = () => { stop(); S.a=0; S.b=NM-1; render(); };
+document.getElementById('trace').onchange = render;
+document.getElementById('inf').onchange = render;
+document.getElementById('win').onchange = () => { if (!(S.a===0&&S.b===NM-1)){ const w=+document.getElementById('win').value; S.a=Math.max(0,S.b-w+1); render(); } };
+addEventListener('resize', drawTimeline);
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+rule_id,field,type,find,replace,note
+R001,*,regex,"\bBL[uU][A-Za-z]{5,9}\b",Blumentritt,small-caps OCR variants of BLUMENTRITT
+R002,*,word,Fersanbo,Fernando,
+R003,*,word,Fersano,Fernando,
+R004,*,word,FersanDo,Fernando,
+R005,*,word,Fervanpo,Fernando,
+R006,*,word,FE.,F.,
+R007,*,word,FP.,F.,
+R010,*,regex,(?<![A-Za-z])[\]\[lIÍ]?[IlÍ\[]?[zZ][qQ]ui[eéÉ]?[rR][pPdD][oOO]\b|\b[ÍI]?I?zQUIERDO\b|\bIzquierDO\b|\bIzquiÉRDO\b,Izquierdo,OCR variants of IZQUIERDO
+R011,recipient_as_printed,text,]. A.,J. A.,
+R020,*,regex,"\bMa[zr]{1,3}ano\b|\bMAkrIANo\b|\bMAarI1aNo\b",Mariano,signature small caps
+R021,*,word,CoLLANTES,Collantes,
+R022,*,regex,\bPon(?:cE|ceE|cr|er|cz|czr|crz|CE)\b,Ponce,signature small caps
+R023,*,regex,\bN[aA][nN][nN]?[iI][nN]s?[gG]\b|\bNANINsG\b|\bNanING\b,Naning,pseudonym in small caps
+R024,*,regex,\bSAMPER\b|\bSam[re]er\b|\bSamrer\b|\bSamerr\b,Samper,
+R025,*,regex,\bRo[bs]erT\b,Robert,
+R026,*,regex,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b,Lichauco,
+R027,*,word,KALIPULAKO,Kalipulako,
+R028,signatory_as_printed,regex,"^(?:SS|SN|NX|,)\s+",,stray marks before the signature
+R029,signatory_as_printed,regex,^EF\. ,F. ,
+R030,*,regex,"\bA[pr]{1,2}[aA][cC][iI]?[iI]?[bmnBMN][lLtT]?[eE]?[lLeE]*\b|\bAracine\b|\bApaciLE\b|\bArpaciBLE\b|\bApPAcIBLE\b|\bAraciBre\b|\bAPAcIiBLE\b|\bAPaciBLeE\b",Apacible,OCR variants of APACIBLE
+R031,*,regex,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b",Agoncillo,
+R032,*,regex,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b",Vergel,
+R033,*,regex,\bD[Ee]\s+D[r]?ios\b,de Dios,
+R034,*,regex,\bMic[uG][eE]?[zU]?[eE]?L\b,Miguel,
+R035,*,regex,"\bMor[ae][A-Za-z]{2,4}\b(?<!Morales)",Morayta,OCR variants of MORAYTA
+R036,*,regex,\bSa[rt]u?r?n[iI]?N?0?O\b|\bSaturninO\b,Saturnino,
+R037,addressee_block,regex,\bDor[tr]?a\b,Doria,
+R038,*,word,Dominco,Domingo,
+R039,*,word,ViLLARESA,Villaresa,
+R040,*,word,Penro,Pedro,
+R041,*,word,HipaLGO,Hidalgo,
+R042,*,word,HiDALGO,Hidalgo,
+R043,*,word,EspañoL,Español,
+R044,*,word,EspPaÑñoL,Español,
+R045,*,regex,\bTu[np]ury[Y]?\b,Tudury,
+R046,*,text,Y Y Pons,y Pons,
+R047,*,text,Tudury Y Pons,Tudury y Pons,
+R048,*,word,RarazL,Rafael,
+R049,*,text,pe Lasra,de Labra,
+R050,*,word,LABRa,Labra,
+R051,*,text,pe Lere,de Lete,
+R052,*,word,Lere,Lete,
+R053,*,word,LeTE,Lete,
+R054,*,word,Epuarno,Eduardo,
+R055,*,word,WiLLism,William,
+R056,*,word,WiLLiam,William,
+R057,*,regex,\bJo[wN][eE]s\b|\bJonEs\b,Jones,
+R058,*,word,WiLLink,Willink,
+R059,*,word,WiLLINK,Willink,
+R060,*,regex,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b,Santos,
+R061,*,regex,\bpe Santos\b,de Santos,
+R062,*,text,I de Santos,I. de Santos,
+R063,*,word,AroLinario,Apolinario,
+R064,*,regex,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b,Mabini,
+R065,*,word,BeTANcES,Betances,
+R066,*,word,Betaánces,Betances,
+R067,*,word,GoNzaLo,Gonzalo,
+R068,*,regex,\bInacaxa\b|\bInAcaK1\b,Inagaki,
+R069,*,regex,\bEs[gq][gq]?\b,Esq,
+R070,*,regex,\bRos[a]r[r1]?[oi]o?\b|\bRosar1o\b|\bRosarro\b,Rosario,
+R071,*,text,Der Rosario,del Rosario,
+R072,*,regex,\bFu[kx]us[hH]ima\b,Fukushima,
+R073,*,regex,\bYama[cg]?ara\b|\bY amagata\b,Yamagata,
+R074,*,regex,\bSu[ac]imura\b|\bSuaimura\b,Sugimura,
+R075,*,regex,\bKami[rv]a\b,Kamiya,
+R076,*,text,Kyencsu Amn,Kyengsu Ahn,
+R077,*,regex,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b,Castro,
+R078,*,word,Cose,Cosp,
+R079,*,word,CosP,Cosp,
+R080,*,text,Uxicm Tacucmt,Ukichi Taguchi,
+R081,*,word,TacuchHI,Taguchi,
+R082,*,regex,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b,Foujita,
+R083,*,regex,\bOs[mH][iI][kK][aA][wW][aA]\b,Oshikawa,
+R084,*,word,ViLLAREAL,Villareal,
+R085,*,word,Merver,Meyer,
+R086,*,regex,"\bCoa[rsx]{1,2}[pdD]?\b|\bCoaro\b|\bCoasxp\b|\bCoArD\b",Coard,
+R087,*,word,HeneY,Henry,
+R088,*,word,Canadd,Canada,
+R089,*,regex,\bHira[rT]a\b|\bHiraTa\b,Hirata,
+R090,*,word,FeLipE,Felipe,
+R091,*,word,BUENCcAMINO,Buencamino,
+R092,*,regex,\bEmi[iL]?io\b,Emilio,
+R093,*,word,ÁGUINALDO,Aguinaldo,
+R094,*,regex,\bRi[ec][cg]?o\b|\bRico\b|\bRisco\b|\bRieco\b,Riego,
+R095,*,word,IsaBeLO,Isabelo,
+R096,*,regex,\bDE Los ReE?YEs\b,de los Reyes,
+R097,*,regex,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b,Sun Yat,
+R098,*,word,RepPuBLICANO,Republicano,
+R099,*,word,FiLIPINO,Filipino,
+R100,*,word,KimURA,Kimura,
+R101,*,word,KanoY,Kanoy,
+R102,*,word,ToNinc,Toñing,
+R103,*,word,Licmauco,Lichauco,
+R110,*,regex,\bY ama\b,Yama,place name split by OCR
+R111,*,regex,\bMiyoko(?:jt|jíi|íí|j:)(?=\s)|\bMiyokyí\b|\bMio(?= Yama),Miyokojí,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+R112,*,word,Kitagáta,Kitagata,
+R113,*,regex,\bY okohama\b|\bYokMama\b,Yokohama,
+R114,*,regex,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b,Hongkong,
+R116,*,text,18098,1898,
+R117,place_date_as_printed,regex,^[”\s]+,,stray quote mark
+R118,*,regex,"(?<=Korakigun, )(?:Ñ|ho|y) (?=Yokohama)",,stray mark before Yokohama
+R119,place_date_as_printed,regex,\s+l$,,stray mark at end
+R120,addressee_block,regex,\s+(?:AN|O|e|i|Le|po|rs)(?=\s*(?:\||$)),,stray marks at line ends
+R121,addressee_block,regex,(?<=\.)\s+['”]$,,stray quote mark after a space at the end
+R122,addressee_block,regex,"\.\s*,\s*$",.,stray comma at end
+R123,*,text,“sq.,Esq.,
+R124,*,word,SoLER,Soler,
+R125,*,word,SoLer,Soler,
+R126,*,word,SELER,Seler,
+R127,*,word,SeLER,Seler,
+R128,*,text,DE QUEZADA,de Quezada,
+R129,*,word,QUEZADA,Quezada,
+R131,*,word,MicueL,Miguel,
+R132,*,word,ViLLaLBA,Villalba,
+R133,*,word,EmiLio,Emilio,
+R134,recipient_index_form,regex,^(?:IrorTEL|IrForRTEL|TIrORTEL|IrorreL|ÍFORTEL|IFORTEL)$,Ifortel,heading prints Ifortel (image check 011_heading)
+R135,recipient_index_form,word,IkkIis,Ikkis,heading prints Ikkis (image check 089_heading)
+R136,recipient_index_form,word,LeEcARoz,Lecaroz,
+R137,recipient_index_form,word,VícrToR,Victor,printed without accent (image check 027_addressee)
+R138,recipient_index_form,word,HErvaAs,Hervas,printed without accent (image check 028_addressee)
+R139,recipient_index_form,regex,(?<=\w) Y (?=\w), y ,conjunction y in small capitals
+R140,place_date_as_printed,regex,\b1\.(?:”|2)?(?= de | Dic),1.º,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+R141,*,word,EsqQ,Esq,
+R142,addressee_block,text, € , é ,
+R143,addressee_block,regex,(?<![A-Za-z])[lÍ]\. (?=(?:de |pe )?Santos),I. ,"initial I. of I. de Santos (image checks 172, 183, 191)"
+R144,addressee_block,text,de Los Reyes,de los Reyes,
+R146,addressee_block,regex,",\s+a 7 ES(?=\s*\|)",",",stray marks
+R147,*,word,Shiga,Shiba,printed T. Shiba (image check 174_addressee)
+R148,recipient_as_printed,word,IKkis,Ikkis,heading prints Ikkis (image check 089_heading)
+R149,*,regex,\bE[pb]uar[pd]o?\b,Eduard,printed Eduard (image check 093)
+R150,recipient_index_form,regex,^Villa$,Villa-real,OCR cut the name; heading prints Villa-real (image check 206_heading)
+R151,place_date_as_printed,regex,\bFeb[*'](?=\.),Febº,superscript o read as * or ' (image check 051_sample)

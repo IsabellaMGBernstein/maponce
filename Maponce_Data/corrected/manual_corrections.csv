@@ -1,0 +1,184 @@
+letter_number,field,value,evidence,note
+12,place_date_as_printed,"Hongkong, September 9th 1897.",image_checks/012_dateline.png,read from the page image
+12,place_as_printed,Hongkong,image_checks/012_dateline.png,
+39,place_date_as_printed,"Hongkong, 5 Enero, 1898.",image_checks/039_dateline.png,read from the page image
+63,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 17 Agosto, 1898.",image_checks/063_dateline.png,read from the page image
+63,place_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón)",image_checks/063_dateline.png,
+71,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 30 Agosto, 1898.",image_checks/071_dateline.png,OCR merged the addressee into the dateline
+71,place_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",image_checks/071_dateline.png,
+86,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 25 de Septiembre, 1898.",image_checks/086_dateline.png,read from the page image
+101,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), Novienbre 20, 1898.",image_checks/101_dateline.png,read from the page image
+101,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan)",image_checks/101_dateline.png,
+103,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón), 21 Noviembre, 1898.",image_checks/103_dateline.png,read from the page image
+103,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón)",image_checks/103_dateline.png,
+108,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), 30 Novᵉ. de 1898.",image_checks/108_dateline.png,ink blot over part of Miyokojí; superscript e in Novᵉ.
+108,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan)",image_checks/108_dateline.png,
+109,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 20 de Nov., 1898.",image_checks/109_dateline.png,ink mark over the day; reads 20
+109,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/109_dateline.png,
+112,place_date_as_printed,"Yokohama, 1.º de Dic., 1898.",image_checks/112_dateline.png,read from the page image
+114,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1899.",image_checks/114_dateline.png,read from the page image
+114,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/114_dateline.png,
+115,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1899.",image_checks/115_dateline.png,read from the page image
+115,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/115_dateline.png,
+119,place_date_as_printed,"Yokohama (Japan), January 16, 1899.",image_checks/119_dateline.png,OCR read Yokohama as Nuhana (ink mark)
+119,place_as_printed,Yokohama (Japan),image_checks/119_dateline.png,
+133,place_date_as_printed,"Yokohama, 18 Febrero, 1899.",image_checks/133_dateline.png,read from the page image
+137,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 24th, 1899.",image_checks/137_dateline.png,read from the page image
+137,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/137_dateline.png,
+142,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 4 de Marzo de 1899.",image_checks/142_dateline.png,read from the page image
+142,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/142_dateline.png,
+159,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 5th of April, 1899.",image_checks/159_dateline.png,read from the page image
+159,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/159_dateline.png,
+168,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1.º de Mayo de 1899.",image_checks/168_dateline.png,read from the page image
+168,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/168_dateline.png,
+174,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 31 May, 1899.",image_checks/174_dateline.png,only the second line of the dateline is visible in the crop; first line kept from OCR
+174,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",image_checks/174_dateline.png,
+208,place_date_as_printed,"Oct. 16, 1899.",image_checks/208_dateline.png,dateline has no place; the line Dr. Sun Yat Sen. is the addressee
+208,place_as_printed,,image_checks/208_dateline.png,
+212,place_date_as_printed,"Hongkong, 27 de Octubre de 1899.",image_checks/212_dateline.png,read from the page image
+238,place_date_as_printed,"Hongkong, February 2nd, 1900.",image_checks/238_dateline.png,read from the page image
+239,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama, 1.º de Marzo de 1900.",image_checks/239_dateline.png,read from the page image
+239,place_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama",image_checks/239_dateline.png,
+241,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama, 1.º de Marzo de 1900.",image_checks/241_dateline.png,read from the page image
+241,place_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama",image_checks/241_dateline.png,
+12,date_iso,1897-09-09,image_checks/012_dateline.png,date confirmed on the page image
+39,date_iso,1898-01-05,image_checks/039_dateline.png,date confirmed on the page image
+63,date_iso,1898-08-17,image_checks/063_dateline.png,date confirmed on the page image
+78,date_iso,1898-09-04,image_checks/078_dateline.png,date confirmed on the page image
+86,date_iso,1898-09-25,image_checks/086_dateline.png,date confirmed on the page image
+103,date_iso,1898-11-21,image_checks/103_dateline.png,date confirmed on the page image
+109,date_iso,1898-11-20,image_checks/109_dateline.png,date confirmed on the page image
+112,date_iso,1898-12-01,image_checks/112_dateline.png,date confirmed on the page image
+114,date_iso,1899-01-02,image_checks/114_dateline.png,date confirmed on the page image
+133,date_iso,1899-02-18,image_checks/133_dateline.png,date confirmed on the page image
+137,date_iso,1899-02-24,image_checks/137_dateline.png,date confirmed on the page image
+142,date_iso,1899-03-04,image_checks/142_dateline.png,date confirmed on the page image
+159,date_iso,1899-04-05,image_checks/159_dateline.png,date confirmed on the page image
+174,date_iso,1899-05-31,image_checks/174_dateline.png,date confirmed on the page image
+212,date_iso,1899-10-27,image_checks/212_dateline.png,date confirmed on the page image
+238,date_iso,1900-02-02,image_checks/238_dateline.png,date confirmed on the page image
+221,date_iso,1899-11-17,image_checks/221_dateline.png,date confirmed on the page image
+234,date_iso,1900-01-05,image_checks/234_dateline.png,date confirmed on the page image
+78,review_flags,date earlier than the preceding letter (book order is not strictly chronological); date confirmed on page image,image_checks/078_dateline.png,
+12,review_flags,date confirmed on page image,image_checks/012_dateline.png,replaces the raw flag about a garbled or out-of-range year
+39,review_flags,date confirmed on page image,image_checks/039_dateline.png,replaces the raw flag about a garbled or out-of-range year
+63,review_flags,date confirmed on page image,image_checks/063_dateline.png,replaces the raw flag about a garbled or out-of-range year
+86,review_flags,date confirmed on page image,image_checks/086_dateline.png,replaces the raw flag about a garbled or out-of-range year
+103,review_flags,date confirmed on page image,image_checks/103_dateline.png,replaces the raw flag about a garbled or out-of-range year
+112,review_flags,date confirmed on page image,image_checks/112_dateline.png,replaces the raw flag about a garbled or out-of-range year
+114,review_flags,date confirmed on page image,image_checks/114_dateline.png,replaces the raw flag about a garbled or out-of-range year
+133,review_flags,date confirmed on page image,image_checks/133_dateline.png,replaces the raw flag about a garbled or out-of-range year
+137,review_flags,date confirmed on page image,image_checks/137_dateline.png,replaces the raw flag about a garbled or out-of-range year
+174,review_flags,date confirmed on page image,image_checks/174_dateline.png,replaces the raw flag about a garbled or out-of-range year
+212,review_flags,date confirmed on page image,image_checks/212_dateline.png,replaces the raw flag about a garbled or out-of-range year
+109,review_flags,date confirmed on page image,image_checks/109_dateline.png,replaces the raw flag about a garbled or out-of-range year
+142,review_flags,date confirmed on page image,image_checks/142_dateline.png,replaces the raw flag about a garbled or out-of-range year
+159,review_flags,date confirmed on page image,image_checks/159_dateline.png,replaces the raw flag about a garbled or out-of-range year
+238,review_flags,date confirmed on page image,image_checks/238_dateline.png,replaces the raw flag about a garbled or out-of-range year
+12,addressee_block,7 Remedios Terrace. | H. D. Tjeenk Willink Esq: | Haarlem.,image_checks/012_addressee.png,read from the page image
+23,addressee_block,"Sres. D. M. Español, D. M. Reyes y D. F. Consunji.",image_checks/023_addressee.png,read from the page image
+26,addressee_block,"No. 7, Remedios Terrace. | Sr. D. J. Oliva Mila,—Villanueva y Geltru.",image_checks/026_addressee.png,read from the page image
+27,addressee_block,"7, Remedios Terrace. | Excmo. Sr. D. Victor Balaguer.",image_checks/027_addressee.png,read from the page image
+55,addressee_block,"Mr. William Jones, Esq.,* | Hongkong.",image_checks/055_addressee.png,read from the page image
+71,addressee_block,Sr. D. W. Jones. | Hongkong.,image_checks/071_dateline.png,read from the page image
+79,addressee_block,Sr. D. Apolinario Mabini.,image_checks/079_addressee.png,read from the page image
+93,addressee_block,"Sr. Dr. Eduard Soler, | Berlín.",image_checks/093_addressee.png,read from the page image
+100,addressee_block,"Mr. I. Fukushima, Esq., | Tokyo.",image_checks/100_addressee.png,read from the page image
+110,addressee_block,"Sr. D. Ap. Mabini, | Malolos.",image_checks/110_addressee.png,read from the page image
+119,addressee_block,"Prof. Doctor Daniel G. Brenton, | Pennsylvania.",image_checks/119_addressee.png,read from the page image
+137,addressee_block,"Mr. I. Haregawa, Esq., | Editor of the “Taiyo.”",image_checks/137_addressee.png,read from the page image
+139,addressee_block,Al Ciudadano Mr. F. Lichauco.,image_checks/139_addressee.png,read from the page image
+160,addressee_block,"Mr. Matajiro Asami, Esq. | Nagahama.",image_checks/160_addressee.png,read from the page image
+172,addressee_block,Sres. Dn. G. Apacible y | Dn. I. Santos.,image_checks/172_addressee.png,read from the page image
+173,addressee_block,"Mr. Takataro Kimura, Esq., | “Keikwa Nippó-sha”, | Tokyo.",image_checks/173_addressee.png,read from the page image
+174,addressee_block,"Mr. T. Shiba, Esq., | “Yorodzu Choho”, Tokyo.",image_checks/174_addressee.png,read from the page image
+183,addressee_block,Dres. G. Apacible e I. de Santos.,image_checks/183_addressee.png,read from the page image
+187,addressee_block,"Mr. Takataro Kimura, Esq., | Tokyo.",image_checks/187_addressee.png,read from the page image
+191,addressee_block,"Sres. Doctores G. Apacible é I. de Santos, | Hongkong.",image_checks/191_addressee.png,read from the page image
+208,addressee_block,Dr. Sun Yat Sen.,image_checks/208_dateline.png,read from the page image
+222,addressee_block,"Sr. Arajiro Miura, | Legación Japonesa en México.",image_checks/222_addressee.png,read from the page image
+28,addressee_block,__KEEP__,image_checks/028_addressee.png,checked; rules output matches the page
+54,addressee_block,__KEEP__,image_checks/054_addressee.png,checked; rules output matches the page
+95,addressee_block,__KEEP__,image_checks/095_addressee.png,checked; rules output matches the page
+103,addressee_block,__KEEP__,image_checks/103_addressee.png,checked; rules output matches the page
+147,addressee_block,__KEEP__,image_checks/147_addressee.png,checked; rules output matches the page
+182,addressee_block,__KEEP__,image_checks/182_addressee.png,checked; rules output matches the page
+26,destination_as_printed_guess,Villanueva y Geltru,image_checks/026_addressee.png,
+26,destination_place_normalized,Vilanova i la Geltrú,image_checks/026_addressee.png,
+26,destination_basis,"printed in addressee block: ""Villanueva y Geltru""",image_checks/026_addressee.png,
+26,destination_lat,41.2241,image_checks/026_addressee.png,
+26,destination_lon,1.7252,image_checks/026_addressee.png,
+55,destination_as_printed_guess,Hongkong,image_checks/055_addressee.png,
+55,destination_place_normalized,Hong Kong,image_checks/055_addressee.png,
+55,destination_basis,"printed in addressee block: ""Hongkong""",image_checks/055_addressee.png,
+55,destination_lat,22.2819,image_checks/055_addressee.png,
+55,destination_lon,114.1581,image_checks/055_addressee.png,
+71,destination_as_printed_guess,Hongkong,image_checks/071_dateline.png,
+71,destination_place_normalized,Hong Kong,image_checks/071_dateline.png,
+71,destination_basis,"printed in addressee block: ""Hongkong""",image_checks/071_dateline.png,
+71,destination_lat,22.2819,image_checks/071_dateline.png,
+71,destination_lon,114.1581,image_checks/071_dateline.png,
+93,destination_as_printed_guess,Berlín,image_checks/093_addressee.png,
+93,destination_place_normalized,Berlin,image_checks/093_addressee.png,
+93,destination_basis,"printed in addressee block: ""Berlín""",image_checks/093_addressee.png,
+93,destination_lat,52.52,image_checks/093_addressee.png,
+93,destination_lon,13.405,image_checks/093_addressee.png,
+103,destination_as_printed_guess,Clemente de Llobregat,image_checks/103_addressee.png,
+103,destination_place_normalized,Sant Climent de Llobregat,image_checks/103_addressee.png,
+103,destination_basis,"printed ""Suplicada á D. Clemente de Llobregat""; read as San Clemente de Llobregat (cf. letters 147, 227)",image_checks/103_addressee.png,
+103,destination_lat,41.338,image_checks/103_addressee.png,
+103,destination_lon,1.997,image_checks/103_addressee.png,
+147,destination_as_printed_guess,Sn. Clemente,image_checks/147_addressee.png,
+147,destination_place_normalized,Sant Climent de Llobregat,image_checks/147_addressee.png,
+147,destination_basis,"printed in addressee block: ""Sn. Clemente""",image_checks/147_addressee.png,
+147,destination_lat,41.338,image_checks/147_addressee.png,
+147,destination_lon,1.997,image_checks/147_addressee.png,
+227,destination_as_printed_guess,San Clemente de Llobregat,,
+227,destination_place_normalized,Sant Climent de Llobregat,,
+227,destination_basis,"printed in addressee block: ""San Clemente de Llobregat""",,
+227,destination_lat,41.338,,
+227,destination_lon,1.997,,
+119,destination_as_printed_guess,Pennsylvania,image_checks/119_addressee.png,
+119,destination_place_normalized,Philadelphia,image_checks/119_addressee.png,
+119,destination_basis,"printed in addressee block: ""Pennsylvania""; point placed at Philadelphia, where Brinton lived (verify)",image_checks/119_addressee.png,
+119,destination_lat,39.9526,image_checks/119_addressee.png,
+119,destination_lon,-75.1652,image_checks/119_addressee.png,
+160,destination_as_printed_guess,Nagahama,image_checks/160_addressee.png,
+160,destination_place_normalized,Nagahama,image_checks/160_addressee.png,
+160,destination_basis,"printed in addressee block: ""Nagahama""",image_checks/160_addressee.png,
+160,destination_lat,35.381,image_checks/160_addressee.png,
+160,destination_lon,136.269,image_checks/160_addressee.png,
+222,destination_as_printed_guess,México,image_checks/222_addressee.png,
+222,destination_place_normalized,Mexico City,image_checks/222_addressee.png,
+222,destination_basis,"printed in addressee block: ""Legación Japonesa en México""",image_checks/222_addressee.png,
+222,destination_lat,19.4326,image_checks/222_addressee.png,
+222,destination_lon,-99.1332,image_checks/222_addressee.png,
+172,destination_as_printed_guess,,image_checks/172_addressee.png,"the auto guess was a name, not a place"
+17,signatory_as_printed,Vale.,image_checks/017_signature.png,closing word printed in small capitals; OCR read VazLr.
+23,signatory_as_printed,P. Mario.,image_checks/023_signature.png,OCR read P. Marro.
+25,signatory_as_printed,Naning.,image_checks/025_signature.png,"OCR took ""Tunis."" from the postscript; the letter is signed Naning."
+30,signatory_as_printed,Mariano.,image_checks/030_signature.png,
+45,signatory_as_printed,P. Mario.,image_checks/045_signature.png,
+23,recipient_as_printed,"D. M. Español, D. M. Reyes y D. F. Consunji",image_checks/023_heading.png,OCR cut the heading short
+23,recipient_index_form,"D. M. Español, D. M. Reyes y D. F. Consunji",image_checks/023_heading.png,
+55,recipient_as_printed,"William Jones, Esq.",image_checks/055_heading.png,damaged print
+55,recipient_index_form,"William Jones, Esq.",image_checks/055_heading.png,
+128,recipient_as_printed,Sugimura,image_checks/128_heading.png,ink mark over the m; OCR read Sugiyúra
+11,recipient_as_printed,__KEEP__,image_checks/011_heading.png,checked; heading as printed
+89,recipient_as_printed,__KEEP__,image_checks/089_heading.png,checked; heading as printed
+93,recipient_as_printed,__KEEP__,image_checks/093_heading.png,checked; heading as printed
+119,recipient_as_printed,__KEEP__,image_checks/119_heading.png,checked; heading as printed
+206,recipient_as_printed,__KEEP__,image_checks/206_heading.png,checked; heading as printed
+66,recipient_as_printed,__KEEP__,image_checks/066_heading.png,checked; heading as printed
+214,recipient_as_printed,__KEEP__,image_checks/214_heading.png,checked; heading as printed
+90,recipient_normalized,A. Luna,,"addressee block names Sr. D. A. Luna, Manila"
+179,recipient_normalized,J. Luna,,"addressee block names Sr. J. Luna, París"
+226,place_date_as_printed,__KEEP__,image_checks/226_dateline.png,checked; letterhead with both addresses
+88,addressee_block,__KEEP__,image_checks/088_sample.png,random sample check: corrected value matches the page
+51,addressee_block,__KEEP__,image_checks/051_sample.png,random sample check: corrected value matches the page
+107,addressee_block,__KEEP__,image_checks/107_sample.png,random sample check: corrected value matches the page
+188,addressee_block,__KEEP__,image_checks/188_sample.png,random sample check: corrected value matches the page
+13,addressee_block,__KEEP__,image_checks/013_sample.png,random sample check: corrected value matches the page
+17,addressee_block,__KEEP__,image_checks/016_sample.png,random sample check: corrected value matches the page
+224,addressee_block,__KEEP__,image_checks/224_sample.png,random sample check: corrected value matches the page
+144,addressee_block,__KEEP__,image_checks/144_sample.png,random sample check: corrected value matches the page

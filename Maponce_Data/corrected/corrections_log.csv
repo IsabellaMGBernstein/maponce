@@ -1,0 +1,1136 @@
+letter_number,field,before,after,method,note
+1,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+1,place_date_as_printed,"” Hongkong, 6 Mayo 1897.","Hongkong, 6 Mayo 1897.",rule R117,stray quote mark
+1,addressee_block,Sr. D. F. BLumenTRITr.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+1,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+2,recipient_as_printed,]. A. Izquierdo,J. A. Izquierdo,rule R011,]. A. -> J. A.
+2,recipient_index_form,J. A. IzquierDO,J. A. Izquierdo,rule R010,OCR variants of IZQUIERDO
+2,signatory_as_printed,Marrano Ponce CoLLANTES.,Mariano Ponce CoLLANTES.,rule R020,signature small caps
+2,signatory_as_printed,Mariano Ponce CoLLANTES.,Mariano Ponce Collantes.,rule R021,CoLLANTES -> Collantes
+2,addressee_block,Sr. D. J. A. Izquierpo. | Paris.,Sr. D. J. A. Izquierdo. | Paris.,rule R010,OCR variants of IZQUIERDO
+2,recipient_normalized,,J. A. Izquierdo,names.csv,
+3,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+3,addressee_block,Sr. D. F. BLumeENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+3,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+4,recipient_index_form,ProF. BUCHNER,Prof. Buchner,rule SMALLCAPS,small capitals written in normal capitalisation
+4,recipient_normalized,,M. Buchner,names.csv,
+5,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+5,addressee_block,7 Remedios Terrace | Sr. D. F. BLUMENTRITT.,7 Remedios Terrace | Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+5,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+6,recipient_index_form,CONSUELO,Consuelo,rule SMALLCAPS,small capitals written in normal capitalisation
+6,signatory_as_printed,NAninG.,Naning.,rule R023,pseudonym in small caps
+6,recipient_normalized,,Consuelo,names.csv,
+7,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+7,addressee_block,7 Remedios Terrace | Sr. D. Fersanbo BLUMENTRITT.,7 Remedios Terrace | Sr. D. Fersanbo Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+7,addressee_block,7 Remedios Terrace | Sr. D. Fersanbo Blumentritt.,7 Remedios Terrace | Sr. D. Fernando Blumentritt.,rule R002,Fersanbo -> Fernando
+7,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+8,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+8,addressee_block,"7 Remedios Terrace | Sr. D, F. BLUMENTRITT.","7 Remedios Terrace | Sr. D, F. Blumentritt.",rule R001,small-caps OCR variants of BLUMENTRITT
+8,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+9,recipient_index_form,VERGEL DE Dios,Vergel DE Dios,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+9,recipient_index_form,Vergel DE Dios,Vergel de Dios,rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+9,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+9,addressee_block,"Sr. D. A. VerceEL DE Dios. | 4, rue Chantilly, Paris.","Sr. D. A. Vergel DE Dios. | 4, rue Chantilly, Paris.",rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+9,addressee_block,"Sr. D. A. Vergel DE Dios. | 4, rue Chantilly, Paris.","Sr. D. A. Vergel de Dios. | 4, rue Chantilly, Paris.",rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+9,recipient_normalized,,A. Vergel de Dios,names.csv,
+10,recipient_index_form,J. A. IzquiÉRDO,J. A. Izquierdo,rule R010,OCR variants of IZQUIERDO
+10,addressee_block,"No. 7, Remedios Terrace. | Sr. D. J. A. Izquierpo, | París.","No. 7, Remedios Terrace. | Sr. D. J. A. Izquierdo, | París.",rule R010,OCR variants of IZQUIERDO
+10,recipient_normalized,,J. A. Izquierdo,names.csv,
+11,recipient_index_form,IrorTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+11,signatory_as_printed,RoserT SAMPER.,RoserT Samper.,rule R024,\bSAMPER\b|\bSam[re]er\b|\bSamrer\b|\bSamerr\b -> Samper
+11,signatory_as_printed,RoserT Samper.,Robert Samper.,rule R025,\bRo[bs]erT\b -> Robert
+11,recipient_normalized,,Ifortel,names.csv,
+12,recipient_index_form,WiLLINK,Willink,rule R059,WiLLINK -> Willink
+12,addressee_block,7 Remedios Terrace. | H. D. Tjeesx WiLLink Esq: | Haarlem.,7 Remedios Terrace. | H. D. Tjeesx Willink Esq: | Haarlem.,rule R058,WiLLink -> Willink
+12,place_date_as_printed,"Hongkong, September oth 1897.","Hongkong, September 9th 1897.",manual,image_checks/012_dateline.png: read from the page image
+12,place_as_printed,,Hongkong,manual,image_checks/012_dateline.png: 
+12,review_flags,date read manually from page image (OCR garbled it),date confirmed on page image,manual,image_checks/012_dateline.png: replaces the raw flag about a garbled or out-of-range year
+12,addressee_block,7 Remedios Terrace. | H. D. Tjeesx Willink Esq: | Haarlem.,7 Remedios Terrace. | H. D. Tjeenk Willink Esq: | Haarlem.,manual,image_checks/012_addressee.png: read from the page image
+12,recipient_normalized,,H. D. Tjeenk Willink,names.csv,
+13,addressee_block,"7, Remedios Terrace | Sr. D. SaturninO A. Dorta. | Nueva Orleans.","7, Remedios Terrace | Sr. D. Saturnino A. Dorta. | Nueva Orleans.",rule R036,\bSa[rt]u?r?n[iI]?N?0?O\b|\bSaturninO\b -> Saturnino
+13,addressee_block,"7, Remedios Terrace | Sr. D. Saturnino A. Dorta. | Nueva Orleans.","7, Remedios Terrace | Sr. D. Saturnino A. Doria. | Nueva Orleans.",rule R037,\bDor[tr]?a\b -> Doria
+13,recipient_normalized,,Saturnino A. Doria,names.csv,
+14,recipient_index_form,VILLARESA,Villaresa,rule SMALLCAPS,small capitals written in normal capitalisation
+14,addressee_block,"No. 7, Remedios Terrace. | Sr. D. Dominco F. ViLLARESA. | New Orleans.","No. 7, Remedios Terrace. | Sr. D. Domingo F. ViLLARESA. | New Orleans.",rule R038,Dominco -> Domingo
+14,addressee_block,"No. 7, Remedios Terrace. | Sr. D. Domingo F. ViLLARESA. | New Orleans.","No. 7, Remedios Terrace. | Sr. D. Domingo F. Villaresa. | New Orleans.",rule R039,ViLLARESA -> Villaresa
+14,recipient_normalized,,Domingo F. Villaresa,names.csv,
+15,recipient_index_form,DE Jesús,De Jesús,rule SMALLCAPS,small capitals written in normal capitalisation
+15,addressee_block,"No. 7, Remedios Terrace. | Sr. D. Penro De Jesús, | New Orleans.","No. 7, Remedios Terrace. | Sr. D. Pedro De Jesús, | New Orleans.",rule R040,Penro -> Pedro
+15,recipient_normalized,,Pedro de Jesús,names.csv,
+16,recipient_index_form,BLumeENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+16,addressee_block,"Sr. D. Fersano BLUMENTRITT, | Leitmeritz.","Sr. D. Fersano Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+16,addressee_block,"Sr. D. Fersano Blumentritt, | Leitmeritz.","Sr. D. Fernando Blumentritt, | Leitmeritz.",rule R003,Fersano -> Fernando
+16,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+17,recipient_index_form,BLumeENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+17,signatory_as_printed,VazLr.,Vazlr.,rule SMALLCAPS,small capitals written in normal capitalisation
+17,addressee_block,"7, Remedios Terrace. | Sr. D. FE. BLUMENTRITT, | Leitmeritz.","7, Remedios Terrace. | Sr. D. FE. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+17,addressee_block,"7, Remedios Terrace. | Sr. D. FE. Blumentritt, | Leitmeritz.","7, Remedios Terrace. | Sr. D. F. Blumentritt, | Leitmeritz.",rule R006,FE. -> F.
+17,signatory_as_printed,Vazlr.,Vale.,manual,image_checks/017_signature.png: closing word printed in small capitals; OCR read VazLr.
+17,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+18,recipient_index_form,IrForRTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+18,signatory_as_printed,RoberT SAMPER.,RoberT Samper.,rule R024,\bSAMPER\b|\bSam[re]er\b|\bSamrer\b|\bSamerr\b -> Samper
+18,signatory_as_printed,RoberT Samper.,Robert Samper.,rule R025,\bRo[bs]erT\b -> Robert
+18,recipient_normalized,,Ifortel,names.csv,
+19,recipient_index_form,MarQUÉS,Marqués,rule SMALLCAPS,small capitals written in normal capitalisation
+19,recipient_normalized,,L. P. Marques,names.csv,
+20,recipient_index_form,RESURRECCIÓN HiDALGO,RESURRECCIÓN Hidalgo,rule R042,HiDALGO -> Hidalgo
+20,recipient_index_form,RESURRECCIÓN Hidalgo,Resurrección Hidalgo,rule SMALLCAPS,small capitals written in normal capitalisation
+20,signatory_as_printed,M. PonceE.,M. Ponce.,rule R022,signature small caps
+20,addressee_block,"7, Remedios Terrace. | Sr. D. F. Resurreccion HipaLGO, | Paris.","7, Remedios Terrace. | Sr. D. F. Resurreccion Hidalgo, | Paris.",rule R041,HipaLGO -> Hidalgo
+20,recipient_normalized,,F. Resurrección Hidalgo,names.csv,
+21,recipient_index_form,IFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+21,signatory_as_printed,RoberT SAMPER.,RoberT Samper.,rule R024,\bSAMPER\b|\bSam[re]er\b|\bSamrer\b|\bSamerr\b -> Samper
+21,signatory_as_printed,RoberT Samper.,Robert Samper.,rule R025,\bRo[bs]erT\b -> Robert
+21,recipient_normalized,,Ifortel,names.csv,
+22,recipient_index_form,F. BLUMENTRITT,F. Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+22,addressee_block,"Sr. D. F. BLuMENTRITT,","Sr. D. F. Blumentritt,",rule R001,small-caps OCR variants of BLUMENTRITT
+22,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+23,recipient_index_form,"D. M. EspPaÑñoL, D. M. ReYes Y D. F. Con","D. M. Español, D. M. ReYes Y D. F. Con",rule R044,EspPaÑñoL -> Español
+23,recipient_index_form,"D. M. Español, D. M. ReYes Y D. F. Con","D. M. Español, D. M. ReYes y D. F. Con",rule R139,conjunction y in small capitals
+23,recipient_index_form,"D. M. Español, D. M. ReYes y D. F. Con","D. M. Español, D. M. Reyes y D. F. Con",rule SMALLCAPS,small capitals written in normal capitalisation
+23,addressee_block,"Sres. D. M. EspañoL, D. M. Reyes y D. F. Consunjz.","Sres. D. M. Español, D. M. Reyes y D. F. Consunjz.",rule R043,EspañoL -> Español
+23,addressee_block,"Sres. D. M. Español, D. M. Reyes y D. F. Consunjz.","Sres. D. M. Español, D. M. Reyes y D. F. Consunji.",manual,image_checks/023_addressee.png: read from the page image
+23,signatory_as_printed,P. Marro.,P. Mario.,manual,image_checks/023_signature.png: OCR read P. Marro.
+23,recipient_as_printed,"D. M. Español, D. M. Reyes","D. M. Español, D. M. Reyes y D. F. Consunji",manual,image_checks/023_heading.png: OCR cut the heading short
+23,recipient_index_form,"D. M. Español, D. M. Reyes y D. F. Con","D. M. Español, D. M. Reyes y D. F. Consunji",manual,image_checks/023_heading.png: 
+23,recipient_normalized,,M. Español; M. Reyes; F. Consunji,names.csv,three recipients
+24,recipient_index_form,IzQUIERDO,Izquierdo,rule R010,OCR variants of IZQUIERDO
+24,recipient_normalized,,J. A. Izquierdo,names.csv,
+25,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+25,signatory_as_printed,Tunis.,Naning.,manual,"image_checks/025_signature.png: OCR took ""Tunis."" from the postscript; the letter is signed Naning."
+25,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+26,recipient_index_form,OLIVA MiLA,Oliva Mila,rule SMALLCAPS,small capitals written in normal capitalisation
+26,addressee_block,"No. 7, Remedios Terrace. | Sr. D. J. Ova Mia, — VILLANUEVA Y GELTRU.","No. 7, Remedios Terrace. | Sr. D. J. Ova Mia, — Villanueva Y Geltru.",rule SMALLCAPS,small capitals written in normal capitalisation
+26,addressee_block,"No. 7, Remedios Terrace. | Sr. D. J. Ova Mia, — Villanueva Y Geltru.","No. 7, Remedios Terrace. | Sr. D. J. Oliva Mila,—Villanueva y Geltru.",manual,image_checks/026_addressee.png: read from the page image
+26,destination_as_printed_guess,,Villanueva y Geltru,manual,image_checks/026_addressee.png: 
+26,destination_place_normalized,,Vilanova i la Geltrú,manual,image_checks/026_addressee.png: 
+26,destination_basis,,"printed in addressee block: ""Villanueva y Geltru""",manual,image_checks/026_addressee.png: 
+26,destination_lat,,41.2241,manual,image_checks/026_addressee.png: 
+26,destination_lon,,1.7252,manual,image_checks/026_addressee.png: 
+26,recipient_normalized,,J. Oliva Milá,names.csv,
+27,recipient_index_form,VícrToR BALAGUER,Victor BALAGUER,rule R137,printed without accent (image check 027_addressee)
+27,recipient_index_form,Victor BALAGUER,Victor Balaguer,rule SMALLCAPS,small capitals written in normal capitalisation
+27,addressee_block,"7, Remedios Terrace. | Excmo. Sr. D. Vicror BALAGUER.","7, Remedios Terrace. | Excmo. Sr. D. Vicror Balaguer.",rule SMALLCAPS,small capitals written in normal capitalisation
+27,addressee_block,"7, Remedios Terrace. | Excmo. Sr. D. Vicror Balaguer.","7, Remedios Terrace. | Excmo. Sr. D. Victor Balaguer.",manual,image_checks/027_addressee.png: read from the page image
+27,recipient_normalized,,Víctor Balaguer,names.csv,
+28,recipient_index_form,MIGUEL VILLALBA HErvaAs,MIGUEL VILLALBA Hervas,rule R138,printed without accent (image check 028_addressee)
+28,recipient_index_form,MIGUEL VILLALBA Hervas,Miguel Villalba Hervas,rule SMALLCAPS,small capitals written in normal capitalisation
+28,addressee_block,"No. 7, Remedios Terrace. | Sr. D. MicueL ViLLaLBA Hervas.","No. 7, Remedios Terrace. | Sr. D. Miguel ViLLaLBA Hervas.",rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+28,addressee_block,"No. 7, Remedios Terrace. | Sr. D. Miguel ViLLaLBA Hervas.","No. 7, Remedios Terrace. | Sr. D. Miguel Villalba Hervas.",rule R132,ViLLaLBA -> Villalba
+28,recipient_normalized,,Miguel Villalba Hervás,names.csv,
+29,recipient_index_form,F. BLUMENTRITT,F. Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+29,signatory_as_printed,M. PoncE.,M. Ponce.,rule R022,signature small caps
+29,addressee_block,"Sr. Dn. F. BLUMENTRITT, | Leitmeritz.","Sr. Dn. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+29,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+30,recipient_index_form,ELENA,Elena,rule SMALLCAPS,small capitals written in normal capitalisation
+30,signatory_as_printed,MAkrIANo.,Mariano.,rule R020,signature small caps
+30,recipient_normalized,,Elena,names.csv,
+31,recipient_index_form,TIrORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+31,recipient_normalized,,Ifortel,names.csv,
+32,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+32,addressee_block,Sr. D. F. BLUMENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+32,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+33,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+33,addressee_block,Sr. D. F. BLuMENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+33,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+34,recipient_index_form,VerGiL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+34,signatory_as_printed,NAnNING.,Naning.,rule R023,pseudonym in small caps
+34,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+35,recipient_index_form,MicGUEL Morayra,Miguel Morayra,rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+35,recipient_index_form,Miguel Morayra,Miguel Morayta,rule R035,OCR variants of MORAYTA
+35,addressee_block,"7, Remedios Terrace. | Sr. D. MicueL MorarTa, | Madrid.","7, Remedios Terrace. | Sr. D. Miguel MorarTa, | Madrid.",rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+35,addressee_block,"7, Remedios Terrace. | Sr. D. Miguel MorarTa, | Madrid.","7, Remedios Terrace. | Sr. D. Miguel Morayta, | Madrid.",rule R035,OCR variants of MORAYTA
+35,recipient_normalized,,Miguel Morayta,names.csv,
+36,recipient_index_form,SATURNINO A. Doria,Saturnino A. Doria,rule SMALLCAPS,small capitals written in normal capitalisation
+36,addressee_block,"7, Remedios Terrace. | Sr D. SarurniN0O A. Dora, | New Orleans.","7, Remedios Terrace. | Sr D. Saturnino A. Dora, | New Orleans.",rule R036,\bSa[rt]u?r?n[iI]?N?0?O\b|\bSaturninO\b -> Saturnino
+36,addressee_block,"7, Remedios Terrace. | Sr D. Saturnino A. Dora, | New Orleans.","7, Remedios Terrace. | Sr D. Saturnino A. Doria, | New Orleans.",rule R037,\bDor[tr]?a\b -> Doria
+36,recipient_normalized,,Saturnino A. Doria,names.csv,
+37,recipient_index_form,IrorreL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+37,signatory_as_printed,R. Samrer.,R. Samper.,rule R024,\bSAMPER\b|\bSam[re]er\b|\bSamrer\b|\bSamerr\b -> Samper
+37,recipient_normalized,,Ifortel,names.csv,
+38,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+38,addressee_block,Sr. D. F. BLUMENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+38,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+39,recipient_index_form,IrorTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+39,place_date_as_printed,"Hongkong, 5 Enero, 1808.","Hongkong, 5 Enero, 1898.",manual,image_checks/039_dateline.png: read from the page image
+39,review_flags,OCR year '1808' outside 1897-1900; replaced by index year section 1898,date confirmed on page image,manual,image_checks/039_dateline.png: replaces the raw flag about a garbled or out-of-range year
+39,recipient_normalized,,Ifortel,names.csv,
+40,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+40,addressee_block,Sr. D. F. BLuMENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+40,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+41,recipient_index_form,IFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+41,recipient_normalized,,Ifortel,names.csv,
+42,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+42,signatory_as_printed,NAnING.,Naning.,rule R023,pseudonym in small caps
+42,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+43,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+43,addressee_block,"7, Remedios Terrace. | Sr. D. F. BLUMENTRITT, | Leitmeritz.","7, Remedios Terrace. | Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+43,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+44,recipient_index_form,IzQUIERDO,Izquierdo,rule R010,OCR variants of IZQUIERDO
+44,addressee_block,"7, Remedios Terrace. | Sr. D. J. A. Izquierpo, | París.","7, Remedios Terrace. | Sr. D. J. A. Izquierdo, | París.",rule R010,OCR variants of IZQUIERDO
+44,recipient_normalized,,J. A. Izquierdo,names.csv,
+45,recipient_index_form,TupuryY Y Pons,Tudury Y Pons,rule R045,\bTu[np]ury[Y]?\b -> Tudury
+45,recipient_index_form,Tudury Y Pons,Tudury y Pons,rule R047,Tudury Y Pons -> Tudury y Pons
+45,addressee_block,"Sr. D. A. Tunury Y Pons, | Barcelona.","Sr. D. A. Tudury Y Pons, | Barcelona.",rule R045,\bTu[np]ury[Y]?\b -> Tudury
+45,addressee_block,"Sr. D. A. Tudury Y Pons, | Barcelona.","Sr. D. A. Tudury y Pons, | Barcelona.",rule R047,Tudury Y Pons -> Tudury y Pons
+45,recipient_normalized,,A. Tudury y Pons,names.csv,
+46,recipient_index_form,MoraYTA,Morayta,rule R035,OCR variants of MORAYTA
+46,addressee_block,"No. 7, Remedios Terrace. | Sr. D. MicueL Morarra, | Madrid.","No. 7, Remedios Terrace. | Sr. D. Miguel Morarra, | Madrid.",rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+46,addressee_block,"No. 7, Remedios Terrace. | Sr. D. Miguel Morarra, | Madrid.","No. 7, Remedios Terrace. | Sr. D. Miguel Morayta, | Madrid.",rule R035,OCR variants of MORAYTA
+46,recipient_normalized,,Miguel Morayta,names.csv,
+47,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+47,addressee_block,"7, Remedios Terrace. | Sr. D. F. BLUMENTRITT, | Leitmeritz.","7, Remedios Terrace. | Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+47,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+48,recipient_index_form,IFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+48,signatory_as_printed,R. Samerr.,R. Samper.,rule R024,\bSAMPER\b|\bSam[re]er\b|\bSamrer\b|\bSamerr\b -> Samper
+48,recipient_normalized,,Ifortel,names.csv,
+49,recipient_index_form,RAFAEL M. DE LABRa,RAFAEL M. DE Labra,rule R050,LABRa -> Labra
+49,recipient_index_form,RAFAEL M. DE Labra,Rafael M. de Labra,rule SMALLCAPS,small capitals written in normal capitalisation
+49,signatory_as_printed,Mazrrano Ponce.,Mariano Ponce.,rule R020,signature small caps
+49,addressee_block,"No. 7, Remedios Terrace. | Sr. D. RarazL M. pe Lasra, | Madrid.","No. 7, Remedios Terrace. | Sr. D. Rafael M. pe Lasra, | Madrid.",rule R048,RarazL -> Rafael
+49,addressee_block,"No. 7, Remedios Terrace. | Sr. D. Rafael M. pe Lasra, | Madrid.","No. 7, Remedios Terrace. | Sr. D. Rafael M. de Labra, | Madrid.",rule R049,pe Lasra -> de Labra
+49,recipient_normalized,,Rafael M. de Labra,names.csv,
+50,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+50,signatory_as_printed,NAnNING.,Naning.,rule R023,pseudonym in small caps
+50,place_date_as_printed,"Hongkong, 25 Feb*. 1898,","Hongkong, 25 Febº. 1898,",rule R151,superscript o read as * or ' (image check 051_sample)
+50,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+51,recipient_index_form,BLuMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+51,place_date_as_printed,"Hongkong, 26 Feb'., 1898.","Hongkong, 26 Febº., 1898.",rule R151,superscript o read as * or ' (image check 051_sample)
+51,addressee_block,"Sr. D. F. BLUuMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+51,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+52,recipient_index_form,BLumeNTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+52,addressee_block,"Sr. D. FersanDo BLUMENTRITT, | Leitmeritz.","Sr. D. FersanDo Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+52,addressee_block,"Sr. D. FersanDo Blumentritt, | Leitmeritz.","Sr. D. Fernando Blumentritt, | Leitmeritz.",rule R004,FersanDo -> Fernando
+52,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+53,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+53,addressee_block,"Sr. D. FP. BLumENTRITT, | Leitmeritz.","Sr. D. FP. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+53,addressee_block,"Sr. D. FP. Blumentritt, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R007,FP. -> F.
+53,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+54,recipient_index_form,F. AconciLLo Y F. LicHauco,F. AconciLLo Y F. Lichauco,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+54,recipient_index_form,F. AconciLLo Y F. Lichauco,F. Agoncillo Y F. Lichauco,rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+54,recipient_index_form,F. Agoncillo Y F. Lichauco,F. Agoncillo y F. Lichauco,rule R139,conjunction y in small capitals
+54,addressee_block,"Sr. D. F. AconciLo y F. Licmauco, | Hong-kong.","Sr. D. F. AconciLo y F. Lichauco, | Hong-kong.",rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+54,addressee_block,"Sr. D. F. AconciLo y F. Lichauco, | Hong-kong.","Sr. D. F. Agoncillo y F. Lichauco, | Hong-kong.",rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+54,recipient_normalized,,F. Agoncillo; F. Lichauco,names.csv,two recipients
+55,recipient_index_form,"WILLIAM JoNEs, EsqQ","WILLIAM Jones, EsqQ",rule R057,\bJo[wN][eE]s\b|\bJonEs\b -> Jones
+55,recipient_index_form,"WILLIAM Jones, EsqQ","WILLIAM Jones, Esq",rule R141,EsqQ -> Esq
+55,recipient_index_form,"WILLIAM Jones, Esq","William Jones, Esq",rule SMALLCAPS,small capitals written in normal capitalisation
+55,place_date_as_printed,"Yokohama, 7 Julio, 1898. l","Yokohama, 7 Julio, 1898.",rule R119,stray mark at end
+55,addressee_block,"E.s. WiLLiam j NES, Esq.,*","E.s. William j NES, Esq.,*",rule R056,WiLLiam -> William
+55,addressee_block,"E.s. William j NES, Esq.,*","E.s. William j Nes, Esq.,*",rule SMALLCAPS,small capitals written in normal capitalisation
+55,addressee_block,"E.s. William j Nes, Esq.,*","Mr. William Jones, Esq.,* | Hongkong.",manual,image_checks/055_addressee.png: read from the page image
+55,destination_as_printed_guess,,Hongkong,manual,image_checks/055_addressee.png: 
+55,destination_place_normalized,,Hong Kong,manual,image_checks/055_addressee.png: 
+55,destination_basis,,"printed in addressee block: ""Hongkong""",manual,image_checks/055_addressee.png: 
+55,destination_lat,,22.2819,manual,image_checks/055_addressee.png: 
+55,destination_lon,,114.1581,manual,image_checks/055_addressee.png: 
+55,recipient_as_printed,"William ]. 1es, sq. o","William Jones, Esq.",manual,image_checks/055_heading.png: damaged print
+55,recipient_index_form,"William Jones, Esq","William Jones, Esq.",manual,image_checks/055_heading.png: 
+55,recipient_normalized,,William Jones,names.csv,
+56,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+56,addressee_block,"Sr. D. F. BLUMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+56,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+57,recipient_index_form,WILLIAM JoNEs,WILLIAM Jones,rule R057,\bJo[wN][eE]s\b|\bJonEs\b -> Jones
+57,recipient_index_form,WILLIAM Jones,William Jones,rule SMALLCAPS,small capitals written in normal capitalisation
+57,addressee_block,"Sr, D. WiLLism Jones, | Hongkong.","Sr, D. William Jones, | Hongkong.",rule R055,WiLLism -> William
+57,recipient_normalized,,William Jones,names.csv,
+58,recipient_index_form,F. AGoNcIiLLo,F. Agoncillo,rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+58,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 26 Julio, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 26 Julio, 1898.",rule R110,place name split by OCR
+58,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+58,addressee_block,"Sr. D. F. AconciLLo, | Hongkong.","Sr. D. F. Agoncillo, | Hongkong.",rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+58,recipient_normalized,,F. Agoncillo,names.csv,
+59,recipient_index_form,"H. W. Bray, EsQ","H. W. Bray, Esq",rule SMALLCAPS,small capitals written in normal capitalisation
+59,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama [Japón], 26 Julio, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama [Japón], 26 Julio, 1898.",rule R110,place name split by OCR
+59,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama [Japón]","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama [Japón]",rule R110,place name split by OCR
+59,recipient_normalized,,H. W. Bray,names.csv,
+60,recipient_index_form,F. AconciLLo,F. Agoncillo,rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+60,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 4 Agosto de 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 4 Agosto de 1898.",rule R110,place name split by OCR
+60,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+60,addressee_block,"Sr. D. F. AGonciLLO, | Hongkong.","Sr. D. F. Agoncillo, | Hongkong.",rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+60,recipient_normalized,,F. Agoncillo,names.csv,
+61,recipient_index_form,VERGEL DE Dios,Vergel DE Dios,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+61,recipient_index_form,Vergel DE Dios,Vergel de Dios,rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+61,signatory_as_printed,NANINsG.,Naning.,rule R023,pseudonym in small caps
+61,addressee_block,"Sr. D. A. VerceL DE Dios, | Paris, .","Sr. D. A. Vergel DE Dios, | Paris, .",rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+61,addressee_block,"Sr. D. A. Vergel DE Dios, | Paris, .","Sr. D. A. Vergel de Dios, | Paris, .",rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+61,destination_as_printed_guess,"Paris, ","Paris,",rule SPACE,extra spaces
+61,recipient_normalized,,A. Vergel de Dios,names.csv,
+62,recipient_index_form,MIGUEL MoRAYTA,Miguel Morayta,rule SMALLCAPS,small capitals written in normal capitalisation
+62,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón), 5 Agosto de 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 5 Agosto de 1898.",rule R110,place name split by OCR
+62,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón)","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón)",rule R110,place name split by OCR
+62,addressee_block,"Sr. D. MicueL Morarra, | Madrid.","Sr. D. Miguel Morarra, | Madrid.",rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+62,addressee_block,"Sr. D. Miguel Morarra, | Madrid.","Sr. D. Miguel Morayta, | Madrid.",rule R035,OCR variants of MORAYTA
+62,recipient_normalized,,Miguel Morayta,names.csv,
+63,recipient_index_form,E. DE LeTE,E. DE Lete,rule R053,LeTE -> Lete
+63,recipient_index_form,E. DE Lete,E. de Lete,rule SMALLCAPS,small capitals written in normal capitalisation
+63,addressee_block,"Sr. D. E. pe Lere, | Zaragoza.","Sr. D. E. de Lete, | Zaragoza.",rule R051,pe Lere -> de Lete
+63,place_date_as_printed,"Yokohama (Japón), 17 Agosto, 1896.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 17 Agosto, 1898.",manual,image_checks/063_dateline.png: read from the page image
+63,place_as_printed,Yokohama (Japón),"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón)",manual,image_checks/063_dateline.png: 
+63,review_flags,OCR year '1896' outside 1897-1900; replaced by index year section 1898,date confirmed on page image,manual,image_checks/063_dateline.png: replaces the raw flag about a garbled or out-of-range year
+63,recipient_normalized,,Eduardo de Lete,names.csv,
+64,recipient_index_form,IFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+64,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón), 17 Agosto, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 17 Agosto, 1898.",rule R110,place name split by OCR
+64,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón)","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón)",rule R110,place name split by OCR
+64,recipient_normalized,,Ifortel,names.csv,
+65,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+65,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 17 Agosto, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 17 Agosto, 1898.",rule R110,place name split by OCR
+65,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+65,addressee_block,"F. BLuMENTRITT, | Leitmeritz.","F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+65,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+66,recipient_index_form,LeEcARoz,Lecaroz,rule R136,LeEcARoz -> Lecaroz
+66,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 19 Agosto, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 19 Agosto, 1898.",rule R110,place name split by OCR
+66,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+66,recipient_normalized,,Juan Lecaroz,names.csv,
+67,signatory_as_printed,F. Licmauco.,F. Lichauco.,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+67,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 20 Agosto, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 20 Agosto, 1898.",rule R110,place name split by OCR
+67,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+67,addressee_block,"Sr. D, W. Jowes,* | Hongkong.","Sr. D, W. Jones,* | Hongkong.",rule R057,\bJo[wN][eE]s\b|\bJonEs\b -> Jones
+67,recipient_normalized,,William Jones,names.csv,Sr. D. W. Jones = Señor Don William Jones
+68,recipient_index_form,F. AconciLLo,F. Agoncillo,rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+68,addressee_block,"Sr. D. F. AconciLLo, | Hongkong. ”","Sr. D. F. Agoncillo, | Hongkong. ”",rule R031,"\bA[cG][oO][nN][cC][iI]{1,2}[lL]{1,2}[oO]\b|\bAGoNcIiLLo\b -> Agoncillo"
+68,addressee_block,"Sr. D. F. Agoncillo, | Hongkong. ”","Sr. D. F. Agoncillo, | Hongkong.",rule R121,stray quote mark after a space at the end
+68,recipient_normalized,,F. Agoncillo,names.csv,
+69,signatory_as_printed,F. Licuauco.,F. Lichauco.,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+69,recipient_normalized,,William Jones,names.csv,Sr. D. W. Jones = Señor Don William Jones
+70,recipient_normalized,,William Jones,names.csv,Sr. D. W. Jones = Señor Don William Jones
+71,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Sr. D. W. Jones. Yokohama, 30 Agosto, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Sr. D. W. Jones. Yokohama, 30 Agosto, 1898.",rule R110,place name split by OCR
+71,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Sr. D. W. Jones. Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Sr. D. W. Jones. Yokohama",rule R110,place name split by OCR
+71,addressee_block,Hon gkong.,Hongkong.,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+71,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Sr. D. W. Jones. Yokohama, 30 Agosto, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 30 Agosto, 1898.",manual,image_checks/071_dateline.png: OCR merged the addressee into the dateline
+71,place_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Sr. D. W. Jones. Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",manual,image_checks/071_dateline.png: 
+71,addressee_block,Hongkong.,Sr. D. W. Jones. | Hongkong.,manual,image_checks/071_dateline.png: read from the page image
+71,destination_as_printed_guess,,Hongkong,manual,image_checks/071_dateline.png: 
+71,destination_place_normalized,,Hong Kong,manual,image_checks/071_dateline.png: 
+71,destination_basis,,"printed in addressee block: ""Hongkong""",manual,image_checks/071_dateline.png: 
+71,destination_lat,,22.2819,manual,image_checks/071_dateline.png: 
+71,destination_lon,,114.1581,manual,image_checks/071_dateline.png: 
+71,recipient_normalized,,William Jones,names.csv,Sr. D. W. Jones = Señor Don William Jones
+72,recipient_index_form,VERGEL DE Dios,Vergel DE Dios,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+72,recipient_index_form,Vergel DE Dios,Vergel de Dios,rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+72,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+72,recipient_normalized,,A. Vergel de Dios,names.csv,
+73,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+73,addressee_block,"Sr. D, F. BLumenTrITr, | Leitmeritz.","Sr. D, F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+73,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+74,recipient_index_form,GONZALO DE QUEZADA,GONZALO de Quezada,rule R128,DE QUEZADA -> de Quezada
+74,recipient_index_form,GONZALO de Quezada,Gonzalo de Quezada,rule SMALLCAPS,small capitals written in normal capitalisation
+74,signatory_as_printed,Mazrano Ponce.,Mariano Ponce.,rule R020,signature small caps
+74,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 8 Septiembre de 18098.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 8 Septiembre de 1898.",rule R116,18098 -> 1898
+74,addressee_block,"Sr. D. GoNzaLo DE QUEZADA, | Washington.","Sr. D. Gonzalo DE QUEZADA, | Washington.",rule R067,GoNzaLo -> Gonzalo
+74,addressee_block,"Sr. D. Gonzalo DE QUEZADA, | Washington.","Sr. D. Gonzalo de Quezada, | Washington.",rule R128,DE QUEZADA -> de Quezada
+74,recipient_normalized,,Gonzalo de Quezada,names.csv,
+75,recipient_index_form,APAcIiBLE,Apacible,rule R030,OCR variants of APACIBLE
+75,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+75,addressee_block,"Sr. D. G. ApaciBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+75,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+76,recipient_index_form,DE SanTos,DE Santos,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+76,recipient_index_form,DE Santos,De Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+76,signatory_as_printed,KALIPULAKO.,Kalipulako.,rule R027,KALIPULAKO -> Kalipulako
+76,addressee_block,"Sr. D. I de Sanros, | Singapore.","Sr. D. I de Santos, | Singapore.",rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+76,addressee_block,"Sr. D. I de Santos, | Singapore.","Sr. D. I. de Santos, | Singapore.",rule R062,I de Santos -> I. de Santos
+76,recipient_normalized,,I. de Santos,names.csv,
+77,recipient_index_form,APAcIiBLE,Apacible,rule R030,OCR variants of APACIBLE
+77,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 13 Septiembre, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 13 Septiembre, 1898.",rule R110,place name split by OCR
+77,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+77,addressee_block,"Por v/ “Laos” | Sr. D. G. AraciBre, | Hongkong.","Por v/ “Laos” | Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+77,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+78,recipient_index_form,D. W. JonEs,D. W. Jones,rule R057,\bJo[wN][eE]s\b|\bJonEs\b -> Jones
+78,review_flags,date earlier than the preceding letter (book order is not strictly chronological; check image),date earlier than the preceding letter (book order is not strictly chronological); date confirmed on page image,manual,image_checks/078_dateline.png: 
+78,recipient_normalized,,William Jones,names.csv,Sr. D. W. Jones = Señor Don William Jones
+79,recipient_index_form,MabinI,Mabini,rule R064,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b -> Mabini
+79,addressee_block,"Sr. D. AroLinario Marni,","Sr. D. Apolinario Marni,",rule R063,AroLinario -> Apolinario
+79,addressee_block,"Sr. D. Apolinario Marni,",Sr. D. Apolinario Mabini.,manual,image_checks/079_addressee.png: read from the page image
+79,recipient_normalized,,Apolinario Mabini,names.csv,
+80,recipient_index_form,Mabin1,Mabini,rule R064,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b -> Mabini
+80,addressee_block,"Sr, A. MasINt.","Sr, A. Mabini.",rule R064,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b -> Mabini
+80,recipient_normalized,,Apolinario Mabini,names.csv,
+81,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+81,addressee_block,Por s/s. “Waseka Maru.” | Sr. Dn. G. ApacibLE.,Por s/s. “Waseka Maru.” | Sr. Dn. G. Apacible.,rule R030,OCR variants of APACIBLE
+81,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+82,recipient_as_printed,Dr. Betaánces,Dr. Betances,rule R066,Betaánces -> Betances
+82,recipient_index_form,Dr. BETANCES,Dr. Betances,rule SMALLCAPS,small capitals written in normal capitalisation
+82,addressee_block,"Sr. Doctor BeTANcES, | Paris.","Sr. Doctor Betances, | Paris.",rule R065,BeTANcES -> Betances
+82,recipient_normalized,,Dr. Betances,names.csv,
+83,recipient_index_form,DE QUEZADA,de Quezada,rule R128,DE QUEZADA -> de Quezada
+83,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón), 22 de Sept., 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 22 de Sept., 1898.",rule R110,place name split by OCR
+83,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón)","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón)",rule R110,place name split by OCR
+83,addressee_block,"Sr. D. GONZALO DE QUEZADA, | Washington.","Sr. D. GONZALO de Quezada, | Washington.",rule R128,DE QUEZADA -> de Quezada
+83,addressee_block,"Sr. D. GONZALO de Quezada, | Washington.","Sr. D. Gonzalo de Quezada, | Washington.",rule SMALLCAPS,small capitals written in normal capitalisation
+83,recipient_normalized,,Gonzalo de Quezada,names.csv,
+84,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+84,addressee_block,"Sr. F. BLumenTrrrr, Esq., | Leitmeritz.","Sr. F. Blumentritt, Esq., | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+84,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+85,recipient_index_form,IFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+85,recipient_normalized,,Ifortel,names.csv,
+86,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+86,addressee_block,"Sr. Dn. G. AracibLe, | HongRong.","Sr. Dn. G. Apacible, | HongRong.",rule R030,OCR variants of APACIBLE
+86,addressee_block,"Sr. Dn. G. Apacible, | HongRong.","Sr. Dn. G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+86,destination_as_printed_guess,HongRong,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+86,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 25 de Septiembre, 1896.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 25 de Septiembre, 1898.",manual,image_checks/086_dateline.png: read from the page image
+86,review_flags,OCR year '1896' outside 1897-1900; replaced by index year section 1898,date confirmed on page image,manual,image_checks/086_dateline.png: replaces the raw flag about a garbled or out-of-range year
+86,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+87,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+87,signatory_as_printed,F. LicHauco.,F. Lichauco.,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+87,addressee_block,"Vía Kobe. Pors./s. “Natal” | Sr. D. G. AraciBLE, | Hongkong.","Vía Kobe. Pors./s. “Natal” | Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+87,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+88,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+88,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 28 de Septiembre de 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 28 de Septiembre de 1898.",rule R110,place name split by OCR
+88,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+88,addressee_block,"Sr. D. F. BLumENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+88,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+89,recipient_as_printed,IKkis,Ikkis,rule R148,heading prints Ikkis (image check 089_heading)
+89,recipient_index_form,IkkIis,Ikkis,rule R135,heading prints Ikkis (image check 089_heading)
+89,signatory_as_printed,NaninG.,Naning.,rule R023,pseudonym in small caps
+89,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 30 Septiembre de 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 30 Septiembre de 1898.",rule R110,place name split by OCR
+89,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+89,recipient_normalized,,Ikkis,names.csv,
+90,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+90,recipient_normalized,,A. Luna,manual,"addressee block names Sr. D. A. Luna, Manila"
+91,recipient_index_form,MIURA,Miura,rule SMALLCAPS,small capitals written in normal capitalisation
+91,recipient_normalized,,Arajiro Miura,names.csv,letter 91 addressee: A. Miura
+92,recipient_index_form,M. InAcaK1,M. Inagaki,rule R068,\bInacaxa\b|\bInAcaK1\b -> Inagaki
+92,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 10th October, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 10th October, 1898.",rule R110,place name split by OCR
+92,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+92,addressee_block,"M. Inacaxa, Esg., | Tokyo.","M. Inagaki, Esg., | Tokyo.",rule R068,\bInacaxa\b|\bInAcaK1\b -> Inagaki
+92,addressee_block,"M. Inagaki, Esg., | Tokyo.","M. Inagaki, Esq., | Tokyo.",rule R069,\bEs[gq][gq]?\b -> Esq
+92,recipient_normalized,,M. Inagaki,names.csv,
+93,recipient_index_form,Dr. Epuarpo SoLer,Dr. Epuarpo Soler,rule R125,SoLer -> Soler
+93,recipient_index_form,Dr. Epuarpo Soler,Dr. Eduard Soler,rule R149,printed Eduard (image check 093)
+93,signatory_as_printed,M. PoncE.,M. Ponce.,rule R022,signature small caps
+93,addressee_block,"Sr. Dr. Ebuarp SoLER, | Berlin,","Sr. Dr. Ebuarp Soler, | Berlin,",rule R124,SoLER -> Soler
+93,addressee_block,"Sr. Dr. Ebuarp Soler, | Berlin,","Sr. Dr. Eduard Soler, | Berlin,",rule R149,printed Eduard (image check 093)
+93,addressee_block,"Sr. Dr. Eduard Soler, | Berlin,","Sr. Dr. Eduard Soler, | Berlín.",manual,image_checks/093_addressee.png: read from the page image
+93,destination_as_printed_guess,"Berlin,",Berlín,manual,image_checks/093_addressee.png: 
+93,destination_basis,last line of addressee block (auto),"printed in addressee block: ""Berlín""",manual,image_checks/093_addressee.png: 
+93,recipient_normalized,,Eduard Seler,names.csv,the book prints Soler; same Berlin correspondent as letter 120
+94,recipient_index_form,G. APACIBLE,G. Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+94,addressee_block,"Sr. D, G. ApaciBLE, | Hongkong.","Sr. D, G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+94,recipient_normalized,,G. Apacible,names.csv,
+95,recipient_index_form,Luis CosP,Luis Cosp,rule R079,CosP -> Cosp
+95,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón), 21 Octubre, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón), 21 Octubre, 1898.",rule R110,place name split by OCR
+95,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama (Japón)","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama (Japón)",rule R110,place name split by OCR
+95,recipient_normalized,,Luis Cosp,names.csv,
+96,recipient_index_form,A. VERGEL,A. Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+96,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Japón—Y okohama, 21 Octubre de 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Japón—Yokohama, 21 Octubre de 1898.",rule R113,\bY okohama\b|\bYokMama\b -> Yokohama
+96,place_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Japón—Y okohama","637 Miyokoji Yama, Kitagata, Korakigun, Japón—Yokohama",rule R113,\bY okohama\b|\bYokMama\b -> Yokohama
+96,recipient_normalized,,A. Vergel de Dios,names.csv,"same correspondent as Vergel de Dios (addressee Sr. D. A. Vergel de Dios, Paris; letter 72 heading Vergel de Dios greets ""Querido amigo Vergel"")"
+97,recipient_index_form,G. APACIBLE,G. Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+97,addressee_block,"Sr. D. G. Apacible, | Hongkon g.","Sr. D. G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+97,destination_as_printed_guess,Hongkon g,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+97,recipient_normalized,,G. Apacible,names.csv,
+98,recipient_index_form,G. APACIBLE,G. Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+98,signatory_as_printed,", M. Ponce.",M. Ponce.,rule R028,stray marks before the signature
+98,addressee_block,"Sr. D. G. Apacinte, Esq., | Hongkong.","Sr. D. G. Apacible, Esq., | Hongkong.",rule R030,OCR variants of APACIBLE
+98,recipient_normalized,,G. Apacible,names.csv,
+99,recipient_index_form,M. DEL Rosar1o,M. DEL Rosario,rule R070,\bRos[a]r[r1]?[oi]o?\b|\bRosar1o\b|\bRosarro\b -> Rosario
+99,recipient_index_form,M. DEL Rosario,M. del Rosario,rule SMALLCAPS,small capitals written in normal capitalisation
+99,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+99,addressee_block,"Sr. D. M. Der Rosarro, Esq., | Malolos.","Sr. D. M. Der Rosario, Esq., | Malolos.",rule R070,\bRos[a]r[r1]?[oi]o?\b|\bRosar1o\b|\bRosarro\b -> Rosario
+99,addressee_block,"Sr. D. M. Der Rosario, Esq., | Malolos.","Sr. D. M. del Rosario, Esq., | Malolos.",rule R071,Der Rosario -> del Rosario
+99,recipient_normalized,,M. del Rosario,names.csv,
+100,recipient_index_form,Y. FukusHima,Y. Fukushima,rule R072,\bFu[kx]us[hH]ima\b -> Fukushima
+100,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Ñ Yokohama, November 18, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Ñ Yokohama, November 18, 1898.",rule R110,place name split by OCR
+100,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Ñ Yokohama, November 18, 1898.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, November 18, 1898.",rule R118,stray mark before Yokohama
+100,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Ñ Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Ñ Yokohama",rule R110,place name split by OCR
+100,place_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Ñ Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R118,stray mark before Yokohama
+100,addressee_block,"Mr. 1. Fukushima, Esq., | Tokyo.","Mr. I. Fukushima, Esq., | Tokyo.",manual,image_checks/100_addressee.png: read from the page image
+100,recipient_normalized,,Fukushima,names.csv,addressees give Y. and I. Fukushima
+101,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+101,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japan), Novienbre 20, 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), Novienbre 20, 1898.",rule R110,place name split by OCR
+101,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japan), Novie","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), Novie",rule R110,place name split by OCR
+101,addressee_block,"Sr. D. F. BLumenrerrr, Esq.","Sr. D. F. Blumentritt, Esq.",rule R001,small-caps OCR variants of BLUMENTRITT
+101,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), Novie","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan)",manual,image_checks/101_dateline.png: 
+101,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+102,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+102,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japan), 20 Noviembre, 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), 20 Noviembre, 1898.",rule R110,place name split by OCR
+102,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japan)","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan)",rule R110,place name split by OCR
+102,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+103,recipient_index_form,Luis CosP,Luis Cosp,rule R079,CosP -> Cosp
+103,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japón), 21 Noviembre, 1896.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón), 21 Noviembre, 1896.",rule R110,place name split by OCR
+103,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japón)","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón)",rule R110,place name split by OCR
+103,addressee_block,"Sr. D. Luis Cose, | Suplicada á D. Clemente de Llobregat.","Sr. D. Luis Cosp, | Suplicada á D. Clemente de Llobregat.",rule R078,Cose -> Cosp
+103,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón), 21 Noviembre, 1896.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón), 21 Noviembre, 1898.",manual,image_checks/103_dateline.png: read from the page image
+103,review_flags,OCR year '1896' outside 1897-1900; replaced by index year section 1898,date confirmed on page image,manual,image_checks/103_dateline.png: replaces the raw flag about a garbled or out-of-range year
+103,destination_as_printed_guess,,Clemente de Llobregat,manual,image_checks/103_addressee.png: 
+103,destination_place_normalized,,Sant Climent de Llobregat,manual,image_checks/103_addressee.png: 
+103,destination_basis,,"printed ""Suplicada á D. Clemente de Llobregat""; read as San Clemente de Llobregat (cf. letters 147, 227)",manual,image_checks/103_addressee.png: 
+103,destination_lat,,41.338,manual,image_checks/103_addressee.png: 
+103,destination_lon,,1.997,manual,image_checks/103_addressee.png: 
+103,recipient_normalized,,Luis Cosp,names.csv,
+104,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+104,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 22 Noviembre, 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 22 Noviembre, 1898.",rule R110,place name split by OCR
+104,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+104,addressee_block,"Sr. D. G. AracibLe, Esq., | Hongkon g.","Sr. D. G. Apacible, Esq., | Hongkon g.",rule R030,OCR variants of APACIBLE
+104,addressee_block,"Sr. D. G. Apacible, Esq., | Hongkon g.","Sr. D. G. Apacible, Esq., | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+104,destination_as_printed_guess,Hongkon g,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+104,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+105,recipient_index_form,ÍIzQUIERDO,Izquierdo,rule R010,OCR variants of IZQUIERDO
+105,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japón), 25 Noviembre, 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón), 25 Noviembre, 1898.",rule R110,place name split by OCR
+105,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama (Japón)","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japón)",rule R110,place name split by OCR
+105,addressee_block,"Sr. J. A. [zquierpo, | Paris.","Sr. J. A. Izquierdo, | Paris.",rule R010,OCR variants of IZQUIERDO
+105,recipient_normalized,,J. A. Izquierdo,names.csv,
+106,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+106,place_date_as_printed,"637 Miyokojí Y ama, Kitagáta, Korakigun, Yokohama, 28 Noviembre, 1898.","637 Miyokojí Yama, Kitagáta, Korakigun, Yokohama, 28 Noviembre, 1898.",rule R110,place name split by OCR
+106,place_date_as_printed,"637 Miyokojí Yama, Kitagáta, Korakigun, Yokohama, 28 Noviembre, 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 28 Noviembre, 1898.",rule R112,Kitagáta -> Kitagata
+106,place_as_printed,"637 Miyokojí Y ama, Kitagáta, Korakigun, Yokohama","637 Miyokojí Yama, Kitagáta, Korakigun, Yokohama",rule R110,place name split by OCR
+106,place_as_printed,"637 Miyokojí Yama, Kitagáta, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R112,Kitagáta -> Kitagata
+106,addressee_block,"Sr, D. G. Aracine, Esg., | Hongkong. '","Sr, D. G. Apacible, Esg., | Hongkong. '",rule R030,OCR variants of APACIBLE
+106,addressee_block,"Sr, D. G. Apacible, Esg., | Hongkong. '","Sr, D. G. Apacible, Esq., | Hongkong. '",rule R069,\bEs[gq][gq]?\b -> Esq
+106,addressee_block,"Sr, D. G. Apacible, Esq., | Hongkong. '","Sr, D. G. Apacible, Esq., | Hongkong.",rule R121,stray quote mark after a space at the end
+106,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+107,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+107,addressee_block,"Sr. D. G. ApacIBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+107,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+108,recipient_index_form,IzQUIERDO,Izquierdo,rule R010,OCR variants of IZQUIERDO
+108,place_date_as_printed,"637 Mio Yama, Kitagata, Korakigun, YokMama (Japan), 30 Nov"". de 1898.","637 Miyokojí Yama, Kitagata, Korakigun, YokMama (Japan), 30 Nov"". de 1898.",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+108,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, YokMama (Japan), 30 Nov"". de 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), 30 Nov"". de 1898.",rule R113,\bY okohama\b|\bYokMama\b -> Yokohama
+108,place_as_printed,"637 Mio Yama, Kitagata, Korakigun, YokMama (Japan)","637 Miyokojí Yama, Kitagata, Korakigun, YokMama (Japan)",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+108,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, YokMama (Japan)","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan)",rule R113,\bY okohama\b|\bYokMama\b -> Yokohama
+108,addressee_block,"Sr. J. A. lzquierpo, | Paris.","Sr. J. A. Izquierdo, | Paris.",rule R010,OCR variants of IZQUIERDO
+108,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), 30 Nov"". de 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama (Japan), 30 Novᵉ. de 1898.",manual,image_checks/108_dateline.png: ink blot over part of Miyokojí; superscript e in Novᵉ.
+108,recipient_normalized,,J. A. Izquierdo,names.csv,
+109,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+109,signatory_as_printed,SS NanING.,SS Naning.,rule R023,pseudonym in small caps
+109,signatory_as_printed,SS Naning.,Naning.,rule R028,stray marks before the signature
+109,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, ¿0 4de Nov., 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, ¿0 4de Nov., 1898.",rule R110,place name split by OCR
+109,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, ¿0","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, ¿0",rule R110,place name split by OCR
+109,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, ¿0 4de Nov., 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 20 de Nov., 1898.",manual,image_checks/109_dateline.png: ink mark over the day; reads 20
+109,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, ¿0","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",manual,image_checks/109_dateline.png: 
+109,review_flags,date read manually from page image (OCR garbled it) | date earlier than the preceding letter (book order is not strictly chronological; check image),date confirmed on page image,manual,image_checks/109_dateline.png: replaces the raw flag about a garbled or out-of-range year
+109,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+110,recipient_index_form,Marin1,Mabini,rule R064,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b -> Mabini
+110,addressee_block,"Sr. D. Ar. Masini, | Malolos.","Sr. D. Ar. Mabini, | Malolos.",rule R064,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b -> Mabini
+110,addressee_block,"Sr. D. Ar. Mabini, | Malolos.","Sr. D. Ap. Mabini, | Malolos.",manual,image_checks/110_addressee.png: read from the page image
+110,recipient_normalized,,Apolinario Mabini,names.csv,
+111,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+111,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 1. Dic. de 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1. Dic. de 1898.",rule R110,place name split by OCR
+111,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1. Dic. de 1898.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1.º Dic. de 1898.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+111,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+111,addressee_block,"Sr. D. G. ApacIBLE, | Flon gkong.","Sr. D. G. Apacible, | Flon gkong.",rule R030,OCR variants of APACIBLE
+111,addressee_block,"Sr. D. G. Apacible, | Flon gkong.","Sr. D. G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+111,destination_as_printed_guess,Flon gkong,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+111,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+112,recipient_index_form,APAcIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+112,signatory_as_printed,M. Poner.,M. Ponce.,rule R022,signature small caps
+112,place_date_as_printed,"Yokohama, 1. de Dic., 1896.","Yokohama, 1.º de Dic., 1896.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+112,addressee_block,"Sr. D. G. AracimLe, Esq., | Hongkong.","Sr. D. G. Apacible, Esq., | Hongkong.",rule R030,OCR variants of APACIBLE
+112,place_date_as_printed,"Yokohama, 1.º de Dic., 1896.","Yokohama, 1.º de Dic., 1898.",manual,image_checks/112_dateline.png: read from the page image
+112,review_flags,OCR year '1896' outside 1897-1900; replaced by index year section 1898,date confirmed on page image,manual,image_checks/112_dateline.png: replaces the raw flag about a garbled or out-of-range year
+112,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+113,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+113,signatory_as_printed,EF. Rivero.,F. Rivero.,rule R029,^EF\.  -> F. 
+113,addressee_block,"Sr. D. G. ApPAcIBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+113,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+114,recipient_index_form,LicHauco,Lichauco,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+114,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1890.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1890.",rule R110,place name split by OCR
+114,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+114,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1890.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1899.",manual,image_checks/114_dateline.png: read from the page image
+114,review_flags,OCR year '1890' outside 1897-1900; replaced by index year section 1899,date confirmed on page image,manual,image_checks/114_dateline.png: replaces the raw flag about a garbled or out-of-range year
+114,recipient_normalized,,F. Lichauco,names.csv,
+115,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+115,place_date_as_printed,"637 Miyokojt Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 2 de Enero de 1899.",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+115,place_as_printed,"637 Miyokojt Yama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+115,addressee_block,"Sr. D. G. ApacIiBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+115,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+116,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+116,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 11 Enero de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 11 Enero de 1899.",rule R110,place name split by OCR
+116,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+116,addressee_block,"Sr, G. Aracinte, Esg., | Hongkong.","Sr, G. Apacible, Esg., | Hongkong.",rule R030,OCR variants of APACIBLE
+116,addressee_block,"Sr, G. Apacible, Esg., | Hongkong.","Sr, G. Apacible, Esq., | Hongkong.",rule R069,\bEs[gq][gq]?\b -> Esq
+116,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+117,recipient_index_form,HiraTa,Hirata,rule R089,\bHira[rT]a\b|\bHiraTa\b -> Hirata
+117,recipient_normalized,,Hirata,names.csv,
+118,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+118,addressee_block,"Sr. D. F. BLumeNTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+118,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+119,recipient_index_form,BRENTON,Brenton,rule SMALLCAPS,small capitals written in normal capitalisation
+119,addressee_block,"Prof. Doctor DawmteL G. VRENTON, | Pennsylvania.","Prof. Doctor Dawmtel G. Vrenton, | Pennsylvania.",rule SMALLCAPS,small capitals written in normal capitalisation
+119,place_date_as_printed,"Nuhana (Japan), January 16, 1899.","Yokohama (Japan), January 16, 1899.",manual,image_checks/119_dateline.png: OCR read Yokohama as Nuhana (ink mark)
+119,place_as_printed,Nuhana (Japan),Yokohama (Japan),manual,image_checks/119_dateline.png: 
+119,addressee_block,"Prof. Doctor Dawmtel G. Vrenton, | Pennsylvania.","Prof. Doctor Daniel G. Brenton, | Pennsylvania.",manual,image_checks/119_addressee.png: read from the page image
+119,destination_place_normalized,,Philadelphia,manual,image_checks/119_addressee.png: 
+119,destination_basis,,"printed in addressee block: ""Pennsylvania""; point placed at Philadelphia, where Brinton lived (verify)",manual,image_checks/119_addressee.png: 
+119,destination_lat,,39.9526,manual,image_checks/119_addressee.png: 
+119,destination_lon,,-75.1652,manual,image_checks/119_addressee.png: 
+119,recipient_normalized,,Daniel G. Brinton,names.csv,the book prints Brenton; Daniel G. Brinton of Philadelphia
+120,recipient_index_form,Doctor SeLER,Doctor Seler,rule R127,SeLER -> Seler
+120,addressee_block,"Sr. Doctor SELER, | Berlín.","Sr. Doctor Seler, | Berlín.",rule R126,SELER -> Seler
+120,recipient_normalized,,Eduard Seler,names.csv,
+121,recipient_index_form,APaciBLeE,Apacible,rule R030,OCR variants of APACIBLE
+121,addressee_block,"Dr. G. ArpaciBLE, | Hon gkong. i","Dr. G. Apacible, | Hon gkong. i",rule R030,OCR variants of APACIBLE
+121,addressee_block,"Dr. G. Apacible, | Hon gkong. i","Dr. G. Apacible, | Hongkong. i",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+121,addressee_block,"Dr. G. Apacible, | Hongkong. i","Dr. G. Apacible, | Hongkong.",rule R120,stray marks at line ends
+121,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+122,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+122,addressee_block,"Sr. Doctor G. APACIBLE, | Hongkong.","Sr. Doctor G. Apacible, | Hongkong.",rule SMALLCAPS,small capitals written in normal capitalisation
+122,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+123,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+123,addressee_block,"Sr. Doctor G. AraciBLE, | Hongkon g.","Sr. Doctor G. Apacible, | Hongkon g.",rule R030,OCR variants of APACIBLE
+123,addressee_block,"Sr. Doctor G. Apacible, | Hongkon g.","Sr. Doctor G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+123,destination_as_printed_guess,Hongkon g,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+123,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+124,recipient_index_form,CasTro,Castro,rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+124,addressee_block,"Sr. D. L. M. Casrro, | Shanghai.","Sr. D. L. M. Castro, | Shanghai.",rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+124,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+125,recipient_index_form,MoraAYTa,Morayta,rule R035,OCR variants of MORAYTA
+125,addressee_block,"Sr. D. MicueL MoraAyTA, | Madrid.","Sr. D. Miguel MoraAyTA, | Madrid.",rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+125,addressee_block,"Sr. D. Miguel MoraAyTA, | Madrid.","Sr. D. Miguel Morayta, | Madrid.",rule R035,OCR variants of MORAYTA
+125,recipient_normalized,,Miguel Morayta,names.csv,
+126,recipient_index_form,VERGEL DE Drios,Vergel DE Drios,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+126,recipient_index_form,Vergel DE Drios,Vergel de Dios,rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+126,signatory_as_printed,SN M. Ponce.,M. Ponce.,rule R028,stray marks before the signature
+126,addressee_block,Sr. D. A. VeraEL DE Dios.,Sr. D. A. Vergel DE Dios.,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+126,addressee_block,Sr. D. A. Vergel DE Dios.,Sr. D. A. Vergel de Dios.,rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+126,recipient_normalized,,A. Vergel de Dios,names.csv,
+127,recipient_index_form,IFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+127,recipient_normalized,,Ifortel,names.csv,
+128,recipient_index_form,SUGIMURA,Sugimura,rule SMALLCAPS,small capitals written in normal capitalisation
+128,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 12th February, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 12th February, 1899.",rule R110,place name split by OCR
+128,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+128,addressee_block,"Mr. F. Sucimura, Esq.","Mr. F. Sugimura, Esq.",rule R074,\bSu[ac]imura\b|\bSuaimura\b -> Sugimura
+128,recipient_as_printed,Sugiyúra,Sugimura,manual,image_checks/128_heading.png: ink mark over the m; OCR read Sugiyúra
+128,recipient_normalized,,K. Sugimura,names.csv,addressees give K. and F. Sugimura
+129,recipient_index_form,KYENGSU AHN,Kyengsu Ahn,rule SMALLCAPS,small capitals written in normal capitalisation
+129,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, February 12, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 12, 1899.",rule R110,place name split by OCR
+129,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+129,addressee_block,"Mr. Kyencsu Amn, Esq.","Mr. Kyengsu Ahn, Esq.",rule R076,Kyencsu Amn -> Kyengsu Ahn
+129,recipient_normalized,,Kyengsu Ahn,names.csv,
+130,recipient_index_form,YAMAGATA,Yamagata,rule SMALLCAPS,small capitals written in normal capitalisation
+130,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, February 14th, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 14th, 1899.",rule R110,place name split by OCR
+130,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+130,addressee_block,"Mr. Y. Yamaara, Esq., | Tokyo.","Mr. Y. Yamagata, Esq., | Tokyo.",rule R073,\bYama[cg]?ara\b|\bY amagata\b -> Yamagata
+130,recipient_normalized,,Y. Yamagata,names.csv,
+131,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+131,addressee_block,"Sr. Dr. G. AracinLe, | Hongkong.","Sr. Dr. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+131,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+132,recipient_index_form,KanoY,Kanoy,rule R101,KanoY -> Kanoy
+132,signatory_as_printed,NAnNING.,Naning.,rule R023,pseudonym in small caps
+132,recipient_normalized,,Kanoy,names.csv,
+133,addressee_block,Al Ciudadano Sr. F. Licmauco.,Al Ciudadano Sr. F. Lichauco.,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+133,place_date_as_printed,"Yokohama, 18 Febrero, 1890.","Yokohama, 18 Febrero, 1899.",manual,image_checks/133_dateline.png: read from the page image
+133,review_flags,OCR year '1890' outside 1897-1900; replaced by index year section 1899,date confirmed on page image,manual,image_checks/133_dateline.png: replaces the raw flag about a garbled or out-of-range year
+133,recipient_normalized,,F. Lichauco,names.csv,
+134,recipient_index_form,SANTOS,Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+134,addressee_block,Sr. D. I. Sanros.,Sr. D. I. Santos.,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+134,recipient_normalized,,I. de Santos,names.csv,addressee: Sr. D. I. Santos / I. de Santos
+135,recipient_index_form,FUKUSHIMA,Fukushima,rule SMALLCAPS,small capitals written in normal capitalisation
+135,place_date_as_printed,"637 Miyokojíi Yama, Kitagata, Korakigun, Yokohama, February 21st, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 21st, 1899.",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+135,place_as_printed,"637 Miyokojíi Yama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+135,addressee_block,"Mr. Y. FuxusHima, “sq. | Tokyo. AN","Mr. Y. Fukushima, “sq. | Tokyo. AN",rule R072,\bFu[kx]us[hH]ima\b -> Fukushima
+135,addressee_block,"Mr. Y. Fukushima, “sq. | Tokyo. AN","Mr. Y. Fukushima, “sq. | Tokyo.",rule R120,stray marks at line ends
+135,addressee_block,"Mr. Y. Fukushima, “sq. | Tokyo.","Mr. Y. Fukushima, Esq. | Tokyo.",rule R123,“sq. -> Esq.
+135,recipient_normalized,,Fukushima,names.csv,addressees give Y. and I. Fukushima
+136,recipient_index_form,YAMAGATA,Yamagata,rule SMALLCAPS,small capitals written in normal capitalisation
+136,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 23 February, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 23 February, 1899.",rule R110,place name split by OCR
+136,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+136,addressee_block,"Mr. Y. Yamacara, Esq., | Editor of “The Yorodzu Choho.”","Mr. Y. Yamagata, Esq., | Editor of “The Yorodzu Choho.”",rule R073,\bYama[cg]?ara\b|\bY amagata\b -> Yamagata
+136,recipient_normalized,,Y. Yamagata,names.csv,
+137,recipient_index_form,HAREGAWA,Haregawa,rule SMALLCAPS,small capitals written in normal capitalisation
+137,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, February 24th, 1890.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 24th, 1890.",rule R110,place name split by OCR
+137,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+137,addressee_block,"Mr. l. Harrcawa, Esqg., | Editor of the “Taiyo.”","Mr. l. Harrcawa, Esq., | Editor of the “Taiyo.”",rule R069,\bEs[gq][gq]?\b -> Esq
+137,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 24th, 1890.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, February 24th, 1899.",manual,image_checks/137_dateline.png: read from the page image
+137,review_flags,OCR year '1890' outside 1897-1900; replaced by index year section 1899,date confirmed on page image,manual,image_checks/137_dateline.png: replaces the raw flag about a garbled or out-of-range year
+137,addressee_block,"Mr. l. Harrcawa, Esq., | Editor of the “Taiyo.”","Mr. I. Haregawa, Esq., | Editor of the “Taiyo.”",manual,image_checks/137_addressee.png: read from the page image
+137,recipient_normalized,,I. Haregawa,names.csv,
+138,recipient_index_form,SUGIMURA,Sugimura,rule SMALLCAPS,small capitals written in normal capitalisation
+138,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 25th Feb., 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 25th Feb., 1899.",rule R110,place name split by OCR
+138,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+138,addressee_block,"Mr. K. Sucimura, Esq., | Editor of “The Orient.”","Mr. K. Sugimura, Esq., | Editor of “The Orient.”",rule R074,\bSu[ac]imura\b|\bSuaimura\b -> Sugimura
+138,recipient_normalized,,K. Sugimura,names.csv,addressees give K. and F. Sugimura
+139,recipient_index_form,LicHauco,Lichauco,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+139,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 26 de Febrero, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 26 de Febrero, 1899.",rule R110,place name split by OCR
+139,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+139,addressee_block,Al Ciudadano Mr. F. Licmauco. rs | EL,Al Ciudadano Mr. F. Lichauco. rs | EL,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+139,addressee_block,Al Ciudadano Mr. F. Lichauco. rs | EL,Al Ciudadano Mr. F. Lichauco. | EL,rule R120,stray marks at line ends
+139,addressee_block,Al Ciudadano Mr. F. Lichauco. | EL,Al Ciudadano Mr. F. Lichauco. | El,rule SMALLCAPS,small capitals written in normal capitalisation
+139,addressee_block,Al Ciudadano Mr. F. Lichauco. | El,Al Ciudadano Mr. F. Lichauco.,manual,image_checks/139_addressee.png: read from the page image
+139,recipient_normalized,,F. Lichauco,names.csv,
+140,recipient_index_form,KanoY,Kanoy,rule R101,KanoY -> Kanoy
+140,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+140,recipient_normalized,,Kanoy,names.csv,
+141,recipient_index_form,CAsTRO,Castro,rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+141,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 28 de Febrero, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 28 de Febrero, 1899.",rule R110,place name split by OCR
+141,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+141,addressee_block,"Sr. D. L. G. M. Castro, | Shanghai. O","Sr. D. L. G. M. Castro, | Shanghai.",rule R120,stray marks at line ends
+141,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+142,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+142,addressee_block,"Sr. D. G. AraciBLe, e | Hon gkong. e","Sr. D. G. Apacible, e | Hon gkong. e",rule R030,OCR variants of APACIBLE
+142,addressee_block,"Sr. D. G. Apacible, e | Hon gkong. e","Sr. D. G. Apacible, e | Hongkong. e",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+142,addressee_block,"Sr. D. G. Apacible, e | Hongkong. e","Sr. D. G. Apacible, | Hongkong.",rule R120,stray marks at line ends
+142,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, a de Marzo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 4 de Marzo de 1899.",manual,image_checks/142_dateline.png: read from the page image
+142,place_as_printed,,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",manual,image_checks/142_dateline.png: 
+142,review_flags,date read manually from page image (OCR garbled it),date confirmed on page image,manual,image_checks/142_dateline.png: replaces the raw flag about a garbled or out-of-range year
+142,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+143,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+143,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 6 de Marzo, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 6 de Marzo, 1899.",rule R110,place name split by OCR
+143,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+143,addressee_block,"Sr. D. G. AracibLE, | Hon gkong.","Sr. D. G. Apacible, | Hon gkong.",rule R030,OCR variants of APACIBLE
+143,addressee_block,"Sr. D. G. Apacible, | Hon gkong.","Sr. D. G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+143,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+144,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+144,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 7 de Marzo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 7 de Marzo de 1899.",rule R110,place name split by OCR
+144,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+144,addressee_block,"Sr. D. F. BLUMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+144,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+145,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+145,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 7 de Marzo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 7 de Marzo de 1899.",rule R110,place name split by OCR
+145,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+145,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+146,recipient_index_form,E. DE LeTE,E. DE Lete,rule R053,LeTE -> Lete
+146,recipient_index_form,E. DE Lete,E. de Lete,rule SMALLCAPS,small capitals written in normal capitalisation
+146,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 7 de Marzo de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 7 de Marzo de 1899.",rule R110,place name split by OCR
+146,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+146,addressee_block,"Sr. D. Epuarno De Lere, | Zaragoza.","Sr. D. Epuarno De Lete, | Zaragoza.",rule R052,Lere -> Lete
+146,addressee_block,"Sr. D. Epuarno De Lete, | Zaragoza.","Sr. D. Eduardo De Lete, | Zaragoza.",rule R054,Epuarno -> Eduardo
+146,recipient_normalized,,Eduardo de Lete,names.csv,
+147,recipient_index_form,CosP,Cosp,rule R079,CosP -> Cosp
+147,addressee_block,"Sr. D. Luis Cose, | Sn. Clemente. ,","Sr. D. Luis Cosp, | Sn. Clemente. ,",rule R078,Cose -> Cosp
+147,addressee_block,"Sr. D. Luis Cosp, | Sn. Clemente. ,","Sr. D. Luis Cosp, | Sn. Clemente.",rule R122,stray comma at end
+147,destination_as_printed_guess,"Sn. Clemente. ,",Sn. Clemente,manual,image_checks/147_addressee.png: 
+147,destination_place_normalized,,Sant Climent de Llobregat,manual,image_checks/147_addressee.png: 
+147,destination_basis,,"printed in addressee block: ""Sn. Clemente""",manual,image_checks/147_addressee.png: 
+147,destination_lat,,41.338,manual,image_checks/147_addressee.png: 
+147,destination_lon,,1.997,manual,image_checks/147_addressee.png: 
+147,recipient_normalized,,Luis Cosp,names.csv,
+148,recipient_index_form,Kamiva,Kamiya,rule R075,\bKami[rv]a\b -> Kamiya
+148,signatory_as_printed,NX M. Ponce.,M. Ponce.,rule R028,stray marks before the signature
+148,addressee_block,"Mr. J. Kamira, Esq, | “Nippon” Office, Tokyo.","Mr. J. Kamiya, Esq, | “Nippon” Office, Tokyo.",rule R075,\bKami[rv]a\b -> Kamiya
+148,recipient_normalized,,J. Kamiya,names.csv,
+149,recipient_index_form,APaciBLeE,Apacible,rule R030,OCR variants of APACIBLE
+149,addressee_block,"Sr. D, G. ApacIBLE, | Hongkong.","Sr. D, G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+149,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+150,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+150,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 21 de Marzo de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 21 de Marzo de 1899.",rule R110,place name split by OCR
+150,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+150,addressee_block,"Sr. D. G. AracibLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+150,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+151,recipient_index_form,APaciBLe,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+151,addressee_block,"Sr. D. G. ApacIBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+151,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+152,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+152,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 30 de Marzo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 30 de Marzo de 1899.",rule R110,place name split by OCR
+152,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+152,addressee_block,"Sr. D. F. BLUMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+152,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+153,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+153,addressee_block,Sr. D. F. BLuMENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+153,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+154,recipient_index_form,OTa,Ota,rule SMALLCAPS,small capitals written in normal capitalisation
+154,place_date_as_printed,"637 Miyokyí Y ama, Kitagata, Korakigun, Yokohama, April 3rd, 1899.","637 Miyokyí Yama, Kitagata, Korakigun, Yokohama, April 3rd, 1899.",rule R110,place name split by OCR
+154,place_date_as_printed,"637 Miyokyí Yama, Kitagata, Korakigun, Yokohama, April 3rd, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, April 3rd, 1899.",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+154,place_as_printed,"637 Miyokyí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokyí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+154,place_as_printed,"637 Miyokyí Yama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+154,recipient_normalized,,H. Ota,names.csv,
+155,recipient_index_form,APAcIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+155,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 5 de Abril de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 5 de Abril de 1899.",rule R110,place name split by OCR
+155,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+155,addressee_block,"Sr. D. G. APacIBLe, po | Hongkong. Le","Sr. D. G. APacIBLe, | Hongkong.",rule R120,stray marks at line ends
+155,addressee_block,"Sr. D. G. APacIBLe, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule SMALLCAPS,small capitals written in normal capitalisation
+155,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+156,recipient_index_form,ORONG,Orong,rule SMALLCAPS,small capitals written in normal capitalisation
+156,recipient_normalized,,I. de Santos,names.csv,Orong = Orong de Santos (addressee of letter 184); verify
+157,recipient_index_form,LicHauco,Lichauco,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+157,addressee_block,Al ciudadano Sr. F. Licuauco.,Al ciudadano Sr. F. Lichauco.,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+157,recipient_normalized,,F. Lichauco,names.csv,
+158,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+158,addressee_block,"Sr. G. ApacibLe, Esq.","Sr. G. Apacible, Esq.",rule R030,OCR variants of APACIBLE
+158,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+159,recipient_as_printed,Y amagata,Yamagata,rule R073,\bYama[cg]?ara\b|\bY amagata\b -> Yamagata
+159,recipient_index_form,YAMAGATA,Yamagata,rule SMALLCAPS,small capitals written in normal capitalisation
+159,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, sth of April, 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, sth of April, 1899.",rule R110,place name split by OCR
+159,addressee_block,"Mr. Y. Yamacara, Esq. | Tokyo.","Mr. Y. Yamagata, Esq. | Tokyo.",rule R073,\bYama[cg]?ara\b|\bY amagata\b -> Yamagata
+159,place_date_as_printed,"637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, sth of April, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 5th of April, 1899.",manual,image_checks/159_dateline.png: read from the page image
+159,place_as_printed,,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",manual,image_checks/159_dateline.png: 
+159,review_flags,date read manually from page image (OCR garbled it),date confirmed on page image,manual,image_checks/159_dateline.png: replaces the raw flag about a garbled or out-of-range year
+159,recipient_normalized,,Y. Yamagata,names.csv,
+160,recipient_index_form,AsaMI,Asami,rule SMALLCAPS,small capitals written in normal capitalisation
+160,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 6th April 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 6th April 1899.",rule R110,place name split by OCR
+160,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+160,addressee_block,"Mr. Marajgiro Asami, Esq. | Nagahama.","Mr. Matajiro Asami, Esq. | Nagahama.",manual,image_checks/160_addressee.png: read from the page image
+160,destination_place_normalized,,Nagahama,manual,image_checks/160_addressee.png: 
+160,destination_basis,,"printed in addressee block: ""Nagahama""",manual,image_checks/160_addressee.png: 
+160,destination_lat,,35.381,manual,image_checks/160_addressee.png: 
+160,destination_lon,,136.269,manual,image_checks/160_addressee.png: 
+160,recipient_normalized,,Matajiro Asami,names.csv,
+161,recipient_index_form,ORONG,Orong,rule SMALLCAPS,small capitals written in normal capitalisation
+161,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+161,recipient_normalized,,I. de Santos,names.csv,Orong = Orong de Santos (addressee of letter 184); verify
+162,recipient_index_form,SUGIMURA,Sugimura,rule SMALLCAPS,small capitals written in normal capitalisation
+162,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, April 7th, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, April 7th, 1899.",rule R110,place name split by OCR
+162,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+162,addressee_block,"Mr. K. Sucimura, Esq. | “The Orient,” Tokyo.","Mr. K. Sugimura, Esq. | “The Orient,” Tokyo.",rule R074,\bSu[ac]imura\b|\bSuaimura\b -> Sugimura
+162,recipient_normalized,,K. Sugimura,names.csv,addressees give K. and F. Sugimura
+163,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+163,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, ho Yokohama, 10 Abril de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, ho Yokohama, 10 Abril de 1899.",rule R110,place name split by OCR
+163,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, ho Yokohama, 10 Abril de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 10 Abril de 1899.",rule R118,stray mark before Yokohama
+163,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, ho Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, ho Yokohama",rule R110,place name split by OCR
+163,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, ho Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R118,stray mark before Yokohama
+163,addressee_block,"Sr. D. F. BLUMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+163,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+164,recipient_index_form,YAMAGATA,Yamagata,rule SMALLCAPS,small capitals written in normal capitalisation
+164,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, April 11th, 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, April 11th, 1899.",rule R110,place name split by OCR
+164,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+164,addressee_block,"Mr. Y. Yamacara, Esq. | “The Yorodzu Choho,” Tokyo.","Mr. Y. Yamagata, Esq. | “The Yorodzu Choho,” Tokyo.",rule R073,\bYama[cg]?ara\b|\bY amagata\b -> Yamagata
+164,recipient_normalized,,Y. Yamagata,names.csv,
+165,recipient_index_form,KanoY,Kanoy,rule R101,KanoY -> Kanoy
+165,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 16 Abril, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 16 Abril, 1899.",rule R110,place name split by OCR
+165,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+165,recipient_normalized,,Kanoy,names.csv,
+166,recipient_index_form,ToNinc,Toñing,rule R102,ToNinc -> Toñing
+166,recipient_normalized,,Toñing,names.csv,
+167,recipient_index_form,KanoY,Kanoy,rule R101,KanoY -> Kanoy
+167,recipient_normalized,,Kanoy,names.csv,
+168,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+168,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1.” de Mayo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1.º de Mayo de 1899.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+168,addressee_block,"Al Prof. F. BLUMENTRITT, | Leitmeritz.","Al Prof. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+168,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+169,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+169,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+169,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 1. de Mayo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1. de Mayo de 1899.",rule R110,place name split by OCR
+169,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1. de Mayo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 1.º de Mayo de 1899.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+169,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+169,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+170,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 7 de Mayo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 7 de Mayo de 1899.",rule R110,place name split by OCR
+170,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+170,recipient_normalized,,F. Lichauco,names.csv,
+171,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+171,addressee_block,"Sr. D. F. BLUMENTRITT,","Sr. D. F. Blumentritt,",rule R001,small-caps OCR variants of BLUMENTRITT
+171,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+172,recipient_index_form,APACIBLE Y SANTOS,APACIBLE y SANTOS,rule R139,conjunction y in small capitals
+172,recipient_index_form,APACIBLE y SANTOS,Apacible y Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+172,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 24 de Mayo de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 24 de Mayo de 1899.",rule R110,place name split by OCR
+172,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+172,addressee_block,Sres. Dn. G. APACIBLE y | Dn. l. Sawros.,Sres. Dn. G. APACIBLE y | Dn. l. Santos.,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+172,addressee_block,Sres. Dn. G. APACIBLE y | Dn. l. Santos.,Sres. Dn. G. APACIBLE y | Dn. I. Santos.,rule R143,"initial I. of I. de Santos (image checks 172, 183, 191)"
+172,addressee_block,Sres. Dn. G. APACIBLE y | Dn. I. Santos.,Sres. Dn. G. Apacible y | Dn. I. Santos.,rule SMALLCAPS,small capitals written in normal capitalisation
+172,destination_as_printed_guess,Dn. l. Sawros,Dn. l. Santos,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+172,destination_as_printed_guess,Dn. l. Santos,,manual,"image_checks/172_addressee.png: the auto guess was a name, not a place"
+172,recipient_normalized,,G. Apacible; I. de Santos,names.csv,two recipients
+173,recipient_index_form,KimURA,Kimura,rule R100,KimURA -> Kimura
+173,addressee_block,"Mr. Takararo Kimura, Esq., | ““Keikwa Nippó-sha”, | Tokyo.","Mr. Takataro Kimura, Esq., | “Keikwa Nippó-sha”, | Tokyo.",manual,image_checks/173_addressee.png: read from the page image
+173,recipient_normalized,,Takataro Kimura,names.csv,
+174,recipient_index_form,ShiBa,Shiba,rule SMALLCAPS,small capitals written in normal capitalisation
+174,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, y Yokohama, 31 May, 1890.","637 Miyokojí Yama, Kitagata, Korakigun, y Yokohama, 31 May, 1890.",rule R110,place name split by OCR
+174,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, y Yokohama, 31 May, 1890.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 31 May, 1890.",rule R118,stray mark before Yokohama
+174,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, y Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, y Yokohama",rule R110,place name split by OCR
+174,place_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, y Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R118,stray mark before Yokohama
+174,addressee_block,"Mr. T. Shiga, Esq., a 7 ES | “Yorodzu Choho”, Tokyo.","Mr. T. Shiga, Esq., | “Yorodzu Choho”, Tokyo.",rule R146,stray marks
+174,addressee_block,"Mr. T. Shiga, Esq., | “Yorodzu Choho”, Tokyo.","Mr. T. Shiba, Esq., | “Yorodzu Choho”, Tokyo.",rule R147,printed T. Shiba (image check 174_addressee)
+174,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 31 May, 1890.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 31 May, 1899.",manual,image_checks/174_dateline.png: only the second line of the dateline is visible in the crop; first line kept from OCR
+174,review_flags,OCR year '1890' outside 1897-1900; replaced by index year section 1899,date confirmed on page image,manual,image_checks/174_dateline.png: replaces the raw flag about a garbled or out-of-range year
+174,recipient_normalized,,T. Shiba,names.csv,
+175,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+175,addressee_block,"Sr. D. G. ApAcIBLE, | Hongkon g.","Sr. D. G. Apacible, | Hongkon g.",rule R030,OCR variants of APACIBLE
+175,addressee_block,"Sr. D. G. Apacible, | Hongkon g.","Sr. D. G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+175,destination_as_printed_guess,Hongkon g,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+175,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+176,recipient_index_form,AGUINALDO,Aguinaldo,rule SMALLCAPS,small capitals written in normal capitalisation
+176,addressee_block,Guinoong Sr. Emiio AGUINALDO.,Guinoong Sr. Emilio AGUINALDO.,rule R092,\bEmi[iL]?io\b -> Emilio
+176,addressee_block,Guinoong Sr. Emilio AGUINALDO.,Guinoong Sr. Emilio Aguinaldo.,rule SMALLCAPS,small capitals written in normal capitalisation
+176,recipient_normalized,,Emilio Aguinaldo,names.csv,addressee: Guinoong Emilio Aguinaldo
+177,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+177,addressee_block,Sr. D. G. ApaciBLE.,Sr. D. G. Apacible.,rule R030,OCR variants of APACIBLE
+177,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+178,recipient_index_form,AGUINALDO,Aguinaldo,rule SMALLCAPS,small capitals written in normal capitalisation
+178,addressee_block,Guinoong EmiLio ÁGUINALDO.,Guinoong Emilio ÁGUINALDO.,rule R092,\bEmi[iL]?io\b -> Emilio
+178,addressee_block,Guinoong Emilio ÁGUINALDO.,Guinoong Emilio Aguinaldo.,rule R093,ÁGUINALDO -> Aguinaldo
+178,recipient_normalized,,Emilio Aguinaldo,names.csv,addressee: Guinoong Emilio Aguinaldo
+179,place_date_as_printed,"637 Miyokoji Y ama, Yokohama, 15 Junio, 1899.","637 Miyokoji Yama, Yokohama, 15 Junio, 1899.",rule R110,place name split by OCR
+179,place_as_printed,"637 Miyokoji Y ama, Yokohama","637 Miyokoji Yama, Yokohama",rule R110,place name split by OCR
+179,recipient_normalized,,J. Luna,manual,"addressee block names Sr. J. Luna, París"
+180,recipient_index_form,Rico DE Dios,Rico de Dios,rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+180,recipient_index_form,Rico de Dios,Riego de Dios,rule R094,\bRi[ec][cg]?o\b|\bRico\b|\bRisco\b|\bRieco\b -> Riego
+180,addressee_block,"Sr. E. Rieco DE Dios, Esq., | París.","Sr. E. Rieco de Dios, Esq., | París.",rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+180,addressee_block,"Sr. E. Rieco de Dios, Esq., | París.","Sr. E. Riego de Dios, Esq., | París.",rule R094,\bRi[ec][cg]?o\b|\bRico\b|\bRisco\b|\bRieco\b -> Riego
+180,recipient_normalized,,E. Riego de Dios,names.csv,
+181,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+181,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+181,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 15 de Junio de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 15 de Junio de 1899.",rule R110,place name split by OCR
+181,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+181,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+182,recipient_index_form,TacuchHI,Taguchi,rule R081,TacuchHI -> Taguchi
+182,addressee_block,"Dr. Uxicm Tacucmt, | Tokyo.","Dr. Ukichi Taguchi, | Tokyo.",rule R080,Uxicm Tacucmt -> Ukichi Taguchi
+182,recipient_normalized,,Ukichi Taguchi,names.csv,
+183,recipient_index_form,APACIBLE Y SANTOS,APACIBLE y SANTOS,rule R139,conjunction y in small capitals
+183,recipient_index_form,APACIBLE y SANTOS,Apacible y Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+183,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+183,addressee_block,Dres. G. AracibLE e l. pe SanTOS.,Dres. G. Apacible e l. pe SanTOS.,rule R030,OCR variants of APACIBLE
+183,addressee_block,Dres. G. Apacible e l. pe SanTOS.,Dres. G. Apacible e l. pe Santos.,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+183,addressee_block,Dres. G. Apacible e l. pe Santos.,Dres. G. Apacible e l. de Santos.,rule R061,\bpe Santos\b -> de Santos
+183,addressee_block,Dres. G. Apacible e l. de Santos.,Dres. G. Apacible e I. de Santos.,rule R143,"initial I. of I. de Santos (image checks 172, 183, 191)"
+183,recipient_normalized,,G. Apacible; I. de Santos,names.csv,two recipients
+184,recipient_index_form,APACIBLE Y ORONG,APACIBLE y ORONG,rule R139,conjunction y in small capitals
+184,recipient_index_form,APACIBLE y ORONG,Apacible y Orong,rule SMALLCAPS,small capitals written in normal capitalisation
+184,addressee_block,Sres. G. APaciBLE y ORONG DE SANTOS.,Sres. G. Apacible y Orong de Santos.,rule SMALLCAPS,small capitals written in normal capitalisation
+184,recipient_normalized,,G. Apacible; I. de Santos,names.csv,two recipients; addressee names Orong de Santos
+185,recipient_index_form,CASTRO,Castro,rule SMALLCAPS,small capitals written in normal capitalisation
+185,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 23 de Junio de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 23 de Junio de 1899.",rule R110,place name split by OCR
+185,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+185,addressee_block,"Sr. D. L. G. M. Casrkro, | Shanghai.","Sr. D. L. G. M. Castro, | Shanghai.",rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+185,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+186,recipient_index_form,FoUJITA,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+186,signatory_as_printed,M. Poncz.,M. Ponce.,rule R022,signature small caps
+186,addressee_block,"Sr. D. S. FoujiTa, | Tokyo.","Sr. D. S. Foujita, | Tokyo.",rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+186,recipient_normalized,,Sonetaka Foujita,names.csv,addressee: S. Foujita / Sonetaka Foujita
+187,recipient_index_form,KIMURA,Kimura,rule SMALLCAPS,small capitals written in normal capitalisation
+187,addressee_block,"Mr. Taxararo Kimura, Esg., | Tokyo.","Mr. Taxararo Kimura, Esq., | Tokyo.",rule R069,\bEs[gq][gq]?\b -> Esq
+187,addressee_block,"Mr. Taxararo Kimura, Esq., | Tokyo.","Mr. Takataro Kimura, Esq., | Tokyo.",manual,image_checks/187_addressee.png: read from the page image
+187,recipient_normalized,,Takataro Kimura,names.csv,
+188,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+188,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+188,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 4 de Julio de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 4 de Julio de 1899.",rule R110,place name split by OCR
+188,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+188,addressee_block,"Doctor G. AraciBLE, | Hongkong.","Doctor G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+188,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+189,recipient_index_form,CoArD,Coard,rule R086,"\bCoa[rsx]{1,2}[pdD]?\b|\bCoaro\b|\bCoasxp\b|\bCoArD\b -> Coard"
+189,place_date_as_printed,"637 Miyokoíí Yama, Kitagata, Korakigun, Yokohama, July 10th, 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, July 10th, 1899.",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+189,place_as_printed,"637 Miyokoíí Yama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+189,addressee_block,"Mr. WiLLiam HeneY Coaro, Esq, | The “Gazette” Office, | Montreal, Canadd.","Mr. William HeneY Coaro, Esq, | The “Gazette” Office, | Montreal, Canadd.",rule R056,WiLLiam -> William
+189,addressee_block,"Mr. William HeneY Coaro, Esq, | The “Gazette” Office, | Montreal, Canadd.","Mr. William HeneY Coard, Esq, | The “Gazette” Office, | Montreal, Canadd.",rule R086,"\bCoa[rsx]{1,2}[pdD]?\b|\bCoaro\b|\bCoasxp\b|\bCoArD\b -> Coard"
+189,addressee_block,"Mr. William HeneY Coard, Esq, | The “Gazette” Office, | Montreal, Canadd.","Mr. William Henry Coard, Esq, | The “Gazette” Office, | Montreal, Canadd.",rule R087,HeneY -> Henry
+189,addressee_block,"Mr. William Henry Coard, Esq, | The “Gazette” Office, | Montreal, Canadd.","Mr. William Henry Coard, Esq, | The “Gazette” Office, | Montreal, Canada.",rule R088,Canadd -> Canada
+189,destination_as_printed_guess,"Montreal, Canadd","Montreal, Canada",rule R088,Canadd -> Canada
+189,recipient_normalized,,William Henry Coard,names.csv,
+190,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+190,addressee_block,"Sr. D. G. ApaciBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+190,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+191,recipient_index_form,APACIBLE Y DE SaNTOos,APACIBLE Y DE Santos,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+191,recipient_index_form,APACIBLE Y DE Santos,APACIBLE y DE Santos,rule R139,conjunction y in small capitals
+191,recipient_index_form,APACIBLE y DE Santos,Apacible y de Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+191,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 25 de Julio de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 25 de Julio de 1899.",rule R110,place name split by OCR
+191,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+191,addressee_block,"Sres. Doctores G. AraciBLE € Í. DE SANTOS, | Hongkong.","Sres. Doctores G. Apacible € Í. DE SANTOS, | Hongkong.",rule R030,OCR variants of APACIBLE
+191,addressee_block,"Sres. Doctores G. Apacible € Í. DE SANTOS, | Hongkong.","Sres. Doctores G. Apacible é Í. DE SANTOS, | Hongkong.",rule R142, €  ->  é 
+191,addressee_block,"Sres. Doctores G. Apacible é Í. DE SANTOS, | Hongkong.","Sres. Doctores G. Apacible é Í. de Santos, | Hongkong.",rule SMALLCAPS,small capitals written in normal capitalisation
+191,addressee_block,"Sres. Doctores G. Apacible é Í. de Santos, | Hongkong.","Sres. Doctores G. Apacible é I. de Santos, | Hongkong.",manual,image_checks/191_addressee.png: read from the page image
+191,recipient_normalized,,G. Apacible; I. de Santos,names.csv,two recipients
+192,recipient_index_form,APACIBLE Y SANTOS,APACIBLE y SANTOS,rule R139,conjunction y in small capitals
+192,recipient_index_form,APACIBLE y SANTOS,Apacible y Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+192,signatory_as_printed,M. Poncrz.,M. Ponce.,rule R022,signature small caps
+192,addressee_block,Sres. G. AracimLe é l. Santos.,Sres. G. Apacible é l. Santos.,rule R030,OCR variants of APACIBLE
+192,addressee_block,Sres. G. Apacible é l. Santos.,Sres. G. Apacible é I. Santos.,rule R143,"initial I. of I. de Santos (image checks 172, 183, 191)"
+192,recipient_normalized,,G. Apacible; I. de Santos,names.csv,two recipients
+193,recipient_index_form,CasTRO,Castro,rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+193,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 28 de Julio de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 28 de Julio de 1899.",rule R110,place name split by OCR
+193,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+193,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+194,recipient_index_form,MorAYTA,Morayta,rule SMALLCAPS,small capitals written in normal capitalisation
+194,signatory_as_printed,MAarI1aNo PoncE.,Mariano PoncE.,rule R020,signature small caps
+194,signatory_as_printed,Mariano PoncE.,Mariano Ponce.,rule R022,signature small caps
+194,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 31 de Julio de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 31 de Julio de 1899.",rule R110,place name split by OCR
+194,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+194,addressee_block,"Sr. D. MicuezL MoraYTA, | Madrid.","Sr. D. Miguel MoraYTA, | Madrid.",rule R034,\bMic[uG][eE]?[zU]?[eE]?L\b -> Miguel
+194,addressee_block,"Sr. D. Miguel MoraYTA, | Madrid.","Sr. D. Miguel Morayta, | Madrid.",rule R035,OCR variants of MORAYTA
+194,recipient_normalized,,Miguel Morayta,names.csv,
+195,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+195,addressee_block,"Sr. D. F. BLUMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+195,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+196,recipient_index_form,APACIBLE Y SANTOS,APACIBLE y SANTOS,rule R139,conjunction y in small capitals
+196,recipient_index_form,APACIBLE y SANTOS,Apacible y Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+196,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+196,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 7 de Agosto de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 7 de Agosto de 1899.",rule R110,place name split by OCR
+196,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+196,addressee_block,"Sres. G. AraciBLE é J. DE SANTOS, | Hongkong.","Sres. G. Apacible é J. DE SANTOS, | Hongkong.",rule R030,OCR variants of APACIBLE
+196,addressee_block,"Sres. G. Apacible é J. DE SANTOS, | Hongkong.","Sres. G. Apacible é J. de Santos, | Hongkong.",rule SMALLCAPS,small capitals written in normal capitalisation
+196,recipient_normalized,,G. Apacible; I. de Santos,names.csv,two recipients
+197,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+197,signatory_as_printed,M. PoncE.,M. Ponce.,rule R022,signature small caps
+197,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 11 de Agosto de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 11 de Agosto de 1899.",rule R110,place name split by OCR
+197,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+197,addressee_block,"Sr. D. G. AraciBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+197,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+198,recipient_index_form,CaAsTRO,Castro,rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+198,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 11 de Agosto de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 11 de Agosto de 1899.",rule R110,place name split by OCR
+198,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+198,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+199,recipient_index_form,VERGEL,Vergel,rule R032,"\bVer[cagG][eE]{0,2}[LlE]{1,2}\b|\bVerGiL\b|\bVERGEL\b -> Vergel"
+199,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+199,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 14 de Agosto de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 14 de Agosto de 1899.",rule R110,place name split by OCR
+199,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+199,recipient_normalized,,A. Vergel de Dios,names.csv,same as above
+200,recipient_index_form,APAcIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+200,addressee_block,"Dr. G. ApaciLE, | HongRong.","Dr. G. Apacible, | HongRong.",rule R030,OCR variants of APACIBLE
+200,addressee_block,"Dr. G. Apacible, | HongRong.","Dr. G. Apacible, | Hongkong.",rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+200,destination_as_printed_guess,HongRong,Hongkong,rule R114,\bHon gkong\b|\bHongkon g\b|\bHongRong\b|\bFlon gkong\b|\bHon gkong\b -> Hongkong
+200,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+201,recipient_index_form,APACIBLE,Apacible,rule SMALLCAPS,small capitals written in normal capitalisation
+201,addressee_block,"Sr. D. G. AracIBLE, | Hongkong.","Sr. D. G. Apacible, | Hongkong.",rule R030,OCR variants of APACIBLE
+201,recipient_normalized,,G. Apacible,names.csv,addressee: Sr. D. G. Apacible
+202,recipient_index_form,LicHAUCO,Lichauco,rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+202,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama, 30 de Agosto de 1899.","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama, 30 de Agosto de 1899.",rule R110,place name split by OCR
+202,place_as_printed,"637 Miyokojí Y ama, Kitagata, Korakigun, Yokohama","637 Miyokojí Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+202,addressee_block,"Sr. D. F. Licmauco, | Hongkong.","Sr. D. F. Lichauco, | Hongkong.",rule R026,\bLic[mu]auco\b|\bLicHauco\b|\bLicHAUCO\b|\bLicHauco\b -> Lichauco
+202,recipient_normalized,,F. Lichauco,names.csv,
+203,recipient_index_form,CaAsTRO,Castro,rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+203,place_date_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama, 10 de Septiembre de 1899.","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama, 10 de Septiembre de 1899.",rule R110,place name split by OCR
+203,place_as_printed,"637 Miyokoji Y ama, Kitagata, Korakigun, Yokohama","637 Miyokoji Yama, Kitagata, Korakigun, Yokohama",rule R110,place name split by OCR
+203,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+204,recipient_index_form,OsHIKAWA,Oshikawa,rule R083,\bOs[mH][iI][kK][aA][wW][aA]\b -> Oshikawa
+204,addressee_block,"Mr. Osmikawa, Esq., | Tokyo.","Mr. Oshikawa, Esq., | Tokyo.",rule R083,\bOs[mH][iI][kK][aA][wW][aA]\b -> Oshikawa
+204,recipient_normalized,,Oshikawa,names.csv,
+205,recipient_index_form,Foujrra,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+205,addressee_block,"Sr. SONETAKA FoujITA, | Tokyo.","Sr. SONETAKA Foujita, | Tokyo.",rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+205,addressee_block,"Sr. SONETAKA Foujita, | Tokyo.","Sr. Sonetaka Foujita, | Tokyo.",rule SMALLCAPS,small capitals written in normal capitalisation
+205,recipient_normalized,,Sonetaka Foujita,names.csv,addressee: S. Foujita / Sonetaka Foujita
+206,recipient_index_form,ViLLa,Villa,rule SMALLCAPS,small capitals written in normal capitalisation
+206,addressee_block,"Sr. D. A. ViLLAREAL, | Tokyo.","Sr. D. A. Villareal, | Tokyo.",rule R084,ViLLAREAL -> Villareal
+206,recipient_normalized,,A. Villareal,names.csv,"heading prints Villa-real, addressee Villareal"
+207,recipient_index_form,SUGIMURA,Sugimura,rule SMALLCAPS,small capitals written in normal capitalisation
+207,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+207,addressee_block,"F. Sucimura, Esq., | Tokyo.","F. Sugimura, Esq., | Tokyo.",rule R074,\bSu[ac]imura\b|\bSuaimura\b -> Sugimura
+207,recipient_normalized,,K. Sugimura,names.csv,addressees give K. and F. Sugimura
+208,recipient_as_printed,Sun Y at Sen,Sun Yat Sen,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+208,recipient_index_form,Sun Yar Sen,Sun Yat Sen,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+208,place_date_as_printed,"Dr. Sun Yar Sen. Oct. 16, 1899.","Dr. Sun Yat Sen. Oct. 16, 1899.",rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+208,place_as_printed,Dr. Sun Yar Sen,Dr. Sun Yat Sen,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+208,place_date_as_printed,"Dr. Sun Yat Sen. Oct. 16, 1899.","Oct. 16, 1899.",manual,image_checks/208_dateline.png: dateline has no place; the line Dr. Sun Yat Sen. is the addressee
+208,place_as_printed,Dr. Sun Yat Sen,,manual,image_checks/208_dateline.png: 
+208,addressee_block,,Dr. Sun Yat Sen.,manual,image_checks/208_dateline.png: read from the page image
+208,recipient_normalized,,Sun Yat Sen,names.csv,
+209,recipient_normalized,,Francisco Rivero,names.csv,
+210,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+210,addressee_block,"Sr. D. F. BLUMENTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+210,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+211,recipient_index_form,BUENCAMINO,Buencamino,rule SMALLCAPS,small capitals written in normal capitalisation
+211,addressee_block,"Sr. FeLipE BUENCcAMINO, | Secretario de Negocios Extranjeros | de la República Filipina.","Sr. Felipe BUENCcAMINO, | Secretario de Negocios Extranjeros | de la República Filipina.",rule R090,FeLipE -> Felipe
+211,addressee_block,"Sr. Felipe BUENCcAMINO, | Secretario de Negocios Extranjeros | de la República Filipina.","Sr. Felipe Buencamino, | Secretario de Negocios Extranjeros | de la República Filipina.",rule R091,BUENCcAMINO -> Buencamino
+211,recipient_normalized,,Felipe Buencamino,names.csv,
+212,recipient_index_form,MABINI,Mabini,rule SMALLCAPS,small capitals written in normal capitalisation
+212,addressee_block,"Sr, D. AroLinario MABInNi, | Tárlac.","Sr, D. Apolinario MABInNi, | Tárlac.",rule R063,AroLinario -> Apolinario
+212,addressee_block,"Sr, D. Apolinario MABInNi, | Tárlac.","Sr, D. Apolinario Mabini, | Tárlac.",rule R064,\bMa[rsb][iI][nN][iI1t]\b|\bMasINt\b|\bMABInNi\b|\bMabin1\b|\bMabinI\b|\bMarin1\b -> Mabini
+212,place_date_as_printed,"Hongkong, 27 de Octubre de 1890.","Hongkong, 27 de Octubre de 1899.",manual,image_checks/212_dateline.png: read from the page image
+212,review_flags,OCR year '1890' outside 1897-1900; replaced by index year section 1899,date confirmed on page image,manual,image_checks/212_dateline.png: replaces the raw flag about a garbled or out-of-range year
+212,recipient_normalized,,Apolinario Mabini,names.csv,
+213,recipient_index_form,CAsTRO,Castro,rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+213,addressee_block,"Sr. D. L. Casreo, | Shanghai.","Sr. D. L. Castro, | Shanghai.",rule R077,\bCa[sS]?[rt]k?[rRe][oO]\b|\bCasTro\b|\bCAsTRO\b|\bCaAsTRO\b|\bCasTRO\b -> Castro
+213,recipient_normalized,,L. Castro,names.csv,addressee: L. Castro / L. M. Castro / L. G. M. Castro
+214,recipient_as_printed,Poujita,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+214,recipient_index_form,Foujira,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+214,addressee_block,"Sr. D. S. Foujrra, | Tokyo.","Sr. D. S. Foujita, | Tokyo.",rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+214,recipient_normalized,,Sonetaka Foujita,names.csv,addressee: S. Foujita / Sonetaka Foujita
+215,recipient_index_form,FoujITa,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+215,signatory_as_printed,M. Ponczr.,M. Ponce.,rule R022,signature small caps
+215,addressee_block,"Sr. Foujrra, Esq., | Tokyo.","Sr. Foujita, Esq., | Tokyo.",rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+215,recipient_normalized,,Sonetaka Foujita,names.csv,addressee: S. Foujita / Sonetaka Foujita
+216,recipient_index_form,RivERo,Rivero,rule SMALLCAPS,small capitals written in normal capitalisation
+216,recipient_normalized,,Francisco Rivero,names.csv,
+217,recipient_index_form,SUGIMURA,Sugimura,rule SMALLCAPS,small capitals written in normal capitalisation
+217,addressee_block,"Mr. K. Suaimura, Esq., | Editor of “The Orient,” | Tokyo.","Mr. K. Sugimura, Esq., | Editor of “The Orient,” | Tokyo.",rule R074,\bSu[ac]imura\b|\bSuaimura\b -> Sugimura
+217,recipient_normalized,,K. Sugimura,names.csv,addressees give K. and F. Sugimura
+218,recipient_index_form,HIRATA,Hirata,rule SMALLCAPS,small capitals written in normal capitalisation
+218,addressee_block,"Mr. Hirara, Esq., | Osaka.","Mr. Hirata, Esq., | Osaka.",rule R089,\bHira[rT]a\b|\bHiraTa\b -> Hirata
+218,recipient_normalized,,Hirata,names.csv,
+219,recipient_index_form,PRESIDENTE DEL SUBCOMITÉ REPUBLICANO,Presidente del Subcomité Republicano,rule SMALLCAPS,small capitals written in normal capitalisation
+219,addressee_block,Sr. PRESIDENTE DEL SUBCOMITÉ | RepPuBLICANO FiLIPINO DE BARCELONA.,Sr. PRESIDENTE DEL SUBCOMITÉ | Republicano FiLIPINO DE BARCELONA.,rule R098,RepPuBLICANO -> Republicano
+219,addressee_block,Sr. PRESIDENTE DEL SUBCOMITÉ | Republicano FiLIPINO DE BARCELONA.,Sr. PRESIDENTE DEL SUBCOMITÉ | Republicano Filipino DE BARCELONA.,rule R099,FiLIPINO -> Filipino
+219,addressee_block,Sr. PRESIDENTE DEL SUBCOMITÉ | Republicano Filipino DE BARCELONA.,Sr. Presidente del Subcomité | Republicano Filipino de Barcelona.,rule SMALLCAPS,small capitals written in normal capitalisation
+219,recipient_normalized,,Presidente del Subcomité Republicano Filipino de Barcelona,names.csv,"an office, not a named person"
+220,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+220,addressee_block,"Sr. D. F. BLumenTRITT, | Leitmeritz.","Sr. D. F. Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+220,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+221,recipient_index_form,MEYER,Meyer,rule SMALLCAPS,small capitals written in normal capitalisation
+221,addressee_block,"Mr. A. B. Merver, Esq., | Dresden.","Mr. A. B. Meyer, Esq., | Dresden.",rule R085,Merver -> Meyer
+221,recipient_normalized,,A. B. Meyer,names.csv,
+222,recipient_index_form,MIURA,Miura,rule SMALLCAPS,small capitals written in normal capitalisation
+222,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+222,destination_as_printed_guess,,México,manual,image_checks/222_addressee.png: 
+222,destination_place_normalized,,Mexico City,manual,image_checks/222_addressee.png: 
+222,destination_basis,,"printed in addressee block: ""Legación Japonesa en México""",manual,image_checks/222_addressee.png: 
+222,destination_lat,,19.4326,manual,image_checks/222_addressee.png: 
+222,destination_lon,,-99.1332,manual,image_checks/222_addressee.png: 
+222,recipient_normalized,,Arajiro Miura,names.csv,letter 91 addressee: A. Miura
+223,recipient_index_form,COARD,Coard,rule SMALLCAPS,small capitals written in normal capitalisation
+223,addressee_block,"2 Lower Castle Terrace. | Mr. W. H. Coasxp, Esq.","2 Lower Castle Terrace. | Mr. W. H. Coard, Esq.",rule R086,"\bCoa[rsx]{1,2}[pdD]?\b|\bCoaro\b|\bCoasxp\b|\bCoArD\b -> Coard"
+223,recipient_normalized,,William Henry Coard,names.csv,
+224,addressee_block,"2 Lower Castle, Terrace. | Mr. W. H. Coasxp, Esq., | “The Gazette” office, | Montreal, Canada.","2 Lower Castle, Terrace. | Mr. W. H. Coard, Esq., | “The Gazette” office, | Montreal, Canada.",rule R086,"\bCoa[rsx]{1,2}[pdD]?\b|\bCoaro\b|\bCoasxp\b|\bCoArD\b -> Coard"
+224,recipient_normalized,,William Henry Coard,names.csv,
+225,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+225,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+225,addressee_block,"Sr. D., F. BLUMENTRITT, | Leitmeritz, Austria.","Sr. D., F. Blumentritt, | Leitmeritz, Austria.",rule R001,small-caps OCR variants of BLUMENTRITT
+225,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+226,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+226,place_date_as_printed,"2 Lower Castle Terrace, Hongkong, 637 Miyokojí Y ama, Kitagata, Yokohama, 24 de Noviembre de 1899.","2 Lower Castle Terrace, Hongkong, 637 Miyokojí Yama, Kitagata, Yokohama, 24 de Noviembre de 1899.",rule R110,place name split by OCR
+226,place_as_printed,"2 Lower Castle Terrace, Hongkong, 637 Miyokojí Y ama, Kitagata, Yokohama","2 Lower Castle Terrace, Hongkong, 637 Miyokojí Yama, Kitagata, Yokohama",rule R110,place name split by OCR
+226,addressee_block,"Sr, D. Fervanpo BLUMENTRITT, | Leitmeritz.","Sr, D. Fervanpo Blumentritt, | Leitmeritz.",rule R001,small-caps OCR variants of BLUMENTRITT
+226,addressee_block,"Sr, D. Fervanpo Blumentritt, | Leitmeritz.","Sr, D. Fernando Blumentritt, | Leitmeritz.",rule R005,Fervanpo -> Fernando
+226,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+227,recipient_index_form,CosP,Cosp,rule R079,CosP -> Cosp
+227,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+227,destination_as_printed_guess,,San Clemente de Llobregat,manual,
+227,destination_place_normalized,,Sant Climent de Llobregat,manual,
+227,destination_basis,,"printed in addressee block: ""San Clemente de Llobregat""",manual,
+227,destination_lat,,41.338,manual,
+227,destination_lon,,1.997,manual,
+227,recipient_normalized,,Luis Cosp,names.csv,
+228,recipient_index_form,RIVERO,Rivero,rule SMALLCAPS,small capitals written in normal capitalisation
+228,recipient_normalized,,Francisco Rivero,names.csv,
+229,recipient_index_form,DE Los ReEYEs,de los Reyes,rule R096,\bDE Los ReE?YEs\b -> de los Reyes
+229,addressee_block,"Sr. D. IsaBeLO DE Los Reyes, | Madrid.","Sr. D. Isabelo DE Los Reyes, | Madrid.",rule R095,IsaBeLO -> Isabelo
+229,addressee_block,"Sr. D. Isabelo DE Los Reyes, | Madrid.","Sr. D. Isabelo de Los Reyes, | Madrid.",rule SMALLCAPS,small capitals written in normal capitalisation
+229,recipient_normalized,,Isabelo de los Reyes,names.csv,
+230,recipient_index_form,RIVERO,Rivero,rule SMALLCAPS,small capitals written in normal capitalisation
+230,recipient_normalized,,Francisco Rivero,names.csv,
+231,recipient_normalized,,Francisco Rivero,names.csv,
+232,recipient_index_form,FoujiTa,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+232,addressee_block,"Sr. D. S, Foujrra, | Tokyo.","Sr. D. S, Foujita, | Tokyo.",rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+232,recipient_normalized,,Sonetaka Foujita,names.csv,addressee: S. Foujita / Sonetaka Foujita
+233,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+233,addressee_block,Sr. D. F. BLUMENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+233,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+234,recipient_index_form,RivEro,Rivero,rule SMALLCAPS,small capitals written in normal capitalisation
+234,recipient_normalized,,Francisco Rivero,names.csv,
+235,recipient_index_form,SUN YAT SEN,Sun Yat Sen,rule SMALLCAPS,small capitals written in normal capitalisation
+235,addressee_block,Dr. Sun Yar Sen.,Dr. Sun Yat Sen.,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+235,recipient_normalized,,Sun Yat Sen,names.csv,
+236,recipient_index_form,SUN YAT SEN,Sun Yat Sen,rule SMALLCAPS,small capitals written in normal capitalisation
+236,addressee_block,Dr. Sun Yar Sen.,Dr. Sun Yat Sen.,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+236,recipient_normalized,,Sun Yat Sen,names.csv,
+237,recipient_index_form,FoujITAa,Foujita,rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+237,addressee_block,"Sr. D. S. FoujITa, | Tokyo.","Sr. D. S. Foujita, | Tokyo.",rule R082,\b[FP]ou[jJ][iI]?[tTrR][rRaA]?[aA]?a?\b|\bFoUJITA\b|\bFoujITAa\b|\bFoujITa\b|\bFoujiTa\b|\bFoujITA\b|\bFoujira\b -> Foujita
+237,recipient_normalized,,Sonetaka Foujita,names.csv,addressee: S. Foujita / Sonetaka Foujita
+238,recipient_as_printed,Sun Y at Sen,Sun Yat Sen,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+238,recipient_index_form,SUN YarT SEN,Sun Yat SEN,rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+238,recipient_index_form,Sun Yat SEN,Sun Yat Sen,rule SMALLCAPS,small capitals written in normal capitalisation
+238,addressee_block,"Dr. Sun Yar SEN, | No. 1213 Former Settlement, Yokohama.","Dr. Sun Yat SEN, | No. 1213 Former Settlement, Yokohama.",rule R097,\b(?:Sun|SUN) Ya[rt]T?\b|\bSun Y at\b -> Sun Yat
+238,addressee_block,"Dr. Sun Yat SEN, | No. 1213 Former Settlement, Yokohama.","Dr. Sun Yat Sen, | No. 1213 Former Settlement, Yokohama.",rule SMALLCAPS,small capitals written in normal capitalisation
+238,place_date_as_printed,"Hongkong, February znd, 1900:","Hongkong, February 2nd, 1900.",manual,image_checks/238_dateline.png: read from the page image
+238,review_flags,date read manually from page image (OCR garbled it),date confirmed on page image,manual,image_checks/238_dateline.png: replaces the raw flag about a garbled or out-of-range year
+238,recipient_normalized,,Sun Yat Sen,names.csv,
+239,recipient_index_form,Rieco Y SantTos,Rieco Y Santos,rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+239,recipient_index_form,Rieco Y Santos,Riego Y Santos,rule R094,\bRi[ec][cg]?o\b|\bRico\b|\bRisco\b|\bRieco\b -> Riego
+239,recipient_index_form,Riego Y Santos,Riego y Santos,rule R139,conjunction y in small capitals
+239,signatory_as_printed,M. Poncr.,M. Ponce.,rule R022,signature small caps
+239,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Yokohama, 1.” de Marzo de 1900.","637 Miyokojí Yama, Kitagata, Yokohama, 1.” de Marzo de 1900.",rule R110,place name split by OCR
+239,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama, 1.” de Marzo de 1900.","637 Miyokojí Yama, Kitagata, Yokohama, 1.º de Marzo de 1900.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+239,place_as_printed,"637 Miyokojí Y ama, Kitagata, Yokohama","637 Miyokojí Yama, Kitagata, Yokohama",rule R110,place name split by OCR
+239,addressee_block,"Sres. E. Risco DE Dios é Í. pe SanTOs, | Hongkong.","Sres. E. Risco de Dios é Í. pe SanTOs, | Hongkong.",rule R033,\bD[Ee]\s+D[r]?ios\b -> de Dios
+239,addressee_block,"Sres. E. Risco de Dios é Í. pe SanTOs, | Hongkong.","Sres. E. Risco de Dios é Í. pe Santos, | Hongkong.",rule R060,\bSa[nw][rT]?[oO]+s\b|\bSanros\b|\bSawros\b|\bSanTOS\b|\bSaNTOos\b|\bSanTos\b|\bSanTOs\b|\bSantTos\b -> Santos
+239,addressee_block,"Sres. E. Risco de Dios é Í. pe Santos, | Hongkong.","Sres. E. Risco de Dios é Í. de Santos, | Hongkong.",rule R061,\bpe Santos\b -> de Santos
+239,addressee_block,"Sres. E. Risco de Dios é Í. de Santos, | Hongkong.","Sres. E. Riego de Dios é Í. de Santos, | Hongkong.",rule R094,\bRi[ec][cg]?o\b|\bRico\b|\bRisco\b|\bRieco\b -> Riego
+239,addressee_block,"Sres. E. Riego de Dios é Í. de Santos, | Hongkong.","Sres. E. Riego de Dios é I. de Santos, | Hongkong.",rule R143,"initial I. of I. de Santos (image checks 172, 183, 191)"
+239,recipient_normalized,,E. Riego de Dios; I. de Santos,names.csv,two recipients
+240,recipient_index_form,SANTOS,Santos,rule SMALLCAPS,small capitals written in normal capitalisation
+240,signatory_as_printed,NANING.,Naning.,rule R023,pseudonym in small caps
+240,place_date_as_printed,"Yokohama, 1. de Marzo de 1900.","Yokohama, 1.º de Marzo de 1900.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+240,recipient_normalized,,I. de Santos,names.csv,addressee: Sr. D. I. Santos / I. de Santos
+241,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+241,signatory_as_printed,Marrano Ponce.,Mariano Ponce.,rule R020,signature small caps
+241,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama, 1.2 de Marzo de 1900.","637 Miyokojí Yama, Kitagata, Yokohama, 1.º de Marzo de 1900.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+241,addressee_block,"Sr. D, F. BLUMENTRITT, | Leitmeritz, Austria.","Sr. D, F. Blumentritt, | Leitmeritz, Austria.",rule R001,small-caps OCR variants of BLUMENTRITT
+241,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+242,recipient_index_form,BLUMENTRITT,Blumentritt,rule R001,small-caps OCR variants of BLUMENTRITT
+242,signatory_as_printed,Marrano Ponce.,Mariano Ponce.,rule R020,signature small caps
+242,place_date_as_printed,"637 Miyokojí Yama, Kitagata, Yokohama, 1. de Marzo de 1900.","637 Miyokojí Yama, Kitagata, Yokohama, 1.º de Marzo de 1900.",rule R140,ordinal 1.º read by OCR as 1. / 1.” / 1.2 (seen in 4 image checks)
+242,addressee_block,Sr. D. F. BLumENTRITT.,Sr. D. F. Blumentritt.,rule R001,small-caps OCR variants of BLUMENTRITT
+242,recipient_normalized,,Fernando Blumentritt,names.csv,the book prints Fernando (Ferdinand Blumentritt)
+243,recipient_index_form,CosP,Cosp,rule R079,CosP -> Cosp
+243,place_date_as_printed,"637 Miyokoj: Y ama, Kitagata, Yokohama, 4 de Marzo de 1900.","637 Miyokoj: Yama, Kitagata, Yokohama, 4 de Marzo de 1900.",rule R110,place name split by OCR
+243,place_date_as_printed,"637 Miyokoj: Yama, Kitagata, Yokohama, 4 de Marzo de 1900.","637 Miyokojí Yama, Kitagata, Yokohama, 4 de Marzo de 1900.",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+243,place_as_printed,"637 Miyokoj: Y ama, Kitagata, Yokohama","637 Miyokoj: Yama, Kitagata, Yokohama",rule R110,place name split by OCR
+243,place_as_printed,"637 Miyokoj: Yama, Kitagata, Yokohama","637 Miyokojí Yama, Kitagata, Yokohama",rule R111,OCR garbles of Miyokojí (the book prints both Miyokoji and Miyokojí; other forms are left as OCR read them)
+243,recipient_normalized,,Luis Cosp,names.csv,
+244,recipient_index_form,ÍFORTEL,Ifortel,rule R134,heading prints Ifortel (image check 011_heading)
+244,place_date_as_printed,"637 Miyokojí Y ama, Kitagata, Yokohama, 5 de Marzo de 1900.","637 Miyokojí Yama, Kitagata, Yokohama, 5 de Marzo de 1900.",rule R110,place name split by OCR
+244,place_as_printed,"637 Miyokojí Y ama, Kitagata, Yokohama","637 Miyokojí Yama, Kitagata, Yokohama",rule R110,place name split by OCR
+244,recipient_normalized,,Ifortel,names.csv,

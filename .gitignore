@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Python virtual environments and caches
+.venv/
+.venv-*/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Page scans of the 1932 book (1.6 GB): too large for git.
+# Source: University of Michigan Library Digital Collections, afj2286.0001.001
+Maponce_Data/cartas-images/
+
+# Scratch files from an interrupted OCR run
+Maponce_Data/ocr/_to_delete/
+
+# Downloads that are not part of the project
+get-pip.py
+Item Information*_files/

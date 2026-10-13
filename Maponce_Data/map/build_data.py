@@ -1,0 +1,166 @@
+"""Build cartas_links.csv + cartas_map_data.json from ocr/cartas_letters.csv
+(or the corrected table, corrected/cartas_letters_revised.csv).
+Usage: python3 build_data.py <cartas_letters.csv> <outdir>
+Also writes <outdir>/cartas_map.html from template.html (same folder as this script)."""
+import csv, json, re, sys, collections, datetime
+
+src, outdir = sys.argv[1], sys.argv[2]
+rows = list(csv.DictReader(open(src, encoding='utf-8-sig')))
+
+# ---------- places (lat, lon, label shown on map) ----------
+PLACES = {
+ 'Hong Kong': (22.2819, 114.1580, 'Hong Kong'),
+ 'Yokohama': (35.4437, 139.6380, 'Yokohama'),
+ 'Tokyo': (35.6895, 139.6917, 'Tokyo'),
+ 'Osaka': (34.6937, 135.5023, 'Osaka'),
+ 'Nagahama': (35.3810, 136.2690, 'Nagahama'),
+ 'Shanghai': (31.2304, 121.4737, 'Shanghai'),
+ 'Macau': (22.1987, 113.5439, 'Macao'),
+ 'Singapore': (1.2903, 103.8520, 'Singapore'),
+ 'Manila': (14.5995, 120.9842, 'Manila'),
+ 'Malolos': (14.8433, 120.8114, 'Malolos'),
+ 'Tarlac': (15.4802, 120.5979, 'Tarlac'),
+ 'Leitmeritz (Litoměřice)': (50.5335, 14.1318, 'Leitmeritz'),
+ 'Paris': (48.8566, 2.3522, 'Paris'),
+ 'Madrid': (40.4168, -3.7038, 'Madrid'),
+ 'Barcelona': (41.3851, 2.1734, 'Barcelona'),
+ 'Sant Climent de Llobregat': (41.3380, 1.9970, 'San Clemente de Llobregat'),
+ 'Vilanova i la Geltrú': (41.2241, 1.7252, 'Villanueva y Geltrú'),
+ 'Zaragoza': (41.6488, -0.8891, 'Zaragoza'),
+ 'Berlin': (52.5200, 13.4050, 'Berlin'),
+ 'Dresden': (51.0504, 13.7373, 'Dresden'),
+ 'Haarlem': (52.3874, 4.6462, 'Haarlem'),
+ 'New Orleans': (29.9511, -90.0715, 'New Orleans'),
+ 'Washington, D.C.': (38.9072, -77.0369, 'Washington'),
+ 'Montreal': (45.5019, -73.5674, 'Montreal'),
+ 'Philadelphia': (39.9526, -75.1652, 'Pennsylvania'),
+ 'Mexico City': (19.4326, -99.1332, 'México'),
+}
+
+# ---------- recipient normalisation (OCR variants -> one name) ----------
+RECIP = {
+ 'Blumentritt':'F. Blumentritt',
+ 'Apacible':'G. Apacible','G. Apacible':'G. Apacible',
+ 'Apacible y Santos':'G. Apacible & I. de Santos','Apacible y De Santos':'G. Apacible & I. de Santos',
+ 'Apacible y Orong':'G. Apacible & I. de Santos',
+ 'Santos':'I. de Santos','De Santos':'I. de Santos','Orong':'I. de Santos',
+ 'Vergel':'A. Vergel de Dios','A. Vergel':'A. Vergel de Dios','Vergel de Dios':'A. Vergel de Dios',
+ 'Izquierdo':'J. A. Izquierdo','J. A. Izquierdo':'J. A. Izquierdo',']. A. Izquierdo':'J. A. Izquierdo',
+ 'D. W. Jones':'W. Jones','William Jones':'W. Jones','William ]. 1es, sq. o':'W. Jones',
+ 'Sugimura':'K. Sugimura','Sugiyúra':'K. Sugimura',
+ 'Foujita':'S. Foujita','Poujita':'S. Foujita',
+ 'Yamagata':'Y. Yamagata','Y amagata':'Y. Yamagata',
+ 'Sun Y at Sen':'Sun Yat-sen','Sun Yat Sen':'Sun Yat-sen',
+ 'Cosp':'Luis Cosp','Cosp.':'Luis Cosp','Luis Cosp':'Luis Cosp',
+ 'Morayta':'Miguel Morayta','Miguel Morayta':'Miguel Morayta',
+ 'Doria':'Saturnino A. Doria','Saturnino A. Doria':'Saturnino A. Doria',
+ 'Fukushima':'Y. Fukushima','Y. Fukushima':'Y. Fukushima',
+ 'Dr. Betaánces':'Dr. Betances',
+ 'De Quezada':'Gonzalo de Quezada','Gonzalo de Quezada':'Gonzalo de Quezada',
+ 'Dr. Eduard Soler':'Eduard Seler','Doctor Seler':'Eduard Seler',
+ 'Brenton':'D. G. Brinton',
+ 'IKkis':'Ikkis','H. W. Bray, Esq.':'H. W. Bray','Prof. Buchner':'M. Buchner',
+ 'D. M. Español, D. M. Reyes':'M. Español, M. Reyes & F. Consunji',
+ 'F. Agoncillo y F. Lichauco':'F. Agoncillo & F. Lichauco','Lichauco':'F. Lichauco',
+ 'Mabini':'A. Mabini','Aguinaldo':'E. Aguinaldo','Buencamino':'F. Buencamino',
+ 'Castro':'L. Castro','Rivero':'F. Rivero','Miura':'A. Miura','Coard':'W. H. Coard',
+ 'Kimura':'T. Kimura','Hirata':'Hirata','Luna':None,  # Luna handled below (A. Luna vs J. Luna)
+ 'Riego de Dios':'E. Riego de Dios','Riego y Santos':'E. Riego de Dios & I. de Santos',
+ 'Villa-real':'A. Villareal','Marqués':'L. P. Marques','J. Lecaroz':'J. Lecaroz',
+ 'E. de Lete':'E. de Lete','Victor Balaguer':'Víctor Balaguer',
+}
+def recipient(r):
+    # Corrected tables (corrected/cartas_letters_revised.csv) carry a checked normalized name: use it.
+    if (r.get('recipient_normalized') or '').strip():
+        return r['recipient_normalized'].strip().replace('; ', ' & ')
+    p = r['recipient_as_printed'].strip()
+    if p == 'Luna':
+        return 'J. Luna' if 'J. Luna' in r['addressee_block'] else 'A. Luna'
+    return RECIP.get(p) or p or r['recipient_index_form'].strip() or '(unnamed)'
+
+# ---------- signed as ----------
+def signed(s):
+    s = s.strip().rstrip('.').strip()
+    t = re.sub(r'[^a-z]', '', s.lower())
+    if not s: return ''
+    if 'nan' in t or 'nin' in t and len(t) < 9: return 'Naning'
+    if t.startswith('rob') or t.startswith('ros') or t.startswith('rsam'): return 'R. Samper'
+    if 'lic' in t: return 'F. Lichauco'
+    if re.search(r'pon', t) or t in ('mazrranoponce',): return 'M. Ponce'
+    return {'pmarro':'P. Marro','pmario':'P. Marro','makriano':'Mariano','vazlr':'Vazlr (OCR)',
+            'kalipulako':'Kalipulako','generalaguinaldo':'General Aguinaldo','efrivero':'F. Rivero',
+            'tunis':'Tunis'}.get(t, s)
+
+# ---------- destinations printed in the addressee block that the auto-reader missed ----------
+PRINTED_FIX = {
+ '26': ('Vilanova i la Geltrú', 'printed in addressee block: "Villanueva y Geltrú"'),
+ '71': ('Hong Kong', 'printed in addressee block: "Hongkong"'),
+ '103': ('Sant Climent de Llobregat', 'printed in addressee block: "Clemente de Llobregat"'),
+ '147': ('Sant Climent de Llobregat', 'printed in addressee block: "Sn. Clemente"'),
+ '227': ('Sant Climent de Llobregat', 'printed in addressee block: "San Clemente de Llobregat"'),
+ '119': ('Philadelphia', 'printed in addressee block: "Pennsylvania" (shown at Philadelphia)'),
+ '160': ('Nagahama', 'printed in addressee block: "Nagahama"'),
+ '222': ('Mexico City', 'printed in addressee block: "Legación Japonesa en México"'),
+}
+
+def d(s): return datetime.date.fromisoformat(s)
+letters = []
+for r in rows:
+    L = {
+      'n': int(r['letter_number']), 'id': r['id'], 'date': r['date_iso'],
+      'sender': 'Mariano Ponce', 'signed': signed(r['signatory_as_printed']),
+      'origin': r['origin_place_normalized'], 'origin_basis': r['origin_basis'],
+      'part': r['part'], 'recipient': recipient(r),
+      'recipient_printed': r['recipient_as_printed'],
+      'dateline': r['place_date_as_printed'], 'addressee': r['addressee_block'],
+      'summary': r['editorial_summary'], 'images': r['source_images'],
+      'pages': r['printed_pages'], 'flags': r['review_flags'],
+    }
+    dest, basis, kind = r['destination_place_normalized'], '', ''
+    if dest:
+        kind, basis = 'printed', 'printed in addressee block: "%s"' % r['destination_as_printed_guess'].strip(' .,')
+    elif r['letter_number'] in PRINTED_FIX:
+        dest, basis = PRINTED_FIX[r['letter_number']]; kind = 'printed'
+    L.update(dest=dest, dest_kind=kind, dest_basis=basis)
+    letters.append(L)
+
+# Infer missing destinations from the nearest-in-time letter to the same recipient that has a printed place
+by_rec = collections.defaultdict(list)
+for L in letters:
+    if L['dest_kind'] == 'printed': by_rec[L['recipient']].append(L)
+for L in letters:
+    if L['dest']: continue
+    cands = by_rec.get(L['recipient'])
+    if not cands: continue
+    best = min(cands, key=lambda c: abs((d(c['date']) - d(L['date'])).days))
+    gap = abs((d(best['date']) - d(L['date'])).days)
+    L.update(dest=best['dest'], dest_kind='inferred',
+             dest_basis='inferred from letter %d to the same recipient (%s, %d days apart)' % (best['n'], best['date'], gap))
+
+for L in letters:
+    o = PLACES[L['origin']]; L['olat'], L['olon'] = o[0], o[1]
+    if L['dest']:
+        p = PLACES[L['dest']]; L['dlat'], L['dlon'] = p[0], p[1]
+    else:
+        L['dlat'] = L['dlon'] = None
+        L['dest_kind'] = 'unlocated'; L['dest_basis'] = 'no place printed or inferable'
+
+# ---------- outputs ----------
+cols = ['n','date','sender','signed','origin','olat','olon','recipient','recipient_printed','dest','dlat','dlon','dest_kind','dest_basis','part','pages','images']
+with open(f'{outdir}/cartas_links.csv','w',newline='',encoding='utf-8') as f:
+    w = csv.DictWriter(f, fieldnames=cols, extrasaction='ignore'); w.writeheader()
+    for L in letters: w.writerow(L)
+json.dump({'places': {k:{'lat':v[0],'lon':v[1],'label':v[2]} for k,v in PLACES.items()}, 'letters': letters},
+          open(f'{outdir}/cartas_map_data.json','w',encoding='utf-8'), ensure_ascii=False)
+
+c = collections.Counter(L['dest_kind'] for L in letters); print(c)
+print('unlocated recipients:', collections.Counter(L['recipient'] for L in letters if L['dest_kind']=='unlocated'))
+print('recipients:', len(set(L['recipient'] for L in letters)), 'places:', len(set(L['dest'] for L in letters if L['dest'])))
+print('signed:', collections.Counter(L['signed'] for L in letters))
+print(collections.Counter(L['recipient'] for L in letters).most_common(12))
+
+import os
+tpl = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'template.html')
+data = open(f'{outdir}/cartas_map_data.json', encoding='utf-8').read().replace('</', '<\\/')
+open(f'{outdir}/cartas_map.html', 'w', encoding='utf-8').write(open(tpl, encoding='utf-8').read().replace('__DATA__', data))
+print('wrote cartas_map.html')

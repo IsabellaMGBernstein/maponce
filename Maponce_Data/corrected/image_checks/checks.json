@@ -1,0 +1,506 @@
+[
+{
+"id": "012_dateline",
+"letter": 12,
+"pattern": "September",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "039_dateline",
+"letter": 39,
+"pattern": "1808",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "063_dateline",
+"letter": 63,
+"pattern": "1896",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "078_dateline",
+"letter": 78,
+"pattern": "4 Septiembre",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "086_dateline",
+"letter": 86,
+"pattern": "1896",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "103_dateline",
+"letter": 103,
+"pattern": "1896",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "109_dateline",
+"letter": 109,
+"pattern": "Nov\\.",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "112_dateline",
+"letter": 112,
+"pattern": "1896",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "114_dateline",
+"letter": 114,
+"pattern": "1890",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "133_dateline",
+"letter": 133,
+"pattern": "1890",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "137_dateline",
+"letter": 137,
+"pattern": "1890",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "142_dateline",
+"letter": 142,
+"pattern": "de Marzo de 1899",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "159_dateline",
+"letter": 159,
+"pattern": "of April",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "174_dateline",
+"letter": 174,
+"pattern": "1890",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "212_dateline",
+"letter": 212,
+"pattern": "1890",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "238_dateline",
+"letter": 238,
+"pattern": "February",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "168_dateline",
+"letter": 168,
+"pattern": "de Mayo de 1899",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "239_dateline",
+"letter": 239,
+"pattern": "de Marzo de 1900",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "241_dateline",
+"letter": 241,
+"pattern": "de Marzo de 1900",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "108_dateline",
+"letter": 108,
+"pattern": "Nov",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "101_dateline",
+"letter": 101,
+"pattern": "Novienbre",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "071_dateline",
+"letter": 71,
+"pattern": "Jones",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "119_dateline",
+"letter": 119,
+"pattern": "January",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "208_dateline",
+"letter": 208,
+"pattern": "Oct",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "115_dateline",
+"letter": 115,
+"pattern": "Miyokoj",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "226_dateline",
+"letter": 226,
+"pattern": "Lower Castle",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "221_dateline",
+"letter": 221,
+"pattern": "Nov",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "234_dateline",
+"letter": 234,
+"pattern": "Enero de 1900",
+"where": "start",
+"before": 1,
+"after": 1
+},
+{
+"id": "012_addressee",
+"letter": 12,
+"pattern": "Haarlem",
+"where": "end",
+"before": 2,
+"after": 0
+},
+{
+"id": "023_addressee",
+"letter": 23,
+"pattern": "Consun",
+"where": "end",
+"before": 1,
+"after": 1
+},
+{
+"id": "026_addressee",
+"letter": 26,
+"pattern": "GELTRU|Ova",
+"where": "end",
+"before": 1,
+"after": 1
+},
+{
+"id": "027_addressee",
+"letter": 27,
+"pattern": "BALAGUER",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "028_addressee",
+"letter": 28,
+"pattern": "Hervas",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "055_addressee",
+"letter": 55,
+"pattern": "NES",
+"where": "end",
+"before": 1,
+"after": 1
+},
+{
+"id": "079_addressee",
+"letter": 79,
+"pattern": "Marni",
+"where": "end",
+"before": 1,
+"after": 1
+},
+{
+"id": "093_addressee",
+"letter": 93,
+"pattern": "Berlin",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "100_addressee",
+"letter": 100,
+"pattern": "Fukushima",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "110_addressee",
+"letter": 110,
+"pattern": "Masini",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "119_addressee",
+"letter": 119,
+"pattern": "Pennsylvania",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "137_addressee",
+"letter": 137,
+"pattern": "Taiyo",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "160_addressee",
+"letter": 160,
+"pattern": "Nagahama",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "172_addressee",
+"letter": 172,
+"pattern": "Sawros",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "173_addressee",
+"letter": 173,
+"pattern": "Kimura",
+"where": "end",
+"before": 0,
+"after": 2
+},
+{
+"id": "187_addressee",
+"letter": 187,
+"pattern": "Taxararo",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "174_addressee",
+"letter": 174,
+"pattern": "Choho",
+"where": "end",
+"before": 1,
+"after": 0
+},
+{
+"id": "182_addressee",
+"letter": 182,
+"pattern": "Tacucmt",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "191_addressee",
+"letter": 191,
+"pattern": "SANTOS",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "183_addressee",
+"letter": 183,
+"pattern": "SanTOS",
+"where": "end",
+"before": 0,
+"after": 0
+},
+{
+"id": "222_addressee",
+"letter": 222,
+"pattern": "Miura",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "139_addressee",
+"letter": 139,
+"pattern": "Licmauco",
+"where": "end",
+"before": 0,
+"after": 1
+},
+{
+"id": "017_signature",
+"letter": 17,
+"pattern": "VazLr",
+"where": "end",
+"before": 2,
+"after": 0
+},
+{
+"id": "023_signature",
+"letter": 23,
+"pattern": "Marro",
+"where": "end",
+"before": 2,
+"after": 0
+},
+{
+"id": "025_signature",
+"letter": 25,
+"pattern": "Tunis",
+"where": "end",
+"before": 2,
+"after": 0
+},
+{
+"id": "030_signature",
+"letter": 30,
+"pattern": "MAkrIANo",
+"where": "end",
+"before": 2,
+"after": 0
+},
+{
+"id": "045_signature",
+"letter": 45,
+"pattern": "Mario",
+"where": "end",
+"before": 2,
+"after": 0
+},
+{
+"id": "055_heading",
+"letter": 55,
+"pattern": "Carta a Will|1es",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "128_heading",
+"letter": 128,
+"pattern": "Sugi",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "093_heading",
+"letter": 93,
+"pattern": "Soler",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "119_heading",
+"letter": 119,
+"pattern": "Brenton",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "089_heading",
+"letter": 89,
+"pattern": "IKkis|Ikkis",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "011_heading",
+"letter": 11,
+"pattern": "Ifortel",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "023_heading",
+"letter": 23,
+"pattern": "Español",
+"where": "start",
+"before": 0,
+"after": 1
+},
+{
+"id": "206_heading",
+"letter": 206,
+"pattern": "Villa",
+"where": "start",
+"before": 0,
+"after": 1
+}
+]
