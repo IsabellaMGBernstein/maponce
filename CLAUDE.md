@@ -52,9 +52,9 @@ Mariano Ponce, *Cartas sobre la revolución, 1897-1900* (Manila: Bureau of Print
 | `Maponce_Data/corrected/` | Corrected data, the rules and logs behind every correction, and the scripts that rebuild it. See `README.md` there for conventions. |
 | `Maponce_Data/corrected/cartas_letters_revised.csv` | **The main table.** 244 rows, one per letter, with corrected names, places, dates and letter text. Use this for the map and for text analysis. |
 | `Maponce_Data/corrected/cartas_biographical.csv` | One row per letter with only sender, recipient, places and dates (no letter text). |
-| `Maponce_Data/map/` | Map builder: `build_data.py`, `template.html` (routes map), `template_recipients.html` (correspondents map), both Leaflet 1.9.4, and `countries-50m.json` (Natural Earth country borders, embedded into the maps at build time). The outputs in this folder are from the older, uncorrected data. |
+| `Maponce_Data/map/` | Map builder: `build_data.py`, `template.html` (routes map), `template_recipients.html` (correspondents map), `template_years.html` (years map), all Leaflet 1.9.4, and `countries-50m.json` (Natural Earth country borders, embedded into the maps at build time). The outputs in this folder are from the older, uncorrected data. |
 | `Maponce_Data/map/recipient_bios.csv` | One row per correspondent (name, letters, biography). The author writes the biographies here; they appear in the correspondents map. The build only adds new names, never overwrites. |
-| `Maponce_Data/map_corrected/` | Current maps built from the corrected table: `cartas_map.html` (routes), `cartas_map_recipients.html` (correspondents), plus `cartas_map_data.json` and `cartas_links.csv`. |
+| `Maponce_Data/map_corrected/` | Current maps built from the corrected table: `cartas_map.html` (routes), `cartas_map_recipients.html` (correspondents), `cartas_map_years.html` (years), plus `cartas_map_data.json` and `cartas_links.csv`. |
 | `Maponce_Data/word2vec_corrected/` | Word2Vec model trained on the corrected letter texts, its cleaned text and its training script. |
 | `Maponce_Data/similar_words.py` | Looks up the most similar words in the corrected model. |
 | `Maponce_Data/clean_and_train.py`, `cartas_word2vec.model`, `Cartas_cleaned.txt`, `Cartas_sobre_la_revolucion.txt` | Older model trained on the library's own OCR text. Superseded by `word2vec_corrected/`. |
@@ -78,7 +78,7 @@ Run these from `Maponce_Data/` with a virtual environment active (`source ../.ve
     # query the Word2Vec model
     python similar_words.py independencia 20
 
-To view the maps, open `Maponce_Data/map_corrected/cartas_map.html` in a browser, or serve that folder with `python3 -m http.server 8000` and visit http://localhost:8000/cartas_map.html. Buttons in each page's header switch between the routes and correspondents maps. There is no test suite.
+To view the maps, open `Maponce_Data/map_corrected/cartas_map.html` in a browser, or serve that folder with `python3 -m http.server 8000` and visit http://localhost:8000/cartas_map.html. Buttons in each page's header switch between the routes, correspondents and years maps. There is no test suite.
 
 ### Data facts
 
@@ -95,7 +95,8 @@ To view the maps, open `Maponce_Data/map_corrected/cartas_map.html` in a browser
 - Most letters were corrected by rules alone and spot-checked, so the data is not a verified edition. Check quotations against the page images.
 - The Word2Vec models strip accents and ñ, so query with `espana` and `revolucion`.
 - The map uses no tiles. It draws a flat world map (land, oceans, present-day borders, continent and ocean names). It scrolls sideways across exactly one world, with its edges at 31.5°W in the mid-Atlantic from `map/countries-50m.json` (Natural Earth 1:50m via world-atlas 2.0.2). The borders are modern, not those of 1897-1900.
-- Two of the planned visualizations exist: routes (`cartas_map.html`) and recipients (`cartas_map_recipients.html`). The year, theme and region maps are not built yet.
+- Three of the planned visualizations exist: routes (`cartas_map.html`), recipients (`cartas_map_recipients.html`) and years (`cartas_map_years.html`). The theme and region maps are not built yet.
+- Years use one sepia ramp on every map, light (1897) to dark (1900): `--y1`..`--y4`, validated as an ordinal ramp on land, ocean and panel in light and dark mode. The red/blue/purple/orange scheme planned above failed the colour-blind checks. The years map's side panel does not show themes yet.
 - In the correspondents map three correspondents at a time have their own colour (blue, orange, aqua); the other 67 share a neutral colour and are picked out in green when selected. Readers choose the three with the dots in the list (× in the legend frees a colour; "Reset colours" restores the default: Blumentritt, Apacible, Vergel de Dios). More colours cannot be told apart where lines cross (checked with the data-viz palette validator, including for colour-blind readers). Themes per correspondent are not shown yet (no word2vec themes have been assigned).
 - The correspondents map has a collapsible "Recipients at a Glance" box (bottom left, beside the Map Key): a pie of the four correspondents with the most letters plus everyone else, in violet shades by rank (not the map's correspondent colours), and a ranked list of all 70 (ties share a rank).
 - Recipient biographies and theme assignments are the author's own research. Do not generate them.

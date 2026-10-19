@@ -4,6 +4,7 @@ Usage: python3 build_data.py <cartas_letters.csv> <outdir>
 Also writes two map pages from the templates in this script's folder:
   <outdir>/cartas_map.html             from template.html             (routes)
   <outdir>/cartas_map_recipients.html  from template_recipients.html  (correspondents)
+  <outdir>/cartas_map_years.html       from template_years.html       (years)
 and adds any new correspondent to recipient_bios.csv (biographies written by hand)."""
 import csv, json, re, sys, collections, datetime
 
@@ -186,7 +187,8 @@ def embed(text): return text.replace('</', '<\\/')   # keep embedded data from c
 data = embed(open(f'{outdir}/cartas_map_data.json', encoding='utf-8').read())
 world = embed(open(os.path.join(here, 'countries-50m.json'), encoding='utf-8').read())   # Natural Earth borders
 bios_json = embed(json.dumps(bios, ensure_ascii=False))
-for template, page in [('template.html', 'cartas_map.html'), ('template_recipients.html', 'cartas_map_recipients.html')]:
+for template, page in [('template.html', 'cartas_map.html'), ('template_recipients.html', 'cartas_map_recipients.html'),
+                       ('template_years.html', 'cartas_map_years.html')]:
     html = open(os.path.join(here, template), encoding='utf-8').read()
     html = html.replace('__DATA__', data).replace('__WORLD__', world).replace('__BIOS__', bios_json)
     open(f'{outdir}/{page}', 'w', encoding='utf-8').write(html)

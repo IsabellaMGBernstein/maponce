@@ -18,7 +18,7 @@
   --sel:#1f8a4c;     /* clicked route                */
   --star:#f5c518; --star-edge:#6b5300;   /* destination stars */
   --r1:#2a78d6; --r2:#eb6834; --r3:#1baf7a; --other:#9c9488;   /* correspondents */
-  --y1:#86b6ef; --y2:#3987e5; --y3:#1c5cab; --y4:#0d366b;      /* years 1897-1900, light to dark */
+  --y1:#c3773e; --y2:#a65c20; --y3:#854408; --y4:#633002;      /* years 1897-1900, light to dark (sepia; same on every map) */
   --k1:#502684; --k2:#6d41a9; --k3:#8864c0; --k4:#a68bd5; --rest:#d8d4cc;   /* ranking: 1st darkest; everyone else */
   --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
   --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
@@ -28,11 +28,11 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --k1:#d2bff8; --k2:#b699eb; --k3:#9b74d9; --k4:#7e53bc; --rest:#4a4f57; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#a5612e; --y2:#ca7d44; --y3:#e3a072; --y4:#f6c6a6; --k1:#d2bff8; --k2:#b699eb; --k3:#9b74d9; --k4:#7e53bc; --rest:#4a4f57; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --k1:#d2bff8; --k2:#b699eb; --k3:#9b74d9; --k4:#7e53bc; --rest:#4a4f57; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#a5612e; --y2:#ca7d44; --y3:#e3a072; --y4:#f6c6a6; --k1:#d2bff8; --k2:#b699eb; --k3:#9b74d9; --k4:#7e53bc; --rest:#4a4f57; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -235,7 +235,7 @@ main.reg-min #search, main.reg-min .panel-body{display:none}
 <body>
 <header>
   <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
-  <nav class="views" aria-label="Map views"><a href="cartas_map.html">Routes</a><a href="cartas_map_recipients.html" aria-current="page">Correspondents</a></nav>
+  <nav class="views" aria-label="Map views"><a href="cartas_map.html">Routes</a><a href="cartas_map_recipients.html" aria-current="page">Correspondents</a><a href="cartas_map_years.html">Years</a></nav>
   <span class="sub" id="stats"></span>
   <div class="legend" id="legend" aria-label="Legend"></div>
 </header>
@@ -608,7 +608,7 @@ const countBy = (ls, f) => { const c = {}; ls.forEach(l => { const k = f(l); c[k
 const search = document.getElementById('search');
 search.addEventListener('input', renderPanel);
 
-// Letters per year as a pie (one slice per year, clockwise from the top, 1897 lightest to 1900 darkest),
+// Letters per year as a pie (one slice per year, clockwise from the top, in the site's year colours),
 // with the counts and percentages beside it. A correspondent whose letters all fall in one year gets a
 // sentence instead: a pie with a single slice is just a circle.
 // Pie slices as SVG paths in a box from -50 to 50, clockwise from the top. Each item: {n, fill, title, attrs}.
