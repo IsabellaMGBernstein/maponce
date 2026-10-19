@@ -18,6 +18,7 @@
   --sel:#1f8a4c;     /* clicked route                */
   --star:#f5c518; --star-edge:#6b5300;   /* destination stars */
   --r1:#2a78d6; --r2:#eb6834; --r3:#1baf7a; --other:#9c9488;   /* correspondents */
+  --y1:#86b6ef; --y2:#3987e5; --y3:#1c5cab; --y4:#0d366b;      /* years 1897-1900, light to dark */
   --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
   --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
   --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
@@ -26,11 +27,11 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -156,13 +157,30 @@ main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min .letters{disp
 #search{width:100%;padding:5px 8px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);font-size:14px}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
 .who-list{list-style:none;margin:0;padding:0}
-.who-list li{border-bottom:1px solid var(--rule)}
-.who-list button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:12px 1fr auto;gap:1px 10px;align-items:center;padding:8px 16px}
-.who-list button:hover{background:var(--band)}
-.who-list button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+.who-list li{border-bottom:1px solid var(--rule);display:grid;grid-template-columns:auto 1fr;align-items:stretch}
+.who-list .row{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:1px 10px;align-items:center;padding:8px 16px 8px 4px}
+.who-list .row:hover{background:var(--band)}
+.who-list .row:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+/* the colour button: a filled dot when the correspondent has a colour, an empty ring when not */
+.paint{all:unset;box-sizing:border-box;width:40px;display:grid;place-items:center;cursor:pointer}
+.paint .dot{width:12px;height:12px;transition:transform .1s}
+.paint[aria-pressed="false"] .dot{background:transparent;box-shadow:inset 0 0 0 1.5px var(--muted)}
+.paint:hover .dot{transform:scale(1.3)}
+.paint:focus-visible{outline:2px solid var(--sun);outline-offset:-4px;border-radius:50%}
+.paint:disabled{cursor:not-allowed;opacity:.35}
+.paint:disabled:hover .dot{transform:none}
+.paint-wide{border:1px solid var(--rule);background:var(--paper);border-radius:4px;padding:3px 10px;cursor:pointer;font-size:13px;font-weight:600;margin:0 0 10px;display:inline-flex;gap:8px;align-items:center}
+.paint-wide:hover{border-color:var(--muted)}
+.paint-wide:disabled{cursor:not-allowed;opacity:.55}
+.slot .x{all:unset;cursor:pointer;color:var(--muted);font-size:15px;line-height:1;padding:0 2px}
+.slot .x:hover{color:var(--ink)} .slot .x:focus-visible{outline:2px solid var(--sun)}
+.slot.free{font-style:italic}
+.slot.free .sw{opacity:.35}
+.legend .reset{border:1px solid var(--rule);background:var(--paper);border-radius:4px;padding:1px 8px;cursor:pointer;font-size:12px;color:var(--muted)}
+.legend .reset:hover{color:var(--ink);border-color:var(--muted)}
 .who-list .nm{font-weight:600}
 .who-list .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
-.who-list .places{grid-column:2 / -1;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.who-list .places{grid-column:1 / -1;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .profile{padding:12px 16px 4px}
 .back{all:unset;cursor:pointer;color:var(--muted);font-size:13px;font-weight:600}
 .back:hover{color:var(--ink)} .back:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
@@ -172,10 +190,17 @@ main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min .letters{disp
 .facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0 0 14px;font-size:13px}
 .facts dt{color:var(--muted)} .facts dd{margin:0}
 .profile h4{font:600 12px var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
-.years{display:grid;grid-template-columns:auto 1fr 2em;gap:5px 8px;align-items:center;font-size:13px;font-variant-numeric:tabular-nums}
-.years .bar{height:8px;background:var(--band);border-radius:4px;overflow:hidden}
-.years .bar i{display:block;height:100%;background:var(--c);border-radius:0 4px 4px 0}
-.years .v{text-align:right}
+/* Letters per year: pie with a legend of counts beside it */
+.yearpie{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.yearpie svg{width:116px;height:116px;flex:none;overflow:visible}
+.yearpie path{stroke:var(--panel);stroke-width:2px;stroke-linejoin:round}
+.yearpie path:hover{opacity:.85}
+.ylegend{display:grid;grid-template-columns:12px auto auto auto;gap:5px 10px;align-items:center;font-size:13px;font-variant-numeric:tabular-nums}
+.ylegend .sq{width:12px;height:12px;border-radius:3px;background:var(--c)}
+.ylegend .v{text-align:right;font-weight:600}
+.ylegend .pc{color:var(--muted);text-align:right}
+.ylegend .none{opacity:.45}
+.one-year{font-size:13px;margin:0}
 .pop .pick{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 main.reg-min #search, main.reg-min .panel-body{display:none}
 @media (max-width:800px){ .panel-body{overflow:visible} }
@@ -336,17 +361,46 @@ const BY_RECIP = new Map();
 for (const l of LET) (BY_RECIP.get(l.recipient) || BY_RECIP.set(l.recipient, []).get(l.recipient)).push(l);
 const RECIPS = [...BY_RECIP.keys()].sort((a,b) => BY_RECIP.get(b).length - BY_RECIP.get(a).length || a.localeCompare(b));
 // Only three colours can be told apart wherever lines cross (checked for colour-blind readers too),
-// so the three most frequent correspondents get their own colour and everyone else shares one.
-// Any correspondent can still be picked out: clicking one turns their routes green.
-const COLOURED = RECIPS.slice(0, 3);
-const colourOf = r => { const i = COLOURED.indexOf(r); return i >= 0 ? `--r${i+1}` : '--other'; };
+// so three correspondents at a time get their own colour and everyone else shares one. The reader
+// chooses which three (the dots in the list); it starts with the three most frequent correspondents.
+// A colour stays with its correspondent while the others change. Any correspondent can still be
+// picked out on its own: clicking one turns their routes green.
+const hasRoute = r => BY_RECIP.get(r).some(l => l.dest);
+const DEFAULT_SLOTS = RECIPS.filter(hasRoute).slice(0, 3);
+const SLOTS = DEFAULT_SLOTS.slice();             // slot i is drawn in colour --r(i+1); null = free
+const colourOf = r => { const i = SLOTS.indexOf(r); return i >= 0 ? `--r${i+1}` : '--other'; };
+function toggleColour(r){
+  const i = SLOTS.indexOf(r);
+  if (i >= 0) SLOTS[i] = null;
+  else { const free = SLOTS.indexOf(null); if (free < 0 || !hasRoute(r)) return; SLOTS[free] = r; }
+  render(); renderLegend(); renderPanel();
+}
+// why a correspondent's colour button can't be used, or '' if it can
+const paintBlock = r => !hasRoute(r) ? 'No letter to this correspondent has a known destination, so there is no route to colour.'
+  : (!SLOTS.includes(r) && !SLOTS.includes(null)) ? 'All three colours are in use. Remove one in the legend at the top first.' : '';
+function paintButton(r){
+  const on = SLOTS.includes(r), why = paintBlock(r);
+  const label = on ? `Remove ${r}'s colour` : why || `Give ${r} a colour on the map`;
+  return `<button class="paint" data-paint="${esc(r)}" aria-pressed="${on}" ${why && !on ? 'disabled' : ''} title="${esc(label)}" aria-label="${esc(label)}"><span class="dot" style="--c:var(${colourOf(r)})"></span></button>`;
+}
 const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
 const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();   // search ignores accents and capitals
 
-document.getElementById('legend').innerHTML =
-  COLOURED.map(r => `<span class="key" style="--c:var(${colourOf(r)})"><span class="sw"></span>${esc(r)}</span>`).join('') +
-  `<span class="key" style="--c:var(--other)"><span class="sw"></span>other correspondents</span>` +
-  `<span class="key"><span class="sw dash"></span>destination inferred</span>`;
+function renderLegend(){
+  const lg = document.getElementById('legend');
+  const changed = SLOTS.some((r, i) => r !== DEFAULT_SLOTS[i]);
+  lg.innerHTML =
+    SLOTS.map((r, i) => r
+      ? `<span class="key slot" style="--c:var(--r${i+1})"><span class="sw"></span>${esc(r)}<button class="x" data-paint="${esc(r)}" title="Remove ${esc(r)}'s colour" aria-label="Remove ${esc(r)}'s colour">×</button></span>`
+      : `<span class="key slot free" style="--c:var(--r${i+1})"><span class="sw"></span>free colour: click a dot in the list</span>`).join('') +
+    `<span class="key" style="--c:var(--other)"><span class="sw"></span>other correspondents</span>` +
+    `<span class="key"><span class="sw dash"></span>destination inferred</span>` +
+    (changed ? `<button class="reset" title="Colour the three correspondents with the most letters again">Reset colours</button>` : '');
+  lg.querySelectorAll('[data-paint]').forEach(b => b.onclick = () => toggleColour(b.dataset.paint));
+  const reset = lg.querySelector('.reset');
+  if (reset) reset.onclick = () => { DEFAULT_SLOTS.forEach((r, i) => SLOTS[i] = r); render(); renderLegend(); renderPanel(); };
+}
+renderLegend();
 
 // ---------- map key ----------
 const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
@@ -359,6 +413,7 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
     <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${STAR_PTS}" transform="translate(7 9) scale(4.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${STAR_PTS}" transform="translate(21 8) scale(7.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
       <span><b>Destination</b>, sized by letters <span class="act">· click: who received letters there</span></span></li>
     <li>${ln('--r1',3)}<span><b>Route</b> to one correspondent, coloured as in the legend above <span class="act">· click: that correspondent</span></span></li>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="8" r="5" style="fill:var(--r2)"/><circle cx="22" cy="8" r="4.25" style="fill:none;stroke:var(--muted);stroke-width:1.5"/></svg><span><b>Choose the colours</b>: click a dot in the list to colour that correspondent (three at a time)</span></li>
     <li>${ln('--sel',4)}<span><b>Green</b>: the correspondent you picked; everyone else turns grey</span></li>
     <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
   </ul><div class="foot">Lines that share a route are fanned out so each can be clicked. Click the empty map or press Esc to go back to all correspondents.</div>`;
@@ -489,6 +544,25 @@ const countBy = (ls, f) => { const c = {}; ls.forEach(l => { const k = f(l); c[k
 const search = document.getElementById('search');
 search.addEventListener('input', renderPanel);
 
+// Letters per year as a pie (one slice per year, clockwise from the top, 1897 lightest to 1900 darkest),
+// with the counts and percentages beside it. A correspondent whose letters all fall in one year gets a
+// sentence instead: a pie with a single slice is just a circle.
+function yearChart(years, total){
+  const used = years.filter(([, n]) => n);
+  if (used.length === 1) return `<p class="one-year">${total === 1 ? 'The only letter is' : total === 2 ? 'Both letters are' : `All ${total} letters are`} from ${used[0][0]}.</p>`;
+  const R = 50, pt = t => `${(R*Math.cos(t)).toFixed(2)},${(R*Math.sin(t)).toFixed(2)}`, pct = n => Math.round(n / total * 100);
+  let a = -Math.PI / 2;
+  const slices = years.map(([y, n], i) => {
+    if (!n) return '';
+    const b = a + n / total * 2 * Math.PI, d = `M0,0 L${pt(a)} A${R},${R} 0 ${b - a > Math.PI ? 1 : 0} 1 ${pt(b)} Z`;
+    a = b;
+    return `<path d="${d}" style="fill:var(--y${i+1})"><title>${y}: ${plural(n, 'letter')} (${pct(n)}%)</title></path>`;
+  }).join('');
+  const label = years.map(([y, n]) => `${y}: ${n}`).join(', ');
+  return `<div class="yearpie"><svg viewBox="-51 -51 102 102" role="img" aria-label="Letters per year: ${label}">${slices}</svg>
+    <div class="ylegend">${years.map(([y, n], i) => `<span class="sq${n ? '' : ' none'}" style="--c:var(--y${i+1})"></span><span class="${n ? '' : 'none'}">${y}</span><span class="v${n ? '' : ' none'}">${n}</span><span class="pc">${n ? pct(n) + '%' : ''}</span>`).join('')}</div></div>`;
+}
+
 function renderPanel(){
   const panel = document.getElementById('panel'), title = document.getElementById('panelTitle'), meta = document.getElementById('panelMeta');
   search.hidden = !!S.recip;
@@ -496,27 +570,28 @@ function renderPanel(){
     title.textContent = 'Correspondents';
     const q = fold(search.value.trim());
     const names = RECIPS.filter(r => !q || fold(r).includes(q));
-    meta.textContent = q ? `${names.length} of ${RECIPS.length} correspondents` : `${RECIPS.length} correspondents, most letters first`;
+    meta.textContent = (q ? `${names.length} of ${RECIPS.length} correspondents` : `${RECIPS.length} correspondents, most letters first`) + ' · click a dot to colour someone';
     panel.innerHTML = names.length ? `<ul class="who-list">${names.map(r => {
       const ls = BY_RECIP.get(r);
       const places = countBy(ls.filter(l => l.dest), l => P[l.dest].label).map(([k]) => k);
-      return `<li><button data-r="${esc(r)}"><span class="dot" style="--c:var(${colourOf(r)})"></span><span class="nm">${esc(r)}</span><span class="n">${plural(ls.length, 'letter')}</span>
+      return `<li>${paintButton(r)}<button class="row" data-r="${esc(r)}"><span class="nm">${esc(r)}</span><span class="n">${plural(ls.length, 'letter')}</span>
         <span class="places">${places.length ? esc(places.join(' · ')) : 'no known destination'}</span></button></li>`; }).join('')}</ul>`
       : '<p class="empty">No correspondent matches that name.</p>';
     panel.querySelectorAll('button[data-r]').forEach(b => b.onclick = () => selectRecipient(b.dataset.r));
+    panel.querySelectorAll('button[data-paint]').forEach(b => b.onclick = () => toggleColour(b.dataset.paint));
     return;
   }
   const r = S.recip, ls = BY_RECIP.get(r).slice().sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.n - b.n);
   title.textContent = 'Correspondent';
   meta.textContent = '';
   const years = [1897, 1898, 1899, 1900].map(y => [y, ls.filter(l => +l.date.slice(0,4) === y).length]);
-  const maxY = Math.max(...years.map(([, n]) => n));
   const dests = countBy(ls, l => l.dest ? P[l.dest].label + (l.dest_kind === 'inferred' ? ' (inferred)' : '') : 'no known destination');
   const list = (rows) => rows.map(([k, v]) => `${esc(k)} <span style="opacity:.7">${v}</span>`).join(' · ');
   const c = `var(${colourOf(r)})`;
   panel.innerHTML = `<div class="profile">
       <button class="back">← All correspondents</button>
       <h3><span class="dot" style="--c:${c}"></span>${esc(r)}</h3>
+      ${hasRoute(r) ? `<button class="paint-wide" data-paint="${esc(r)}" ${paintBlock(r) && !SLOTS.includes(r) ? `disabled title="${esc(paintBlock(r))}"` : ''}>${SLOTS.includes(r) ? 'Remove colour' : paintBlock(r) ? 'All three colours are in use' : 'Give a colour on the map'}</button>` : ''}
       ${BIOS[r] ? `<p class="bio">${esc(BIOS[r])}</p>` : '<p class="bio pending">Biography to come.</p>'}
       <dl class="facts">
         <dt>Letters</dt><dd>${ls.length}, ${fmtDate(ls[0].date)}${ls.length > 1 ? ` – ${fmtDate(ls[ls.length-1].date)}` : ''}</dd>
@@ -525,7 +600,7 @@ function renderPanel(){
         <dt>Signed</dt><dd>${list(countBy(ls, l => l.signed || 'unsigned'))}</dd>
       </dl>
       <h4>Letters per year</h4>
-      <div class="years" style="--c:${c}">${years.map(([y, n]) => `<span>${y}</span><span class="bar"><i style="width:${maxY ? n / maxY * 100 : 0}%"></i></span><span class="v">${n}</span>`).join('')}</div>
+      ${yearChart(years, ls.length)}
       <h4>Letters</h4>
     </div>
     <ul class="letters">${ls.map(l => `<li data-n="${l.n}" class="${S.sel && S.sel.n === l.n ? 'on' : ''}"><button>
@@ -535,6 +610,7 @@ function renderPanel(){
       ${l.summary ? `<span class="sum">${esc(l.summary)}</span>` : '<span></span>'}
     </button></li>`).join('')}</ul>`;
   panel.querySelector('.back').onclick = clearRecipient;
+  const pw = panel.querySelector('.paint-wide'); if (pw) pw.onclick = () => toggleColour(r);
   panel.querySelectorAll('.letters li[data-n] button').forEach(b => b.onclick = () => selectLetter(+b.parentElement.dataset.n, true));
 }
 
