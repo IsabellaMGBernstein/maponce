@@ -1,7 +1,10 @@
 """Build cartas_links.csv + cartas_map_data.json from ocr/cartas_letters.csv
 (or the corrected table, corrected/cartas_letters_revised.csv).
 Usage: python3 build_data.py <cartas_letters.csv> <outdir>
-Also writes <outdir>/cartas_map.html from template.html (same folder as this script)."""
+Also writes two map pages from the templates in this script's folder:
+  <outdir>/cartas_map.html             from template.html             (routes)
+  <outdir>/cartas_map_recipients.html  from template_recipients.html  (correspondents)
+and adds any new correspondent to recipient_bios.csv (biographies written by hand)."""
 import csv, json, re, sys, collections, datetime
 
 src, outdir = sys.argv[1], sys.argv[2]
@@ -160,8 +163,31 @@ print('signed:', collections.Counter(L['signed'] for L in letters))
 print(collections.Counter(L['recipient'] for L in letters).most_common(12))
 
 import os
-tpl = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'template.html')
-data = open(f'{outdir}/cartas_map_data.json', encoding='utf-8').read().replace('</', '<\\/')
-world = open(os.path.join(os.path.dirname(tpl), 'countries-50m.json'), encoding='utf-8').read().replace('</', '<\\/')   # Natural Earth borders
-open(f'{outdir}/cartas_map.html', 'w', encoding='utf-8').write(open(tpl, encoding='utf-8').read().replace('__DATA__', data).replace('__WORLD__', world))
-print('wrote cartas_map.html')
+here = os.path.dirname(os.path.abspath(__file__))
+
+# ---------- biographies (written by hand) ----------
+# recipient_bios.csv has one row per correspondent: name, number of letters, biography.
+# It is created on the first build; later builds only add correspondents that are new,
+# so biographies typed into it are never overwritten.
+bios_file = os.path.join(here, 'recipient_bios.csv')
+counts = collections.Counter(L['recipient'] for L in letters)
+bio_rows = list(csv.DictReader(open(bios_file, encoding='utf-8-sig'))) if os.path.exists(bios_file) else []
+known = {r['recipient'] for r in bio_rows}
+new_names = [n for n, _ in counts.most_common() if n not in known]
+if new_names:
+    bio_rows += [{'recipient': n, 'letters': counts[n], 'biography': ''} for n in new_names]
+    with open(bios_file, 'w', newline='', encoding='utf-8-sig') as f:
+        w = csv.DictWriter(f, fieldnames=['recipient', 'letters', 'biography']); w.writeheader(); w.writerows(bio_rows)
+    print(f'added {len(new_names)} correspondents to recipient_bios.csv')
+bios = {r['recipient']: r['biography'].strip() for r in bio_rows if r.get('biography', '').strip()}
+
+# ---------- map pages ----------
+def embed(text): return text.replace('</', '<\\/')   # keep embedded data from closing its <script> tag
+data = embed(open(f'{outdir}/cartas_map_data.json', encoding='utf-8').read())
+world = embed(open(os.path.join(here, 'countries-50m.json'), encoding='utf-8').read())   # Natural Earth borders
+bios_json = embed(json.dumps(bios, ensure_ascii=False))
+for template, page in [('template.html', 'cartas_map.html'), ('template_recipients.html', 'cartas_map_recipients.html')]:
+    html = open(os.path.join(here, template), encoding='utf-8').read()
+    html = html.replace('__DATA__', data).replace('__WORLD__', world).replace('__BIOS__', bios_json)
+    open(f'{outdir}/{page}', 'w', encoding='utf-8').write(html)
+    print('wrote', page)

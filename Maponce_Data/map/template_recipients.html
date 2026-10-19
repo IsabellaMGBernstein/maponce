@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapping Maponce · Correspondents</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Archivo+Narrow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one-screen instrument. Header strip, map + correspondent panel side by side. */
+:root{
+  --paper:#eef1f3; --panel:#f8f9fa; --ink:#1c2430; --muted:#5b6675; --rule:#cfd5dc;
+  --hk:#b3262e;      /* letters sent from Hong Kong  */
+  --yk:#1f4f9a;      /* letters sent from Yokohama   */
+  --sun:#c8961a;     /* selection highlight          */
+  --sel:#1f8a4c;     /* clicked route                */
+  --star:#f5c518; --star-edge:#6b5300;   /* destination stars */
+  --r1:#2a78d6; --r2:#eb6834; --r3:#1baf7a; --other:#9c9488;   /* correspondents */
+  --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
+  --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
+  --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
+  --ui:"Archivo Narrow", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:15px/1.4 var(--ui);display:flex;flex-direction:column;overflow:hidden}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;padding:12px 18px 10px;border-bottom:1px solid var(--rule)}
+h1{font:700 22px/1.1 var(--display);margin:0;text-wrap:balance}
+h1 em{font-weight:400}
+.sub{color:var(--muted);font-size:14px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-left:auto;font-size:13px;color:var(--muted);align-items:center}
+.key{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:3px solid currentColor;display:inline-block}
+.sw.dash{border-top-style:dashed}
+
+main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 360px}
+#map{min-height:0;background:var(--ocean)}
+aside{min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--panel);border-left:1px solid var(--rule)}
+.reg-head{padding:12px 16px 8px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+.reg-head h2{font:700 17px/1.2 var(--display);margin:0}
+.reg-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.reg-toggle{flex:none;width:26px;height:26px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--muted);font:600 16px/1 var(--ui);cursor:pointer;padding:0}
+.reg-toggle:hover{color:var(--ink);border-color:var(--muted)}
+/* Minimized: the list shrinks to a thin strip at the right edge and the map takes the space */
+main.reg-min{grid-template-columns:minmax(0,1fr) 44px}
+main.reg-min .reg-head{border-bottom:0;padding:10px 0;align-items:center;flex:1}
+main.reg-min .reg-title{flex-direction:column-reverse;gap:12px}
+main.reg-min .reg-head h2{writing-mode:vertical-rl;font-size:15px;white-space:nowrap}
+main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min .letters{display:none}
+.reg-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--band);border:1px solid var(--rule);border-radius:999px;padding:1px 4px 1px 10px;font-size:13px;color:var(--ink)}
+.reg-head label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);font-size:13px;cursor:pointer}
+.chip button{border:0;background:none;cursor:pointer;padding:0 6px;font-size:15px;line-height:1;color:var(--muted)}
+.letters{list-style:none;margin:0;padding:0;overflow-y:auto;flex:1}
+.letters li{border-bottom:1px solid var(--rule)}
+.letters button{all:unset;display:grid;grid-template-columns:44px 1fr;gap:2px 10px;padding:9px 16px;cursor:pointer;width:100%;box-sizing:border-box}
+.letters button:hover{background:var(--band)}
+.letters button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+.letters li.on button{background:var(--band);box-shadow:inset 3px 0 0 var(--sun)}
+.no{font:700 15px/1.2 var(--display);grid-row:span 3;padding-top:1px}
+.no small{display:block;font:500 11px var(--ui);color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.who{font-weight:600}
+.where{font-size:13px;color:var(--muted)}
+.where .o{font-weight:600}
+.o.hk{color:var(--hk)} .o.yk{color:var(--yk)}
+.tag{font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--rule);border-radius:3px;padding:0 4px;margin-left:4px;color:var(--muted)}
+.sum{font:italic 14px/1.35 var(--display);color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:20px 16px;color:var(--muted)}
+
+/* Map key (bottom-left control) */
+.map-key{background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 8px rgb(0 0 0 / .18);width:250px;font:12px/1.3 var(--ui);margin-bottom:14px!important}
+.map-key summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font:700 14px var(--display)}
+.map-key summary::-webkit-details-marker{display:none}
+.map-key summary::after{content:"–";font:600 15px var(--ui);color:var(--muted)}
+.map-key:not([open]) summary::after{content:"+"}
+.map-key ul{list-style:none;margin:0;padding:2px 10px 8px;display:grid;gap:5px;border-top:1px solid var(--rule);padding-top:8px}
+.map-key li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:center}
+.map-key svg{width:30px;height:16px;display:block;margin-top:1px}
+.map-key b{font-weight:600}
+.map-key .act{color:var(--muted)}
+.map-key .foot{padding:6px 10px 8px;border-top:1px solid var(--rule);color:var(--muted)}
+/* Leaflet skinning */
+.leaflet-container{font:13px/1.35 var(--ui);background:var(--ocean)}
+/* Continent and ocean names */
+.geo{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none}
+.geo.continent{font:600 12px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);opacity:.8}
+.geo.ocean{font:italic 15px var(--display);letter-spacing:.1em;color:var(--ocean-ink)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);border-radius:6px;box-shadow:0 2px 14px rgb(0 0 0 / .25)}
+.leaflet-popup-content{margin:12px 14px;max-height:340px;overflow:auto}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-bar a{background:var(--panel);color:var(--ink);border-bottom-color:var(--rule)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 80%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--muted)}
+.plabel{background:none;border:0;box-shadow:none;padding:0;color:var(--ink);font:600 12px var(--ui);text-shadow:0 0 3px var(--paper),0 0 3px var(--paper),0 0 2px var(--paper)}
+.plabel::before{display:none}
+.plabel.origin{font:700 14px var(--display)}
+/* Destination stars */
+.dest-star svg{display:block;overflow:visible}
+.dest-star polygon{fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.dest-star.on polygon{stroke-width:2.5px}
+.dest-star:focus-visible{outline:2px solid var(--sun);outline-offset:2px;border-radius:50%}
+/* Ponce's bases: red triangle = Hong Kong, blue triangle = Yokohama */
+.base-tri svg{display:block;overflow:visible}
+.base-tri .halo{fill:none;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.base-tri .tri{stroke:var(--ink);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.base-tri.hk .tri{fill:var(--hk)} .base-tri.yk .tri{fill:var(--yk)}
+.base-tri.away{opacity:.35}
+.base-tri:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.pop h3{font:700 16px/1.2 var(--display);margin:0 0 4px}
+.pop .meta{color:var(--muted);margin-bottom:6px}
+.pop .sum{-webkit-line-clamp:unset;display:block;margin:6px 0;color:var(--ink)}
+.pop dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:6px 0 0;font-size:12px}
+.pop dt{color:var(--muted)} .pop dd{margin:0}
+.pop ul{margin:4px 0 0;padding-left:16px}
+.pop li{margin:2px 0}
+.pop .lk{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+
+@media (max-width:800px){
+  body{overflow:auto;height:auto}
+  main{grid-template-columns:1fr;flex:none}
+  #map{height:58vh}
+  aside{border-left:0;border-top:1px solid var(--rule)}
+  .letters{max-height:none;overflow:visible}
+  main.reg-min{grid-template-columns:1fr}
+  main.reg-min .reg-head{padding:12px 16px;align-items:stretch}
+  main.reg-min .reg-title{flex-direction:row}
+  main.reg-min .reg-head h2{writing-mode:horizontal-tb;font-size:17px}
+  .legend{margin-left:0}
+  h1{font-size:19px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+
+/* Switch between the map pages */
+.views{display:inline-flex;gap:2px;border:1px solid var(--rule);border-radius:6px;padding:2px;align-self:center}
+.views a{padding:2px 10px;border-radius:4px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:600}
+.views a:hover{color:var(--ink);background:var(--band)}
+.views a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.legend .sw{color:var(--c)}
+/* Correspondent panel */
+.panel-body{overflow-y:auto;flex:1;min-height:0}
+#search{width:100%;padding:5px 8px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);font-size:14px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.who-list{list-style:none;margin:0;padding:0}
+.who-list li{border-bottom:1px solid var(--rule)}
+.who-list button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:12px 1fr auto;gap:1px 10px;align-items:center;padding:8px 16px}
+.who-list button:hover{background:var(--band)}
+.who-list button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+.who-list .nm{font-weight:600}
+.who-list .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.who-list .places{grid-column:2 / -1;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.profile{padding:12px 16px 4px}
+.back{all:unset;cursor:pointer;color:var(--muted);font-size:13px;font-weight:600}
+.back:hover{color:var(--ink)} .back:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.profile h3{font:700 19px/1.2 var(--display);margin:10px 0 8px;display:flex;align-items:center;gap:8px}
+.bio{font:15px/1.45 var(--display);margin:0 0 12px}
+.bio.pending{color:var(--muted);font-style:italic}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0 0 14px;font-size:13px}
+.facts dt{color:var(--muted)} .facts dd{margin:0}
+.profile h4{font:600 12px var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.years{display:grid;grid-template-columns:auto 1fr 2em;gap:5px 8px;align-items:center;font-size:13px;font-variant-numeric:tabular-nums}
+.years .bar{height:8px;background:var(--band);border-radius:4px;overflow:hidden}
+.years .bar i{display:block;height:100%;background:var(--c);border-radius:0 4px 4px 0}
+.years .v{text-align:right}
+.pop .pick{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+main.reg-min #search, main.reg-min .panel-body{display:none}
+@media (max-width:800px){ .panel-body{overflow:visible} }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
+  <nav class="views" aria-label="Map views"><a href="cartas_map.html">Routes</a><a href="cartas_map_recipients.html" aria-current="page">Correspondents</a></nav>
+  <span class="sub" id="stats"></span>
+  <div class="legend" id="legend" aria-label="Legend"></div>
+</header>
+
+<main>
+  <div id="map" role="region" aria-label="Map of letters by correspondent"></div>
+  <aside>
+    <div class="reg-head">
+      <div class="reg-title">
+        <h2 id="panelTitle">Correspondents</h2>
+        <button class="reg-toggle" id="regToggle" aria-expanded="true" aria-controls="panel" title="Minimize the list of correspondents" aria-label="Minimize the list of correspondents">–</button>
+      </div>
+      <div class="reg-meta" id="panelMeta"></div>
+      <input id="search" type="search" placeholder="Find a correspondent" aria-label="Find a correspondent" autocomplete="off">
+      <label><input type="checkbox" id="inf" checked> Include inferred destinations</label>
+    </div>
+    <div class="panel-body" id="panel"></div>
+  </aside>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script id="world" type="application/json">__WORLD__</script>
+<script id="data" type="application/json">__DATA__</script>
+<script id="bios" type="application/json">__BIOS__</script>
+<script>
+// ===== Background map ========================================================
+// A flat (two-dimensional) map of land, oceans and present-day country borders
+// from Natural Earth (1:50m, via world-atlas: map/countries-50m.json), drawn in
+// the page itself. No map tiles, no API key. The borders are modern, not 1897-1900.
+// =============================================================================
+(function(){
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const P = DATA.places, LET = DATA.letters;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MES = ['enero','feb.','marzo','abril','mayo','junio','julio','agosto','sept.','oct.','nov.','dic.'];
+const fmtDate = s => { const [y,m,d] = s.split('-').map(Number); return `${d} ${MON[m-1]} ${y}`; };
+const oKey = o => o === 'Hong Kong' ? 'hk' : 'yk';
+const shiftLon = lon => lon < -30 ? lon + 360 : lon;   // put the Americas east of Asia (trans-Pacific mail)
+const ll = name => [P[name].lat, shiftLon(P[name].lon)];
+
+const S = { recip:null, sel:null };
+
+document.getElementById('stats').textContent =
+  `${LET.length} letters · ${new Set(LET.map(l=>l.recipient)).size} correspondents · ${new Set(LET.filter(l=>l.dest).map(l=>l.dest)).size} destinations`;
+
+// ---------- map ----------
+// The map scrolls sideways across exactly one world, from 31.5°W eastward to 31.5°W again, so the
+// routes can run east across the Pacific to the Americas. The edges fall in the mid-Atlantic, which
+// keeps the Azores, Iceland and Cabo Verde whole; only Greenland is split between the two edges.
+const WEST = -31.5, EAST = WEST + 360;
+// zoomSnap:0 lets the map zoom to any level, so it can fit the world exactly to the window
+const map = L.map('map', { worldCopyJump:false, zoomSnap:0, maxZoom:8, attributionControl:true,
+  maxBounds:[[-85, WEST], [85, EAST]], maxBoundsViscosity:1 });
+// never zoom out so far that the map is narrower than the window (which would show past the edges)
+const fitMinZoom = () => map.setMinZoom(Math.log2(map.getSize().x / 256) + 0.001);
+fitMinZoom(); map.on('resize', fitMinZoom);
+map.attributionControl.addAttribution('Borders: <a href="https://www.naturalearthdata.com">Natural Earth</a> · Data: Ponce, <i>Cartas sobre la revolución</i> (1932)');
+const dark = matchMedia('(prefers-color-scheme: dark)');
+
+const WORLD = JSON.parse(document.getElementById('world').textContent);
+// The border data is made for a globe. On a flat map, Russia and Fiji (which cross the
+// 180° meridian) and Antarctica (which surrounds the South Pole) need their outlines repaired.
+function fixRing(ring){
+  const out = [ring[0].slice()];
+  for (const [x0, y] of ring.slice(1)){            // keep longitudes continuous: no jump from 180° to -180°
+    const prev = out[out.length-1][0]; let x = x0;
+    while (x - prev > 180) x -= 360;
+    while (x - prev < -180) x += 360;
+    out.push([x, y]);
+  }
+  const first = out[0][0], last = out[out.length-1][0];
+  if (Math.abs(last - first) > 180) out.push([last, -90], [first, -90]);   // Antarctica: close the ring at the South Pole
+  return out;
+}
+const isPoleSliver = ring => ring.every(([, y]) => y <= -89.9);
+const fixPolygon = rings => rings.filter(r => !isPoleSliver(r)).map(fixRing);
+const COUNTRIES = topojson.feature(WORLD, WORLD.objects.countries);
+for (const f of COUNTRIES.features){
+  const g = f.geometry; if (!g) continue;
+  if (g.type === 'Polygon') g.coordinates = fixPolygon(g.coordinates);
+  if (g.type === 'MultiPolygon') g.coordinates = g.coordinates.map(fixPolygon).filter(r => r.length);
+}
+const BORDERS = topojson.mesh(WORLD, WORLD.objects.countries, (a, b) => a !== b);   // shared borders only
+// Coastlines, minus the cuts along the 180° meridian and the South Pole, which are not real coast
+const onCut = ([x, y]) => Math.abs(x) >= 179.99 || y <= -89.9;
+const isCut = (a, b) => Math.abs(a[0] - b[0]) > 180 || (onCut(a) && onCut(b));
+const COAST = { type:'MultiLineString', coordinates: topojson.mesh(WORLD, WORLD.objects.land).coordinates.flatMap(line => {
+  const out = []; let cur = [line[0]];
+  for (const pt of line.slice(1)){
+    if (isCut(cur[cur.length-1], pt)){ if (cur.length > 1) out.push(cur); cur = [pt]; }
+    else cur.push(pt);
+  }
+  if (cur.length > 1) out.push(cur);
+  return out;
+}) };
+const GEO_LABELS = [
+  ['continent','North America', 47,-102], ['continent','South America',-14,-58], ['continent','Europe',  57, 28],
+  ['continent','Africa',          6,  20], ['continent','Asia',          48, 92], ['continent','Australia',-24,134],
+  ['continent','Antarctica',    -75, 100],
+  ['ocean','Pacific Ocean',  12,-152], ['ocean','Pacific Ocean', -32,-120], ['ocean','Atlantic Ocean', 22,-52],
+  ['ocean','Indian Ocean',  -22,  78], ['ocean','Arctic Ocean',   75,172],
+  ['ocean','Southern Ocean',-58, 100],
+];
+map.createPane('base').style.zIndex = 200;
+const labelPane = map.createPane('geoLabels'); labelPane.style.zIndex = 350; labelPane.style.pointerEvents = 'none';
+const baseRenderer = L.canvas({ pane:'base', padding:0.5 });
+const baseLayer = L.layerGroup().addTo(map);
+function drawBase(){
+  baseLayer.clearLayers();
+  // two copies of the world (the second shifted 360° east) fill the span from WEST to EAST
+  for (const off of [0, 360]){
+    const opt = { pane:'base', renderer:baseRenderer, interactive:false, coordsToLatLng: c => L.latLng(c[1], c[0] + off) };
+    L.geoJSON(COUNTRIES, { ...opt, style:{ stroke:false, fillColor:css('--land'), fillOpacity:1 } }).addTo(baseLayer);
+    L.geoJSON(COAST,     { ...opt, style:{ color:css('--coast'),  weight:0.8, fill:false } }).addTo(baseLayer);
+    L.geoJSON(BORDERS,   { ...opt, style:{ color:css('--border'), weight:0.7, fill:false } }).addTo(baseLayer);
+    for (const [kind, name, lat, lon] of GEO_LABELS)
+      L.marker([lat, lon + off], { pane:'geoLabels', interactive:false, keyboard:false,
+        icon: L.divIcon({ className:'', iconSize:[0,0], html:`<span class="geo ${kind}">${name}</span>` }) }).addTo(baseLayer);
+  }
+}
+drawBase(); dark.addEventListener('change', () => { drawBase(); render(); });
+
+
+// ---------- destination stars ----------
+// A five-pointed star, point up, drawn in a box from -1 to 1
+const STAR_PTS = Array.from({length:10}, (_, i) => {
+  const a = Math.PI/2 + i*Math.PI/5, r = i % 2 ? 0.45 : 1;
+  return `${(r*Math.cos(a)).toFixed(3)},${(-r*Math.sin(a)).toFixed(3)}`;
+}).join(' ');
+// An equilateral triangle, point up, centred on the place
+const TRI_PTS = '0,-1 0.866,0.5 -0.866,0.5';
+function baseIcon(origin, here){
+  const size = 28;   // big enough to stand out from the destination star at the same place
+  return L.divIcon({ className: `base-tri ${oKey(origin)}${here ? '' : ' away'}`, iconSize:[size, size], iconAnchor:[size/2, size/2],
+    html: `<svg viewBox="-1.1 -1.1 2.2 2.2" width="${size}" height="${size}" aria-hidden="true"><polygon class="halo" points="${TRI_PTS}"/><polygon class="tri" points="${TRI_PTS}"/></svg>` });
+}
+function starIcon(size, on){
+  return L.divIcon({ className: 'dest-star' + (on ? ' on' : ''), iconSize:[size, size], iconAnchor:[size/2, size/2], tooltipAnchor:[size/2, 0],
+    html: `<svg viewBox="-1.1 -1.1 2.2 2.2" width="${size}" height="${size}" aria-hidden="true"><polygon points="${STAR_PTS}"/></svg>` });
+}
+
+// ---------- correspondents ----------
+// Biographies are written by hand in map/recipient_bios.csv and built into the page.
+const BIOS = JSON.parse(document.getElementById('bios').textContent);
+const BY_RECIP = new Map();
+for (const l of LET) (BY_RECIP.get(l.recipient) || BY_RECIP.set(l.recipient, []).get(l.recipient)).push(l);
+const RECIPS = [...BY_RECIP.keys()].sort((a,b) => BY_RECIP.get(b).length - BY_RECIP.get(a).length || a.localeCompare(b));
+// Only three colours can be told apart wherever lines cross (checked for colour-blind readers too),
+// so the three most frequent correspondents get their own colour and everyone else shares one.
+// Any correspondent can still be picked out: clicking one turns their routes green.
+const COLOURED = RECIPS.slice(0, 3);
+const colourOf = r => { const i = COLOURED.indexOf(r); return i >= 0 ? `--r${i+1}` : '--other'; };
+const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();   // search ignores accents and capitals
+
+document.getElementById('legend').innerHTML =
+  COLOURED.map(r => `<span class="key" style="--c:var(${colourOf(r)})"><span class="sw"></span>${esc(r)}</span>`).join('') +
+  `<span class="key" style="--c:var(--other)"><span class="sw"></span>other correspondents</span>` +
+  `<span class="key"><span class="sw dash"></span>destination inferred</span>`;
+
+// ---------- map key ----------
+const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
+  const d = L.DomUtil.create('details','map-key');
+  if (innerWidth > 800) d.open = true;
+  const ln = (c,w,dash,o=1) => `<svg viewBox="0 0 30 16" aria-hidden="true"><path d="M2 12 Q15 2 28 10" style="fill:none;stroke:var(${c});stroke-width:${w};stroke-linecap:round;opacity:${o}" ${dash?'stroke-dasharray="4 4"':''}/></svg>`;
+  d.innerHTML = `<summary>Map Key</summary><ul>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${TRI_PTS}" transform="translate(7 9) scale(7)" style="fill:var(--hk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${TRI_PTS}" transform="translate(22 9) scale(7)" style="fill:var(--yk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
+      <span><b>Ponce's base</b>: red = Hong Kong, blue = Yokohama <span class="act">· click: who he wrote to from here</span></span></li>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${STAR_PTS}" transform="translate(7 9) scale(4.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${STAR_PTS}" transform="translate(21 8) scale(7.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
+      <span><b>Destination</b>, sized by letters <span class="act">· click: who received letters there</span></span></li>
+    <li>${ln('--r1',3)}<span><b>Route</b> to one correspondent, coloured as in the legend above <span class="act">· click: that correspondent</span></span></li>
+    <li>${ln('--sel',4)}<span><b>Green</b>: the correspondent you picked; everyone else turns grey</span></li>
+    <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
+  </ul><div class="foot">Lines that share a route are fanned out so each can be clicked. Click the empty map or press Esc to go back to all correspondents.</div>`;
+  L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+  return d;
+}});
+new KeyCtl().addTo(map);
+const routeLayer = L.layerGroup().addTo(map);
+const nodeLayer = L.layerGroup().addTo(map);
+
+function curve(a, b, bend=0.18, n=40){
+  const [y1,x1]=a, [y2,x2]=b, dx=x2-x1, dy=y2-y1;
+  const cx=(x1+x2)/2 - dy*bend, cy=(y1+y2)/2 + dx*bend;
+  const pts=[]; for(let i=0;i<=n;i++){ const t=i/n, u=1-t; pts.push([u*u*y1+2*u*t*cy+t*t*y2, u*u*x1+2*u*t*cx+t*t*x2]); }
+  return pts;
+}
+// start with the whole world in view: all seven continents and the oceans
+const WHOLE_WORLD = [[-80, WEST], [78, EAST]];
+map.fitBounds(WHOLE_WORLD);
+
+// ---------- drawing ----------
+function shown(l){ return l.dest && (l.dest_kind !== 'inferred' || document.getElementById('inf').checked); }
+const routeKey = l => `${l.origin}|${l.dest}|${l.dest_kind==='inferred'?'i':'p'}`;
+
+function render(){
+  routeLayer.clearLayers(); nodeLayer.clearLayers();
+  const ls = LET.filter(shown);
+  // one line per correspondent per route (printed and inferred destinations kept apart)
+  const lines = new Map();
+  for (const l of ls){
+    const k = `${l.recipient}|${routeKey(l)}`;
+    (lines.get(k) || lines.set(k, {recip:l.recipient, origin:l.origin, dest:l.dest, inf:l.dest_kind==='inferred', ls:[]}).get(k)).ls.push(l);
+  }
+  // Up to 11 correspondents share one route (Yokohama to Tokyo): fan their lines out side by side.
+  const fans = new Map();
+  for (const ln of lines.values()){ const k = `${ln.origin}|${ln.dest}`; (fans.get(k) || fans.set(k, []).get(k)).push(ln); }
+  for (const group of fans.values()){
+    group.sort((a,b) => RECIPS.indexOf(a.recip) - RECIPS.indexOf(b.recip) || a.inf - b.inf);
+    group.forEach((ln, i) => ln.bend = 0.18 + (i - (group.length-1)/2) * 0.05);
+  }
+  // drawing order: other correspondents first, the three coloured ones above them, the picked one on top
+  const rank = ln => ln.recip === S.recip ? 2 : colourOf(ln.recip) === '--other' ? 0 : 1;
+  const order = [...lines.values()].sort((a,b) => rank(a) - rank(b) || b.ls.length - a.ls.length);
+  for (const ln of order){
+    if (ln.origin === ln.dest) continue;
+    const on = ln.recip === S.recip, off = S.recip && !on, other = colourOf(ln.recip) === '--other';
+    const line = L.polyline(curve(ll(ln.origin), ll(ln.dest), ln.bend), {
+      color: css(on ? '--sel' : off ? '--trace' : colourOf(ln.recip)),
+      weight: 1.2 + Math.sqrt(ln.ls.length)*1.3 + (on ? 1.5 : 0), opacity: on ? 1 : off ? .35 : other ? .75 : .9,
+      dashArray: ln.inf ? '5 6' : null, lineCap:'round',
+      bubblingMouseEvents:false   // a click on a route should not also count as a click on the empty map
+    }).addTo(routeLayer);
+    line.bindTooltip(`<b>${esc(ln.recip)}</b><br>${esc(ln.origin)} → ${esc(P[ln.dest].label)}: ${plural(ln.ls.length, 'letter')}${ln.inf?' (inferred)':''}`, {sticky:true});
+    line.on('click', e => { selectRecipient(ln.recip); linePopup(ln, e.latlng); });
+  }
+  // destination stars; the picked correspondent's destinations get a thick outline
+  const byPlace = {}; ls.forEach(l => (byPlace[l.dest] ||= []).push(l));
+  for (const [name, pls] of Object.entries(byPlace)){
+    const size = Math.round(2.6 * (3 + Math.sqrt(pls.length)*2.2));
+    const mine = !!S.recip && pls.some(l => l.recipient === S.recip);
+    const m = L.marker(ll(name), { icon: starIcon(size, mine), title:`${P[name].label}: ${plural(pls.length, 'letter')}`, riseOnHover:true }).addTo(nodeLayer);
+    m.bindTooltip(`${esc(P[name].label)} <span style="opacity:.7">${pls.length}</span>`, {permanent:true, direction:'right', offset:[2,0], className:'plabel'});
+    m.on('click', () => whoPopup(P[name].label, 'received letters here', pls, ll(name)));
+  }
+  // Ponce's two bases
+  for (const o of ['Hong Kong','Yokohama']){
+    const from = LET.filter(l => l.origin === o);
+    const mk = L.marker(ll(o), { icon: baseIcon(o, true), zIndexOffset:1000, keyboard:true, title:`Ponce in ${o}` }).addTo(nodeLayer);
+    mk.bindTooltip(`Ponce · ${o}`, {permanent:true, direction:'left', offset:[-10,0], className:'plabel origin'});
+    mk.on('click', () => whoPopup(`Ponce in ${o}`, 'wrote to', from, ll(o)));
+  }
+}
+
+// ---------- popups ----------
+function letterHTML(l){
+  const dest = l.dest ? `${esc(P[l.dest].label)}` : 'destination not identified';
+  return `<div class="pop"><h3>No. ${l.n} · ${fmtDate(l.date)}</h3>
+    <div class="meta">To <b>${esc(l.recipient)}</b> → ${dest}<br>From ${esc(l.origin)}${l.signed?` · signed “${esc(l.signed)}”`:''}</div>
+    ${l.summary?`<div class="sum">${esc(l.summary)}</div>`:''}
+    <dl>
+      <dt>Dateline</dt><dd>${esc(l.dateline)}</dd>
+      ${l.addressee?`<dt>Addressee</dt><dd>${esc(l.addressee).replace(/\n/g,' / ')}</dd>`:''}
+      <dt>Destination</dt><dd>${esc(l.dest_basis)}</dd>
+      <dt>Printed pp.</dt><dd>${esc(l.pages)} · ${esc(l.images)}</dd>
+      ${l.flags?`<dt>Review</dt><dd>${esc(l.flags)}</dd>`:''}
+    </dl></div>`;
+}
+function linePopup(ln, latlng){
+  L.popup().setLatLng(latlng).setContent(`<div class="pop"><h3>${esc(ln.recip)}</h3>
+    <div class="meta">${esc(ln.origin)} → ${esc(P[ln.dest].label)} · ${plural(ln.ls.length, 'letter')}${ln.inf?' · destination inferred':''}</div>
+    <ul>${ln.ls.slice().sort((a,b)=>a.date<b.date?-1:1).map(l=>`<li><button class="lk" data-n="${l.n}">No. ${l.n}</button>, ${fmtDate(l.date)}</li>`).join('')}</ul></div>`).openOn(map);
+}
+// Who received letters at a place, or who Ponce wrote to from a base. Each name can be clicked.
+function whoPopup(title, verb, ls, latlng){
+  const who = {}; ls.forEach(l => who[l.recipient] = (who[l.recipient] || 0) + 1);
+  const rows = Object.entries(who).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0]));
+  L.popup().setLatLng(latlng).setContent(`<div class="pop"><h3>${esc(title)}</h3>
+    <div class="meta">${plural(rows.length, 'correspondent')} ${verb} · ${plural(ls.length, 'letter')}</div>
+    <ul>${rows.map(([k,v]) => `<li><button class="pick" data-r="${esc(k)}">${esc(k)}</button> <span style="opacity:.7">(${v})</span></li>`).join('')}</ul></div>`).openOn(map);
+}
+map.on('popupopen', e => {
+  const el = e.popup.getElement();
+  el.querySelectorAll('.lk').forEach(b => b.addEventListener('click', () => selectLetter(+b.dataset.n, true)));
+  el.querySelectorAll('.pick').forEach(b => b.addEventListener('click', () => selectRecipient(b.dataset.r)));
+});
+
+// ---------- picking a correspondent ----------
+function selectRecipient(r){
+  if (S.recip !== r){ S.recip = r; S.sel = null; render(); renderPanel(); document.getElementById('panel').scrollTop = 0; }
+}
+// back to all correspondents: a click on the empty map, the Esc key, or "All correspondents" in the panel
+function clearRecipient(){ if (S.recip){ S.recip = null; S.sel = null; map.closePopup(); render(); renderPanel(); } }
+map.on('click', clearRecipient);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') clearRecipient(); });
+function openLetter(l){
+  L.popup({maxWidth:340}).setLatLng(l.dest ? ll(l.dest) : ll(l.origin)).setContent(letterHTML(l)).openOn(map);
+}
+function selectLetter(n, open){
+  const l = LET.find(x => x.n === n);
+  if (l.recipient !== S.recip) selectRecipient(l.recipient);
+  S.sel = l; if (open) openLetter(l);
+  document.querySelectorAll('.letters li').forEach(li => li.classList.toggle('on', +li.dataset.n === n));
+  const li = document.querySelector(`.letters li[data-n="${n}"]`); if (li) li.scrollIntoView({block:'nearest'});
+}
+
+// ---------- the panel: all correspondents, or one correspondent's profile ----------
+const countBy = (ls, f) => { const c = {}; ls.forEach(l => { const k = f(l); c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0])); };
+const search = document.getElementById('search');
+search.addEventListener('input', renderPanel);
+
+function renderPanel(){
+  const panel = document.getElementById('panel'), title = document.getElementById('panelTitle'), meta = document.getElementById('panelMeta');
+  search.hidden = !!S.recip;
+  if (!S.recip){
+    title.textContent = 'Correspondents';
+    const q = fold(search.value.trim());
+    const names = RECIPS.filter(r => !q || fold(r).includes(q));
+    meta.textContent = q ? `${names.length} of ${RECIPS.length} correspondents` : `${RECIPS.length} correspondents, most letters first`;
+    panel.innerHTML = names.length ? `<ul class="who-list">${names.map(r => {
+      const ls = BY_RECIP.get(r);
+      const places = countBy(ls.filter(l => l.dest), l => P[l.dest].label).map(([k]) => k);
+      return `<li><button data-r="${esc(r)}"><span class="dot" style="--c:var(${colourOf(r)})"></span><span class="nm">${esc(r)}</span><span class="n">${plural(ls.length, 'letter')}</span>
+        <span class="places">${places.length ? esc(places.join(' · ')) : 'no known destination'}</span></button></li>`; }).join('')}</ul>`
+      : '<p class="empty">No correspondent matches that name.</p>';
+    panel.querySelectorAll('button[data-r]').forEach(b => b.onclick = () => selectRecipient(b.dataset.r));
+    return;
+  }
+  const r = S.recip, ls = BY_RECIP.get(r).slice().sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.n - b.n);
+  title.textContent = 'Correspondent';
+  meta.textContent = '';
+  const years = [1897, 1898, 1899, 1900].map(y => [y, ls.filter(l => +l.date.slice(0,4) === y).length]);
+  const maxY = Math.max(...years.map(([, n]) => n));
+  const dests = countBy(ls, l => l.dest ? P[l.dest].label + (l.dest_kind === 'inferred' ? ' (inferred)' : '') : 'no known destination');
+  const list = (rows) => rows.map(([k, v]) => `${esc(k)} <span style="opacity:.7">${v}</span>`).join(' · ');
+  const c = `var(${colourOf(r)})`;
+  panel.innerHTML = `<div class="profile">
+      <button class="back">← All correspondents</button>
+      <h3><span class="dot" style="--c:${c}"></span>${esc(r)}</h3>
+      ${BIOS[r] ? `<p class="bio">${esc(BIOS[r])}</p>` : '<p class="bio pending">Biography to come.</p>'}
+      <dl class="facts">
+        <dt>Letters</dt><dd>${ls.length}, ${fmtDate(ls[0].date)}${ls.length > 1 ? ` – ${fmtDate(ls[ls.length-1].date)}` : ''}</dd>
+        <dt>Sent from</dt><dd>${list(countBy(ls, l => l.origin))}</dd>
+        <dt>Sent to</dt><dd>${list(dests)}</dd>
+        <dt>Signed</dt><dd>${list(countBy(ls, l => l.signed || 'unsigned'))}</dd>
+      </dl>
+      <h4>Letters per year</h4>
+      <div class="years" style="--c:${c}">${years.map(([y, n]) => `<span>${y}</span><span class="bar"><i style="width:${maxY ? n / maxY * 100 : 0}%"></i></span><span class="v">${n}</span>`).join('')}</div>
+      <h4>Letters</h4>
+    </div>
+    <ul class="letters">${ls.map(l => `<li data-n="${l.n}" class="${S.sel && S.sel.n === l.n ? 'on' : ''}"><button>
+      <span class="no">${l.n}<small>${l.date.slice(0,4)}</small></span>
+      <span class="who">${fmtDate(l.date)}</span>
+      <span class="where"><span class="o ${oKey(l.origin)}">${esc(l.origin)}</span> → ${l.dest ? esc(P[l.dest].label) : 'place unknown'}${l.dest_kind==='inferred'?'<span class="tag">inferred</span>':''}${l.dest_kind==='unlocated'?'<span class="tag">unplaced</span>':''}</span>
+      ${l.summary ? `<span class="sum">${esc(l.summary)}</span>` : '<span></span>'}
+    </button></li>`).join('')}</ul>`;
+  panel.querySelector('.back').onclick = clearRecipient;
+  panel.querySelectorAll('.letters li[data-n] button').forEach(b => b.onclick = () => selectLetter(+b.parentElement.dataset.n, true));
+}
+
+document.getElementById('inf').onchange = render;
+
+// ---------- minimize / maximize the panel ----------
+const regToggle = document.getElementById('regToggle'), mainEl = document.querySelector('main');
+regToggle.onclick = () => {
+  const wasWholeWorld = map.getZoom() <= map.getMinZoom() + 0.01;
+  const min = mainEl.classList.toggle('reg-min');
+  const label = min ? 'Show the list of correspondents' : 'Minimize the list of correspondents';
+  regToggle.textContent = min ? '+' : '–';
+  regToggle.setAttribute('aria-expanded', String(!min));
+  regToggle.title = label; regToggle.setAttribute('aria-label', label);
+  map.invalidateSize();   // the map is now wider or narrower; this also updates the zoom-out limit
+  if (wasWholeWorld) map.fitBounds(WHOLE_WORLD, {animate:false});   // keep showing the whole world
+};
+render(); renderPanel();
+})();
+</script>
+</body>
+</html>

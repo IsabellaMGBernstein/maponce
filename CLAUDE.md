@@ -52,8 +52,9 @@ Mariano Ponce, *Cartas sobre la revolución, 1897-1900* (Manila: Bureau of Print
 | `Maponce_Data/corrected/` | Corrected data, the rules and logs behind every correction, and the scripts that rebuild it. See `README.md` there for conventions. |
 | `Maponce_Data/corrected/cartas_letters_revised.csv` | **The main table.** 244 rows, one per letter, with corrected names, places, dates and letter text. Use this for the map and for text analysis. |
 | `Maponce_Data/corrected/cartas_biographical.csv` | One row per letter with only sender, recipient, places and dates (no letter text). |
-| `Maponce_Data/map/` | Map builder: `build_data.py`, `template.html` (Leaflet 1.9.4) and `countries-50m.json` (Natural Earth country borders, embedded into the map at build time). The outputs in this folder are from the older, uncorrected data. |
-| `Maponce_Data/map_corrected/` | Current map built from the corrected table: `cartas_map.html`, `cartas_map_data.json`, `cartas_links.csv`. |
+| `Maponce_Data/map/` | Map builder: `build_data.py`, `template.html` (routes map), `template_recipients.html` (correspondents map), both Leaflet 1.9.4, and `countries-50m.json` (Natural Earth country borders, embedded into the maps at build time). The outputs in this folder are from the older, uncorrected data. |
+| `Maponce_Data/map/recipient_bios.csv` | One row per correspondent (name, letters, biography). The author writes the biographies here; they appear in the correspondents map. The build only adds new names, never overwrites. |
+| `Maponce_Data/map_corrected/` | Current maps built from the corrected table: `cartas_map.html` (routes), `cartas_map_recipients.html` (correspondents), plus `cartas_map_data.json` and `cartas_links.csv`. |
 | `Maponce_Data/word2vec_corrected/` | Word2Vec model trained on the corrected letter texts, its cleaned text and its training script. |
 | `Maponce_Data/similar_words.py` | Looks up the most similar words in the corrected model. |
 | `Maponce_Data/clean_and_train.py`, `cartas_word2vec.model`, `Cartas_cleaned.txt`, `Cartas_sobre_la_revolucion.txt` | Older model trained on the library's own OCR text. Superseded by `word2vec_corrected/`. |
@@ -77,7 +78,7 @@ Run these from `Maponce_Data/` with a virtual environment active (`source ../.ve
     # query the Word2Vec model
     python similar_words.py independencia 20
 
-To view the map, open `Maponce_Data/map_corrected/cartas_map.html` in a browser. There is no build step, server, test suite or git repository.
+To view the maps, open `Maponce_Data/map_corrected/cartas_map.html` in a browser, or serve that folder with `python3 -m http.server 8000` and visit http://localhost:8000/cartas_map.html. Buttons in each page's header switch between the routes and correspondents maps. There is no test suite.
 
 ### Data facts
 
@@ -94,5 +95,6 @@ To view the map, open `Maponce_Data/map_corrected/cartas_map.html` in a browser.
 - Most letters were corrected by rules alone and spot-checked, so the data is not a verified edition. Check quotations against the page images.
 - The Word2Vec models strip accents and ñ, so query with `espana` and `revolucion`.
 - The map uses no tiles. It draws a flat world map (land, oceans, present-day borders, continent and ocean names). It scrolls sideways across exactly one world, with its edges at 31.5°W in the mid-Atlantic from `map/countries-50m.json` (Natural Earth 1:50m via world-atlas 2.0.2). The borders are modern, not those of 1897-1900.
-- The current map has one view. The six visualizations described above are not built yet.
+- Two of the planned visualizations exist: routes (`cartas_map.html`) and recipients (`cartas_map_recipients.html`). The year, theme and region maps are not built yet.
+- In the correspondents map only the three most frequent correspondents (Blumentritt, Apacible, Vergel de Dios) have their own colour; the other 67 share a neutral colour and are picked out in green when selected. More colours cannot be told apart where lines cross (checked with the data-viz palette validator, including for colour-blind readers). Themes per correspondent are not shown yet (no word2vec themes have been assigned).
 - Recipient biographies and theme assignments are the author's own research. Do not generate them.

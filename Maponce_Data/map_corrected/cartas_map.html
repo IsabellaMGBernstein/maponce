@@ -143,11 +143,17 @@ main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min #list{display
   h1{font-size:19px}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+/* Switch between the map pages */
+.views{display:inline-flex;gap:2px;border:1px solid var(--rule);border-radius:6px;padding:2px;align-self:center}
+.views a{padding:2px 10px;border-radius:4px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:600}
+.views a:hover{color:var(--ink);background:var(--band)}
+.views a[aria-current="page"]{background:var(--ink);color:var(--paper)}
 </style>
 </head>
 <body>
 <header>
   <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
+  <nav class="views" aria-label="Map views"><a href="cartas_map.html" aria-current="page">Routes</a><a href="cartas_map_recipients.html">Correspondents</a></nav>
   <span class="sub" id="stats"></span>
   <div class="legend" aria-label="Legend">
     <span class="key" style="color:var(--hk)"><span class="sw"></span>sent from Hong Kong</span>
