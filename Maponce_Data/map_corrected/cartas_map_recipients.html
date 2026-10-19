@@ -19,6 +19,7 @@
   --star:#f5c518; --star-edge:#6b5300;   /* destination stars */
   --r1:#2a78d6; --r2:#eb6834; --r3:#1baf7a; --other:#9c9488;   /* correspondents */
   --y1:#86b6ef; --y2:#3987e5; --y3:#1c5cab; --y4:#0d366b;      /* years 1897-1900, light to dark */
+  --k1:#502684; --k2:#6d41a9; --k3:#8864c0; --k4:#a68bd5; --rest:#d8d4cc;   /* ranking: 1st darkest; everyone else */
   --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
   --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
   --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
@@ -27,11 +28,11 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --k1:#d2bff8; --k2:#b699eb; --k3:#9b74d9; --k4:#7e53bc; --rest:#4a4f57; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --r1:#3987e5; --r2:#d95926; --r3:#199e70; --other:#8a8478; --y1:#184f95; --y2:#2a78d6; --y3:#6da7ec; --y4:#b7d3f6; --k1:#d2bff8; --k2:#b699eb; --k3:#9b74d9; --k4:#7e53bc; --rest:#4a4f57; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -201,6 +202,31 @@ main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min .letters{disp
 .ylegend .pc{color:var(--muted);text-align:right}
 .ylegend .none{opacity:.45}
 .one-year{font-size:13px;margin:0}
+/* Ranking box (top right of the map): correspondents by letters received */
+/* bottom-left corner: Map Key and this box side by side, bottoms aligned (key first) */
+.leaflet-bottom.leaflet-left{display:flex;flex-direction:row-reverse;justify-content:flex-end;align-items:flex-end;flex-wrap:wrap}
+.rank-box{width:272px}
+.rank-top{display:flex;gap:12px;align-items:center;padding:10px;border-top:1px solid var(--rule)}
+.rank-top svg{width:92px;height:92px;flex:none;overflow:visible}
+.rank-top path{stroke:var(--panel);stroke-width:2px;stroke-linejoin:round}
+.rank-top path[data-r]{cursor:pointer}
+.rank-top path[data-r]:hover{opacity:.85}
+.rank-legend{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:4px 6px;align-items:center;min-width:0}
+.rank-legend .sq{width:10px;height:10px;border-radius:2px;background:var(--c)}
+.rank-legend .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-legend button.nm{all:unset;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-legend button.nm:hover{text-decoration:underline}
+.rank-legend .v{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+.rank-head{padding:6px 10px 2px;border-top:1px solid var(--rule);color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.rank-list{list-style:none;margin:0;padding:0 0 6px;max-height:210px;overflow-y:auto}
+.rank-list li{display:block}   /* not the map key's two-column rows */
+.rank-list button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:2.2em minmax(0,1fr) auto 2.6em;gap:6px;padding:3px 10px;align-items:baseline;font-variant-numeric:tabular-nums}
+.rank-list button:hover{background:var(--band)}
+.rank-list button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+.rank-list li.on button{background:var(--band);box-shadow:inset 3px 0 0 var(--sel)}
+.rank-list .rk{color:var(--muted);text-align:right}
+.rank-list .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-list .pc{color:var(--muted);text-align:right}
 .pop .pick{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 main.reg-min #search, main.reg-min .panel-body{display:none}
 @media (max-width:800px){ .panel-body{overflow:visible} }
@@ -422,6 +448,43 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
   return d;
 }});
 new KeyCtl().addTo(map);
+
+// ---------- ranking box "Recipients at a Glance" (bottom left, beside the Map Key) ----------
+// Correspondents with the same number of letters share a rank (William Jones and L. Castro are both 5th).
+// The pie shows the four with the most letters and everyone else as one slice: a pie stays readable only
+// with a handful of slices. The list below it ranks all of them. Shades of violet show the rank (darkest =
+// most letters); they are not the map's correspondent colours, which the reader can change.
+const RANK = new Map();
+RECIPS.forEach((r, i) => { const prev = RECIPS[i-1]; RANK.set(r, prev && BY_RECIP.get(prev).length === BY_RECIP.get(r).length ? RANK.get(prev) : i + 1); });
+const tied = r => RECIPS.some(x => x !== r && RANK.get(x) === RANK.get(r));
+const PIE_TOP = 4;
+const RankCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
+  const d = L.DomUtil.create('details', 'map-key rank-box');
+  if (innerWidth > 800) d.open = true;
+  const total = LET.length, pct = n => n / total < 0.005 ? '<1%' : `${Math.round(n / total * 100)}%`;
+  const top = RECIPS.slice(0, PIE_TOP), rest = RECIPS.slice(PIE_TOP);
+  const restN = rest.reduce((s, r) => s + BY_RECIP.get(r).length, 0);
+  const items = [
+    ...top.map((r, i) => ({ r, n:BY_RECIP.get(r).length, fill:`--k${i+1}` })),
+    { r:null, n:restN, fill:'--rest' },
+  ];
+  const name = it => it.r || `${rest.length} others`;
+  const slices = piePaths(items.map(it => ({ n:it.n, fill:it.fill, title:`${name(it)}: ${plural(it.n, 'letter')} (${pct(it.n)})`,
+    attrs: it.r ? `data-r="${esc(it.r)}"` : '' })), total);
+  d.innerHTML = `<summary>Recipients at a Glance</summary>
+    <div class="rank-top">
+      <svg viewBox="-51 -51 102 102" role="img" aria-label="Share of the ${total} letters: ${items.map(it => `${esc(name(it))} ${it.n}`).join(', ')}">${slices}</svg>
+      <div class="rank-legend">${items.map(it => `<span class="sq" style="--c:var(${it.fill})"></span>${it.r
+        ? `<button class="nm" data-r="${esc(it.r)}" title="${esc(it.r)}">${esc(it.r)}</button>` : `<span class="nm">${esc(name(it))}</span>`}<span class="v">${it.n} · ${pct(it.n)}</span>`).join('')}</div>
+    </div>
+    <div class="rank-head">All ${RECIPS.length} correspondents</div>
+    <ol class="rank-list">${RECIPS.map(r => { const n = BY_RECIP.get(r).length; return `<li data-r="${esc(r)}"><button data-r="${esc(r)}">
+      <span class="rk">${tied(r) ? '=' : ''}${RANK.get(r)}</span><span class="nm">${esc(r)}</span><span>${n}</span><span class="pc">${pct(n)}</span></button></li>`; }).join('')}</ol>`;
+  d.querySelectorAll('[data-r]:not(li)').forEach(el => el.addEventListener('click', () => selectRecipient(el.dataset.r)));
+  L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+  return d;
+}});
+new RankCtl().addTo(map);
 const routeLayer = L.layerGroup().addTo(map);
 const nodeLayer = L.layerGroup().addTo(map);
 
@@ -548,23 +611,29 @@ search.addEventListener('input', renderPanel);
 // Letters per year as a pie (one slice per year, clockwise from the top, 1897 lightest to 1900 darkest),
 // with the counts and percentages beside it. A correspondent whose letters all fall in one year gets a
 // sentence instead: a pie with a single slice is just a circle.
+// Pie slices as SVG paths in a box from -50 to 50, clockwise from the top. Each item: {n, fill, title, attrs}.
+function piePaths(items, total){
+  const R = 50, pt = t => `${(R*Math.cos(t)).toFixed(2)},${(R*Math.sin(t)).toFixed(2)}`;
+  let a = -Math.PI / 2;
+  return items.map(it => {
+    if (!it.n) return '';
+    const b = a + it.n / total * 2 * Math.PI, d = `M0,0 L${pt(a)} A${R},${R} 0 ${b - a > Math.PI ? 1 : 0} 1 ${pt(b)} Z`;
+    a = b;
+    return `<path d="${d}" style="fill:var(${it.fill})" ${it.attrs || ''}><title>${esc(it.title)}</title></path>`;
+  }).join('');
+}
 function yearChart(years, total){
   const used = years.filter(([, n]) => n);
   if (used.length === 1) return `<p class="one-year">${total === 1 ? 'The only letter is' : total === 2 ? 'Both letters are' : `All ${total} letters are`} from ${used[0][0]}.</p>`;
-  const R = 50, pt = t => `${(R*Math.cos(t)).toFixed(2)},${(R*Math.sin(t)).toFixed(2)}`, pct = n => Math.round(n / total * 100);
-  let a = -Math.PI / 2;
-  const slices = years.map(([y, n], i) => {
-    if (!n) return '';
-    const b = a + n / total * 2 * Math.PI, d = `M0,0 L${pt(a)} A${R},${R} 0 ${b - a > Math.PI ? 1 : 0} 1 ${pt(b)} Z`;
-    a = b;
-    return `<path d="${d}" style="fill:var(--y${i+1})"><title>${y}: ${plural(n, 'letter')} (${pct(n)}%)</title></path>`;
-  }).join('');
+  const pct = n => Math.round(n / total * 100);
+  const slices = piePaths(years.map(([y, n], i) => ({ n, fill:`--y${i+1}`, title:`${y}: ${plural(n, 'letter')} (${pct(n)}%)` })), total);
   const label = years.map(([y, n]) => `${y}: ${n}`).join(', ');
   return `<div class="yearpie"><svg viewBox="-51 -51 102 102" role="img" aria-label="Letters per year: ${label}">${slices}</svg>
     <div class="ylegend">${years.map(([y, n], i) => `<span class="sq${n ? '' : ' none'}" style="--c:var(--y${i+1})"></span><span class="${n ? '' : 'none'}">${y}</span><span class="v${n ? '' : ' none'}">${n}</span><span class="pc">${n ? pct(n) + '%' : ''}</span>`).join('')}</div></div>`;
 }
 
 function renderPanel(){
+  document.querySelectorAll('.rank-list li').forEach(li => li.classList.toggle('on', li.dataset.r === S.recip));
   const panel = document.getElementById('panel'), title = document.getElementById('panelTitle'), meta = document.getElementById('panelMeta');
   search.hidden = !!S.recip;
   if (!S.recip){
