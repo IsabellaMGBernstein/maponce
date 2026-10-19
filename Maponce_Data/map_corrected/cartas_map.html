@@ -302,7 +302,7 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
   if (innerWidth > 800) d.open = true;
   const sq = c => `<svg viewBox="0 0 30 16" aria-hidden="true"><rect x="9" y="1" width="13" height="13" style="fill:var(${c});stroke:var(--panel);stroke-width:2"/><rect x="9" y="1" width="13" height="13" style="fill:none;stroke:var(--ink);stroke-width:.8"/></svg>`;
   const ln = (c,w,dash,o=1) => `<svg viewBox="0 0 30 16" aria-hidden="true"><path d="M2 12 Q15 2 28 10" style="fill:none;stroke:var(${c});stroke-width:${w};stroke-linecap:round;opacity:${o}" ${dash?'stroke-dasharray="4 4"':''}/></svg>`;
-  d.innerHTML = `<summary>Map key</summary><ul>
+  d.innerHTML = `<summary>Map Key</summary><ul>
     <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${TRI_PTS}" transform="translate(7 9) scale(7)" style="fill:var(--hk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${TRI_PTS}" transform="translate(22 9) scale(7)" style="fill:var(--yk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
       <span><b>Ponce's base</b>: red = Hong Kong, blue = Yokohama <span class="act">· click: letters sent from here</span></span></li>
     <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${STAR_PTS}" transform="translate(7 9) scale(4.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${STAR_PTS}" transform="translate(21 8) scale(7.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
@@ -310,7 +310,6 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
     <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: highlight it and see its letters</span></span></li>
     <li>${ln('--sel',4)}<span><b>Green</b>: route you clicked; the others turn grey and its letters are listed on the right</span></li>
     <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
-    <li>${ln('--sun',4)}<span><b>Gold</b>: letter picked in the list</span></li>
   </ul><div class="foot">Click a triangle or star again to clear its filter. Click the empty map or press Esc to clear a green route.</div>`;
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   return d;
@@ -318,7 +317,6 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
 new KeyCtl().addTo(map);
 const routeLayer = L.layerGroup().addTo(map);
 const nodeLayer = L.layerGroup().addTo(map);
-const hiLayer = L.layerGroup().addTo(map);
 
 function curve(a, b, bend=0.18, n=40){
   const [y1,x1]=a, [y2,x2]=b, dx=x2-x1, dy=y2-y1;
@@ -341,7 +339,7 @@ function visibleLetters(){
 }
 
 function render(){
-  routeLayer.clearLayers(); nodeLayer.clearLayers(); hiLayer.clearLayers();
+  routeLayer.clearLayers(); nodeLayer.clearLayers();
   const cur = LET;
   const routes = new Map();
   for (const l of cur.filter(shown)){
@@ -381,7 +379,6 @@ function render(){
     mk.bindTooltip(`Ponce · ${o}`, {permanent:true, direction:'left', offset:[-10,0], className:'plabel origin'});
     mk.on('click', () => setPlace(S.place===`from:${o}` ? null : `from:${o}`));
   }
-  if (S.sel) highlight(S.sel, false);
   renderList();
 }
 
@@ -423,15 +420,11 @@ function selectRoute(r, latlng){
 function clearRoute(){ if (S.route){ S.route = null; map.closePopup(); render(); } }
 map.on('click', clearRoute);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') clearRoute(); });
-function highlight(l, open){
-  hiLayer.clearLayers();
-  if (l.dest && l.origin !== l.dest){
-    L.polyline(curve(ll(l.origin), ll(l.dest)), {color:css('--sun'), weight:5, opacity:.95, dashArray: l.dest_kind==='inferred'?'5 6':null, interactive:false}).addTo(hiLayer);
-  }
-  if (open) L.popup({maxWidth:340}).setLatLng(l.dest ? ll(l.dest) : ll(l.origin)).setContent(letterHTML(l)).openOn(map);
+function openLetter(l){
+  L.popup({maxWidth:340}).setLatLng(l.dest ? ll(l.dest) : ll(l.origin)).setContent(letterHTML(l)).openOn(map);
 }
 function selectLetter(n, open){
-  const l = LET.find(x=>x.n===n); S.sel = l; highlight(l, open);
+  const l = LET.find(x=>x.n===n); S.sel = l; if (open) openLetter(l);
   document.querySelectorAll('#list li').forEach(li => li.classList.toggle('on', +li.dataset.n===n));
   const li = document.querySelector(`#list li[data-n="${n}"]`); if (li) li.scrollIntoView({block:'nearest'});
 }
