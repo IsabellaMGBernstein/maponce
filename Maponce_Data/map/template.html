@@ -15,6 +15,7 @@
   --hk:#b3262e;      /* letters sent from Hong Kong  */
   --yk:#1f4f9a;      /* letters sent from Yokohama   */
   --sun:#c8961a;     /* selection highlight          */
+  --sel:#1f8a4c;     /* clicked route                */
   --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
   --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
   --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
@@ -23,11 +24,11 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -167,7 +168,7 @@ const oKey = o => o === 'Hong Kong' ? 'hk' : 'yk';
 const shiftLon = lon => lon < -30 ? lon + 360 : lon;   // put the Americas east of Asia (trans-Pacific mail)
 const ll = name => [P[name].lat, shiftLon(P[name].lon)];
 
-const S = { place:null, sel:null };
+const S = { place:null, sel:null, route:null };
 
 document.getElementById('stats').textContent =
   `${LET.length} letters · ${new Set(LET.map(l=>l.recipient)).size} correspondents · ${new Set(LET.filter(l=>l.dest).map(l=>l.dest)).size} destinations`;
@@ -260,10 +261,11 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
       <span><b>Ponce's base</b> <span class="act">· click: letters sent from here</span></span></li>
     <li><svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="9" r="3.5" style="fill:var(--node)"/><circle cx="21" cy="8" r="6.5" style="fill:var(--node)"/></svg>
       <span><b>Destination</b>, sized by letters <span class="act">· click: letters and recipients</span></span></li>
-    <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: its letters</span></span></li>
+    <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: highlight it and see its letters</span></span></li>
+    <li>${ln('--sel',4)}<span><b>Green</b>: route you clicked; the others turn grey</span></li>
     <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
     <li>${ln('--sun',4)}<span><b>Gold</b>: letter picked in the list</span></li>
-  </ul><div class="foot">Click a square or circle again to clear its filter.</div>`;
+  </ul><div class="foot">Click a square or circle again to clear its filter. Click the map or close the popup to clear a green route.</div>`;
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   return d;
 }});
@@ -293,16 +295,21 @@ function render(){
   const routes = new Map();
   for (const l of cur.filter(shown)){
     const k = `${l.origin}|${l.dest}|${l.dest_kind==='inferred'?'i':'p'}`;
-    (routes.get(k) || routes.set(k, {origin:l.origin, dest:l.dest, inf:l.dest_kind==='inferred', ls:[]}).get(k)).ls.push(l);
+    (routes.get(k) || routes.set(k, {key:k, origin:l.origin, dest:l.dest, inf:l.dest_kind==='inferred', ls:[]}).get(k)).ls.push(l);
   }
-  const sorted = [...routes.values()].sort((x,y)=> y.ls.length-x.ls.length);
+  if (S.route && !routes.has(S.route)) S.route = null;   // e.g. its letters were hidden by a checkbox
+  // A clicked route turns green and every other route grey. It is drawn last, so it sits on top.
+  const sorted = [...routes.values()].sort((x,y)=> (x.key===S.route) - (y.key===S.route) || y.ls.length-x.ls.length);
   for (const r of sorted){
     if (r.origin === r.dest) continue;
+    const on = r.key === S.route, off = S.route && !on;
     const line = L.polyline(curve(ll(r.origin), ll(r.dest)), {
-      color:css(r.origin==='Hong Kong' ? '--hk' : '--yk'), weight:1.4 + Math.sqrt(r.ls.length)*1.5, opacity:.8, dashArray: r.inf ? '5 6' : null, lineCap:'round'
+      color: css(on ? '--sel' : off ? '--trace' : (r.origin==='Hong Kong' ? '--hk' : '--yk')),
+      weight: 1.4 + Math.sqrt(r.ls.length)*1.5 + (on ? 1.5 : 0), opacity: on ? 1 : off ? .4 : .8,
+      dashArray: r.inf ? '5 6' : null, lineCap:'round'
     }).addTo(routeLayer);
     line.bindTooltip(`${esc(r.origin)} → ${esc(P[r.dest].label)}: ${r.ls.length} letter${r.ls.length>1?'s':''}${r.inf?' (inferred)':''}`, {sticky:true});
-    line.on('click', e => L.popup().setLatLng(e.latlng).setContent(routePopup(r)).openOn(map));
+    line.on('click', e => selectRoute(r, e.latlng));
   }
   // destination nodes
   const byPlace = {}; cur.filter(shown).forEach(l => (byPlace[l.dest] ||= []).push(l));
@@ -351,6 +358,16 @@ function placePopup(name){
 }
 map.on('popupopen', e => e.popup.getElement().querySelectorAll('.lk').forEach(b => b.addEventListener('click', () => selectLetter(+b.dataset.n, true))));
 
+// Click a route: it turns green and its letters open in a popup. Closing the popup (×, Esc,
+// or a click anywhere else on the map) clears the highlight.
+function selectRoute(r, latlng){
+  S.route = r.key; render();
+  L.popup().setLatLng(latlng).setContent(routePopup(r))
+    // Wait until the click that closed the popup is finished: redrawing straight away would delete
+    // the route the user just clicked before it receives the click.
+    .on('remove', () => setTimeout(() => { if (S.route === r.key){ S.route = null; render(); } }))
+    .openOn(map);
+}
 function highlight(l, open){
   hiLayer.clearLayers();
   if (l.dest && l.origin !== l.dest){
