@@ -162,5 +162,6 @@ print(collections.Counter(L['recipient'] for L in letters).most_common(12))
 import os
 tpl = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'template.html')
 data = open(f'{outdir}/cartas_map_data.json', encoding='utf-8').read().replace('</', '<\\/')
-open(f'{outdir}/cartas_map.html', 'w', encoding='utf-8').write(open(tpl, encoding='utf-8').read().replace('__DATA__', data))
+world = open(os.path.join(os.path.dirname(tpl), 'countries-50m.json'), encoding='utf-8').read().replace('</', '<\\/')   # Natural Earth borders
+open(f'{outdir}/cartas_map.html', 'w', encoding='utf-8').write(open(tpl, encoding='utf-8').read().replace('__DATA__', data).replace('__WORLD__', world))
 print('wrote cartas_map.html')

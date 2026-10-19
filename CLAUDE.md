@@ -52,7 +52,7 @@ Mariano Ponce, *Cartas sobre la revolución, 1897-1900* (Manila: Bureau of Print
 | `Maponce_Data/corrected/` | Corrected data, the rules and logs behind every correction, and the scripts that rebuild it. See `README.md` there for conventions. |
 | `Maponce_Data/corrected/cartas_letters_revised.csv` | **The main table.** 244 rows, one per letter, with corrected names, places, dates and letter text. Use this for the map and for text analysis. |
 | `Maponce_Data/corrected/cartas_biographical.csv` | One row per letter with only sender, recipient, places and dates (no letter text). |
-| `Maponce_Data/map/` | Map builder: `build_data.py` and `template.html` (Leaflet 1.9.4). The outputs in this folder are from the older, uncorrected data. |
+| `Maponce_Data/map/` | Map builder: `build_data.py`, `template.html` (Leaflet 1.9.4) and `countries-50m.json` (Natural Earth country borders, embedded into the map at build time). The outputs in this folder are from the older, uncorrected data. |
 | `Maponce_Data/map_corrected/` | Current map built from the corrected table: `cartas_map.html`, `cartas_map_data.json`, `cartas_links.csv`. |
 | `Maponce_Data/word2vec_corrected/` | Word2Vec model trained on the corrected letter texts, its cleaned text and its training script. |
 | `Maponce_Data/similar_words.py` | Looks up the most similar words in the corrected model. |
@@ -93,6 +93,6 @@ To view the map, open `Maponce_Data/map_corrected/cartas_map.html` in a browser.
 - Make corrections by editing `corrected/rules.csv`, `corrected/manual_corrections.csv` or `corrected/names.csv` and rebuilding, not by editing the output CSVs. Every change must appear in a log.
 - Most letters were corrected by rules alone and spot-checked, so the data is not a verified edition. Check quotations against the page images.
 - The Word2Vec models strip accents and ñ, so query with `espana` and `revolucion`.
-- The map uses OpenStreetMap tiles by default. CARTO tiles are optional and need a free API key pasted into `CARTO_KEY` in `map/template.html`.
+- The map uses no tiles. It draws a flat world map (land, oceans, present-day borders, continent and ocean names). It scrolls sideways across exactly one world, with its edges at 31.5°W in the mid-Atlantic from `map/countries-50m.json` (Natural Earth 1:50m via world-atlas 2.0.2). The borders are modern, not those of 1897-1900.
 - The current map has one view. The six visualizations described above are not built yet.
 - Recipient biographies and theme assignments are the author's own research. Do not generate them.
