@@ -51,6 +51,15 @@ main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 360px}
 aside{min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--panel);border-left:1px solid var(--rule)}
 .reg-head{padding:12px 16px 8px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
 .reg-head h2{font:700 17px/1.2 var(--display);margin:0}
+.reg-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.reg-toggle{flex:none;width:26px;height:26px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--muted);font:600 16px/1 var(--ui);cursor:pointer;padding:0}
+.reg-toggle:hover{color:var(--ink);border-color:var(--muted)}
+/* Minimized: the list shrinks to a thin strip at the right edge and the map takes the space */
+main.reg-min{grid-template-columns:minmax(0,1fr) 44px}
+main.reg-min .reg-head{border-bottom:0;padding:10px 0;align-items:center;flex:1}
+main.reg-min .reg-title{flex-direction:column-reverse;gap:12px}
+main.reg-min .reg-head h2{writing-mode:vertical-rl;font-size:15px;white-space:nowrap}
+main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min #list{display:none}
 .reg-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-variant-numeric:tabular-nums}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--band);border:1px solid var(--rule);border-radius:999px;padding:1px 4px 1px 10px;font-size:13px;color:var(--ink)}
 .reg-head label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);font-size:13px;cursor:pointer}
@@ -116,6 +125,10 @@ aside{min-width:0;min-height:0;display:flex;flex-direction:column;background:var
   #map{height:58vh}
   aside{border-left:0;border-top:1px solid var(--rule)}
   #list{max-height:none;overflow:visible}
+  main.reg-min{grid-template-columns:1fr}
+  main.reg-min .reg-head{padding:12px 16px;align-items:stretch}
+  main.reg-min .reg-title{flex-direction:row}
+  main.reg-min .reg-head h2{writing-mode:horizontal-tb;font-size:17px}
   .legend{margin-left:0}
   h1{font-size:19px}
 }
@@ -138,7 +151,10 @@ aside{min-width:0;min-height:0;display:flex;flex-direction:column;background:var
   <div id="map" role="region" aria-label="Map of letters"></div>
   <aside>
     <div class="reg-head">
-      <h2>Letters in view</h2>
+      <div class="reg-title">
+        <h2>Letters in view</h2>
+        <button class="reg-toggle" id="regToggle" aria-expanded="true" aria-controls="list" title="Minimize the list of letters" aria-label="Minimize the list of letters">–</button>
+      </div>
       <div class="reg-meta"><span id="count"></span><span id="filter"></span></div>
       <label><input type="checkbox" id="inf" checked> Include inferred destinations</label>
     </div>
@@ -179,7 +195,8 @@ document.getElementById('stats').textContent =
 // routes can run east across the Pacific to the Americas. The edges fall in the mid-Atlantic, which
 // keeps the Azores, Iceland and Cabo Verde whole; only Greenland is split between the two edges.
 const WEST = -31.5, EAST = WEST + 360;
-const map = L.map('map', { worldCopyJump:false, zoomSnap:0.25, maxZoom:8, attributionControl:true,
+// zoomSnap:0 lets the map zoom to any level, so it can fit the world exactly to the window
+const map = L.map('map', { worldCopyJump:false, zoomSnap:0, maxZoom:8, attributionControl:true,
   maxBounds:[[-85, WEST], [85, EAST]], maxBoundsViscosity:1 });
 // never zoom out so far that the map is narrower than the window (which would show past the edges)
 const fitMinZoom = () => map.setMinZoom(Math.log2(map.getSize().x / 256) + 0.001);
@@ -263,10 +280,10 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
     <li><svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="9" r="3.5" style="fill:var(--node)"/><circle cx="21" cy="8" r="6.5" style="fill:var(--node)"/></svg>
       <span><b>Destination</b>, sized by letters <span class="act">· click: letters and recipients</span></span></li>
     <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: highlight it and see its letters</span></span></li>
-    <li>${ln('--sel',4)}<span><b>Green</b>: route you clicked; the others turn grey</span></li>
+    <li>${ln('--sel',4)}<span><b>Green</b>: route you clicked; the others turn grey and its letters are listed on the right</span></li>
     <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
     <li>${ln('--sun',4)}<span><b>Gold</b>: letter picked in the list</span></li>
-  </ul><div class="foot">Click a square or circle again to clear its filter. Click the map or close the popup to clear a green route.</div>`;
+  </ul><div class="foot">Click a square or circle again to clear its filter. Click the empty map or press Esc to clear a green route.</div>`;
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   return d;
 }});
@@ -282,12 +299,17 @@ function curve(a, b, bend=0.18, n=40){
   return pts;
 }
 // start with the whole world in view: all seven continents and the oceans
-map.fitBounds([[-80, WEST], [78, EAST]]);
+const WHOLE_WORLD = [[-80, WEST], [78, EAST]];
+map.fitBounds(WHOLE_WORLD);
 
 // ---------- selection ----------
 function shown(l){ return l.dest && (l.dest_kind !== 'inferred' || document.getElementById('inf').checked); }
+const routeKey = l => `${l.origin}|${l.dest}|${l.dest_kind==='inferred'?'i':'p'}`;
+// The list shows the letters of the clicked route, or of the clicked destination or base. Nothing is listed until one is clicked.
 function visibleLetters(){
-  return LET.filter(l => !S.place || l.dest === S.place || (S.place.startsWith('from:') && l.origin === S.place.slice(5)));
+  if (S.route) return LET.filter(l => routeKey(l) === S.route);
+  if (S.place) return LET.filter(l => l.dest === S.place || (S.place.startsWith('from:') && l.origin === S.place.slice(5)));
+  return [];
 }
 
 function render(){
@@ -295,7 +317,7 @@ function render(){
   const cur = LET;
   const routes = new Map();
   for (const l of cur.filter(shown)){
-    const k = `${l.origin}|${l.dest}|${l.dest_kind==='inferred'?'i':'p'}`;
+    const k = routeKey(l);
     (routes.get(k) || routes.set(k, {key:k, origin:l.origin, dest:l.dest, inf:l.dest_kind==='inferred', ls:[]}).get(k)).ls.push(l);
   }
   if (S.route && !routes.has(S.route)) S.route = null;   // e.g. its letters were hidden by a checkbox
@@ -307,7 +329,8 @@ function render(){
     const line = L.polyline(curve(ll(r.origin), ll(r.dest)), {
       color: css(on ? '--sel' : off ? '--trace' : (r.origin==='Hong Kong' ? '--hk' : '--yk')),
       weight: 1.4 + Math.sqrt(r.ls.length)*1.5 + (on ? 1.5 : 0), opacity: on ? 1 : off ? .4 : .8,
-      dashArray: r.inf ? '5 6' : null, lineCap:'round'
+      dashArray: r.inf ? '5 6' : null, lineCap:'round',
+      bubblingMouseEvents:false   // a click on a route should not also count as a click on the empty map
     }).addTo(routeLayer);
     line.bindTooltip(`${esc(r.origin)} → ${esc(P[r.dest].label)}: ${r.ls.length} letter${r.ls.length>1?'s':''}${r.inf?' (inferred)':''}`, {sticky:true});
     line.on('click', e => selectRoute(r, e.latlng));
@@ -362,13 +385,14 @@ map.on('popupopen', e => e.popup.getElement().querySelectorAll('.lk').forEach(b 
 // Click a route: it turns green and its letters open in a popup. Closing the popup (×, Esc,
 // or a click anywhere else on the map) clears the highlight.
 function selectRoute(r, latlng){
-  S.route = r.key; render();
-  L.popup().setLatLng(latlng).setContent(routePopup(r))
-    // Wait until the click that closed the popup is finished: redrawing straight away would delete
-    // the route the user just clicked before it receives the click.
-    .on('remove', () => setTimeout(() => { if (S.route === r.key){ S.route = null; render(); } }))
-    .openOn(map);
+  S.route = r.key; S.place = null; render();
+  L.popup().setLatLng(latlng).setContent(routePopup(r)).openOn(map);
 }
+// The route stays selected while its letters are opened from the list. It is cleared by a click
+// on the empty map, the Esc key, or the × next to the route's name in the list.
+function clearRoute(){ if (S.route){ S.route = null; map.closePopup(); render(); } }
+map.on('click', clearRoute);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') clearRoute(); });
 function highlight(l, open){
   hiLayer.clearLayers();
   if (l.dest && l.origin !== l.dest){
@@ -385,22 +409,43 @@ function selectLetter(n, open){
 // ---------- register ----------
 function renderList(){
   const ls = visibleLetters().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:a.n-b.n);
-  document.getElementById('count').textContent = `${ls.length} letter${ls.length===1?'':'s'}`;
+  document.getElementById('count').textContent = (S.route || S.place) ? `${ls.length} letter${ls.length===1?'':'s'}` : '';
   const f = document.getElementById('filter');
-  f.innerHTML = S.place ? `<span class="chip">${S.place.startsWith('from:')?'sent from '+esc(S.place.slice(5)):'to '+esc(P[S.place].label)}<button aria-label="Clear place filter">×</button></span>` : '';
-  if (S.place) f.querySelector('button').onclick = () => setPlace(null);
+  if (S.route){
+    const [o, d, kind] = S.route.split('|');
+    f.innerHTML = `<span class="chip">${esc(o)} → ${esc(P[d].label)}${kind==='i'?' (inferred)':''}<button aria-label="Clear route">×</button></span>`;
+    f.querySelector('button').onclick = clearRoute;
+  } else {
+    f.innerHTML = S.place ? `<span class="chip">${S.place.startsWith('from:')?'sent from '+esc(S.place.slice(5)):'to '+esc(P[S.place].label)}<button aria-label="Clear place filter">×</button></span>` : '';
+    if (S.place) f.querySelector('button').onclick = () => setPlace(null);
+  }
   const ul = document.getElementById('list');
   ul.innerHTML = ls.length ? ls.map(l => `<li data-n="${l.n}" class="${S.sel&&S.sel.n===l.n?'on':''}"><button>
       <span class="no">${l.n}<small>${l.date.slice(0,4)}</small></span>
       <span class="who">${esc(l.recipient)}</span>
       <span class="where"><span class="o ${oKey(l.origin)}">${esc(l.origin)}</span> → ${l.dest?esc(P[l.dest].label):'place unknown'}${l.dest_kind==='inferred'?'<span class="tag">inferred</span>':''}${l.dest_kind==='unlocated'?'<span class="tag">unplaced</span>':''} · ${fmtDate(l.date)}</span>
       ${l.summary?`<span class="sum">${esc(l.summary)}</span>`:'<span></span>'}
-    </button></li>`).join('') : '<li class="empty">No letters.</li>';
+    </button></li>`).join('')
+    : (S.route || S.place) ? '<li class="empty">No letters.</li>'
+    : '<li class="empty">Click a route on the map to see its letters here. You can also click a destination circle, or one of Ponce\'s bases for every letter sent from there.</li>';
   ul.querySelectorAll('li[data-n] button').forEach(b => b.onclick = () => selectLetter(+b.parentElement.dataset.n, true));
 }
-function setPlace(p){ S.place = p; renderList(); render(); }
+function setPlace(p){ S.place = p; S.route = null; render(); }
 
 document.getElementById('inf').onchange = render;
+
+// ---------- minimize / maximize the list of letters ----------
+const regToggle = document.getElementById('regToggle'), mainEl = document.querySelector('main');
+regToggle.onclick = () => {
+  const wasWholeWorld = map.getZoom() <= map.getMinZoom() + 0.01;
+  const min = mainEl.classList.toggle('reg-min');
+  const label = min ? 'Show the list of letters' : 'Minimize the list of letters';
+  regToggle.textContent = min ? '+' : '–';
+  regToggle.setAttribute('aria-expanded', String(!min));
+  regToggle.title = label; regToggle.setAttribute('aria-label', label);
+  map.invalidateSize();   // the map is now wider or narrower; this also updates the zoom-out limit
+  if (wasWholeWorld) map.fitBounds(WHOLE_WORLD, {animate:false});   // keep showing the whole world
+};
 render();
 })();
 </script>
