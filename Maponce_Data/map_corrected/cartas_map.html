@@ -16,6 +16,7 @@
   --yk:#1f4f9a;      /* letters sent from Yokohama   */
   --sun:#c8961a;     /* selection highlight          */
   --sel:#1f8a4c;     /* clicked route                */
+  --star:#f5c518; --star-edge:#6b5300;   /* destination stars */
   --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
   --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
   --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
@@ -24,11 +25,11 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
-  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -107,9 +108,18 @@ main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min #list{display
 .plabel{background:none;border:0;box-shadow:none;padding:0;color:var(--ink);font:600 12px var(--ui);text-shadow:0 0 3px var(--paper),0 0 3px var(--paper),0 0 2px var(--paper)}
 .plabel::before{display:none}
 .plabel.origin{font:700 14px var(--display)}
-.osq{width:14px;height:14px;border:2px solid var(--panel);box-shadow:0 0 0 1px var(--ink)}
-.osq.hk{background:var(--hk)} .osq.yk{background:var(--yk)}
-.osq.away{opacity:.35}
+/* Destination stars */
+.dest-star svg{display:block;overflow:visible}
+.dest-star polygon{fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.dest-star.on polygon{stroke-width:2.5px}
+.dest-star:focus-visible{outline:2px solid var(--sun);outline-offset:2px;border-radius:50%}
+/* Ponce's bases: red triangle = Hong Kong, blue triangle = Yokohama */
+.base-tri svg{display:block;overflow:visible}
+.base-tri .halo{fill:none;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.base-tri .tri{stroke:var(--ink);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.base-tri.hk .tri{fill:var(--hk)} .base-tri.yk .tri{fill:var(--yk)}
+.base-tri.away{opacity:.35}
+.base-tri:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
 .pop h3{font:700 16px/1.2 var(--display);margin:0 0 4px}
 .pop .meta{color:var(--muted);margin-bottom:6px}
 .pop .sum{-webkit-line-clamp:unset;display:block;margin:6px 0;color:var(--ink)}
@@ -268,6 +278,24 @@ function drawBase(){
 drawBase(); dark.addEventListener('change', () => { drawBase(); render(); });
 
 
+// ---------- destination stars ----------
+// A five-pointed star, point up, drawn in a box from -1 to 1
+const STAR_PTS = Array.from({length:10}, (_, i) => {
+  const a = Math.PI/2 + i*Math.PI/5, r = i % 2 ? 0.45 : 1;
+  return `${(r*Math.cos(a)).toFixed(3)},${(-r*Math.sin(a)).toFixed(3)}`;
+}).join(' ');
+// An equilateral triangle, point up, centred on the place
+const TRI_PTS = '0,-1 0.866,0.5 -0.866,0.5';
+function baseIcon(origin, here){
+  const size = 28;   // big enough to stand out from the destination star at the same place
+  return L.divIcon({ className: `base-tri ${oKey(origin)}${here ? '' : ' away'}`, iconSize:[size, size], iconAnchor:[size/2, size/2],
+    html: `<svg viewBox="-1.1 -1.1 2.2 2.2" width="${size}" height="${size}" aria-hidden="true"><polygon class="halo" points="${TRI_PTS}"/><polygon class="tri" points="${TRI_PTS}"/></svg>` });
+}
+function starIcon(size, on){
+  return L.divIcon({ className: 'dest-star' + (on ? ' on' : ''), iconSize:[size, size], iconAnchor:[size/2, size/2], tooltipAnchor:[size/2, 0],
+    html: `<svg viewBox="-1.1 -1.1 2.2 2.2" width="${size}" height="${size}" aria-hidden="true"><polygon points="${STAR_PTS}"/></svg>` });
+}
+
 // ---------- map key ----------
 const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
   const d = L.DomUtil.create('details','map-key');
@@ -275,15 +303,15 @@ const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
   const sq = c => `<svg viewBox="0 0 30 16" aria-hidden="true"><rect x="9" y="1" width="13" height="13" style="fill:var(${c});stroke:var(--panel);stroke-width:2"/><rect x="9" y="1" width="13" height="13" style="fill:none;stroke:var(--ink);stroke-width:.8"/></svg>`;
   const ln = (c,w,dash,o=1) => `<svg viewBox="0 0 30 16" aria-hidden="true"><path d="M2 12 Q15 2 28 10" style="fill:none;stroke:var(${c});stroke-width:${w};stroke-linecap:round;opacity:${o}" ${dash?'stroke-dasharray="4 4"':''}/></svg>`;
   d.innerHTML = `<summary>Map key</summary><ul>
-    <li><svg viewBox="0 0 30 16" aria-hidden="true"><rect x="1" y="2" width="11" height="11" style="fill:var(--hk);stroke:var(--ink);stroke-width:.8"/><rect x="17" y="2" width="11" height="11" style="fill:var(--yk);stroke:var(--ink);stroke-width:.8"/></svg>
-      <span><b>Ponce's base</b> <span class="act">· click: letters sent from here</span></span></li>
-    <li><svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="9" r="3.5" style="fill:var(--node)"/><circle cx="21" cy="8" r="6.5" style="fill:var(--node)"/></svg>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${TRI_PTS}" transform="translate(7 9) scale(7)" style="fill:var(--hk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${TRI_PTS}" transform="translate(22 9) scale(7)" style="fill:var(--yk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
+      <span><b>Ponce's base</b>: red = Hong Kong, blue = Yokohama <span class="act">· click: letters sent from here</span></span></li>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${STAR_PTS}" transform="translate(7 9) scale(4.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${STAR_PTS}" transform="translate(21 8) scale(7.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
       <span><b>Destination</b>, sized by letters <span class="act">· click: letters and recipients</span></span></li>
     <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: highlight it and see its letters</span></span></li>
     <li>${ln('--sel',4)}<span><b>Green</b>: route you clicked; the others turn grey and its letters are listed on the right</span></li>
     <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
     <li>${ln('--sun',4)}<span><b>Gold</b>: letter picked in the list</span></li>
-  </ul><div class="foot">Click a square or circle again to clear its filter. Click the empty map or press Esc to clear a green route.</div>`;
+  </ul><div class="foot">Click a triangle or star again to clear its filter. Click the empty map or press Esc to clear a green route.</div>`;
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   return d;
 }});
@@ -339,16 +367,18 @@ function render(){
   const byPlace = {}; cur.filter(shown).forEach(l => (byPlace[l.dest] ||= []).push(l));
   const origins = new Set(cur.map(l=>l.origin));
   for (const [name, ls] of Object.entries(byPlace)){
-    const m = L.circleMarker(ll(name), { radius: 3 + Math.sqrt(ls.length)*2.2, color:css('--panel'), weight:1.5,
-      fillColor: css('--node'), fillOpacity: S.place===name ? 1 : .85 }).addTo(nodeLayer);
-    m.bindTooltip(`${esc(P[name].label)} <span style="opacity:.7">${ls.length}</span>`, {permanent:true, direction:'right', offset:[6,0], className:'plabel'});
+    // a yellow star, larger for more letters (about the size the old circles were)
+    const size = Math.round(2.6 * (3 + Math.sqrt(ls.length)*2.2));
+    const m = L.marker(ll(name), { icon: starIcon(size, S.place===name), title:`${P[name].label}: ${ls.length} letter${ls.length>1?'s':''}`,
+      riseOnHover:true }).addTo(nodeLayer);
+    m.bindTooltip(`${esc(P[name].label)} <span style="opacity:.7">${ls.length}</span>`, {permanent:true, direction:'right', offset:[2,0], className:'plabel'});
     m.on('click', () => { setPlace(S.place===name ? null : name); placePopup(name); });
   }
   // Ponce's two bases
   for (const o of ['Hong Kong','Yokohama']){
     const here = origins.has(o);
-    const mk = L.marker(ll(o), { icon: L.divIcon({className:'', html:`<div class="osq ${oKey(o)} ${here?'':'away'}"></div>`, iconSize:[14,14], iconAnchor:[7,7]}), zIndexOffset:1000, keyboard:true, title:`Ponce in ${o}` }).addTo(nodeLayer);
-    mk.bindTooltip(`Ponce · ${o}`, {permanent:true, direction:'left', offset:[-8,0], className:'plabel origin'});
+    const mk = L.marker(ll(o), { icon: baseIcon(o, here), zIndexOffset:1000, keyboard:true, title:`Ponce in ${o}` }).addTo(nodeLayer);
+    mk.bindTooltip(`Ponce · ${o}`, {permanent:true, direction:'left', offset:[-10,0], className:'plabel origin'});
     mk.on('click', () => setPlace(S.place===`from:${o}` ? null : `from:${o}`));
   }
   if (S.sel) highlight(S.sel, false);
@@ -427,7 +457,7 @@ function renderList(){
       ${l.summary?`<span class="sum">${esc(l.summary)}</span>`:'<span></span>'}
     </button></li>`).join('')
     : (S.route || S.place) ? '<li class="empty">No letters.</li>'
-    : '<li class="empty">Click a route on the map to see its letters here. You can also click a destination circle, or one of Ponce\'s bases for every letter sent from there.</li>';
+    : '<li class="empty">Click a route on the map to see its letters here. You can also click a destination star, or one of Ponce\'s bases for every letter sent from there.</li>';
   ul.querySelectorAll('li[data-n] button').forEach(b => b.onclick = () => selectLetter(+b.parentElement.dataset.n, true));
 }
 function setPlace(p){ S.place = p; S.route = null; render(); }
