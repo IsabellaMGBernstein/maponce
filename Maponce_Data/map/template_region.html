@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapping Maponce · __REGION_TITLE__</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Archivo+Narrow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one-screen instrument. Header strip, map + letter register side by side, statistics bar along the foot.
+   One regional map per entry in REGIONS in build_data.py; this page shows only letters to __REGION_NAME__. */
+:root{
+  --paper:#eef1f3; --panel:#f8f9fa; --ink:#1c2430; --muted:#5b6675; --rule:#cfd5dc;
+  --hk:#b3262e;      /* letters sent from Hong Kong  */
+  --yk:#1f4f9a;      /* letters sent from Yokohama   */
+  --sun:#c8961a;     /* selection highlight          */
+  --sel:#1f8a4c;     /* clicked route                */
+  --star:#f5c518; --star-edge:#6b5300;   /* destination stars */
+  --y1:#c3773e; --y2:#a65c20; --y3:#854408; --y4:#633002;      /* years 1897-1900, light to dark (sepia; same on every map) */
+  --node:#2b3440; --trace:#8f99a6; --band:#e2e6ea;
+  --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
+  --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
+  --ui:"Archivo Narrow", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --y1:#a5612e; --y2:#ca7d44; --y3:#e3a072; --y4:#f6c6a6; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e;
+  --hk:#e0545b; --yk:#6f9be0; --sun:#e5b43c; --sel:#4cc47e; --star:#ffd23f; --star-edge:#2a2100; --y1:#a5612e; --y2:#ca7d44; --y3:#e3a072; --y4:#f6c6a6; --node:#d5dbe1; --trace:#5d6774; --band:#232a33;
+  --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:15px/1.4 var(--ui);display:flex;flex-direction:column;overflow:hidden}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;padding:12px 18px 10px;border-bottom:1px solid var(--rule)}
+h1{font:700 22px/1.1 var(--display);margin:0;text-wrap:balance}
+h1 em{font-weight:400}
+.sub{color:var(--muted);font-size:14px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-left:auto;font-size:13px;color:var(--muted);align-items:center}
+.key{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:3px solid currentColor;display:inline-block}
+.sw.dash{border-top-style:dashed}
+
+main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 360px}
+#map{min-height:0;background:var(--ocean)}
+aside{min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--panel);border-left:1px solid var(--rule)}
+.reg-head{padding:12px 16px 8px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+.reg-head h2{font:700 17px/1.2 var(--display);margin:0}
+.reg-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.reg-toggle{flex:none;width:26px;height:26px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--muted);font:600 16px/1 var(--ui);cursor:pointer;padding:0}
+.reg-toggle:hover{color:var(--ink);border-color:var(--muted)}
+/* Minimized: the list shrinks to a thin strip at the right edge and the map takes the space */
+main.reg-min{grid-template-columns:minmax(0,1fr) 44px}
+main.reg-min .reg-head{border-bottom:0;padding:10px 0;align-items:center;flex:1}
+main.reg-min .reg-title{flex-direction:column-reverse;gap:12px}
+main.reg-min .reg-head h2{writing-mode:vertical-rl;font-size:15px;white-space:nowrap}
+main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min #list{display:none}
+.reg-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--band);border:1px solid var(--rule);border-radius:999px;padding:1px 4px 1px 10px;font-size:13px;color:var(--ink)}
+.reg-head label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);font-size:13px;cursor:pointer}
+.chip button{border:0;background:none;cursor:pointer;padding:0 6px;font-size:15px;line-height:1;color:var(--muted)}
+#list{list-style:none;margin:0;padding:0;overflow-y:auto;flex:1}
+#list li{border-bottom:1px solid var(--rule)}
+#list button{all:unset;display:grid;grid-template-columns:44px 1fr;gap:2px 10px;padding:9px 16px;cursor:pointer;width:100%;box-sizing:border-box}
+#list button:hover{background:var(--band)}
+#list button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+#list li.on button{background:var(--band);box-shadow:inset 3px 0 0 var(--sun)}
+.no{font:700 15px/1.2 var(--display);grid-row:span 3;padding-top:1px}
+.no small{display:block;font:500 11px var(--ui);color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.who{font-weight:600}
+.where{font-size:13px;color:var(--muted)}
+.where .o{font-weight:600}
+.o.hk{color:var(--hk)} .o.yk{color:var(--yk)}
+.tag{font-size:11px;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--rule);border-radius:3px;padding:0 4px;margin-left:4px;color:var(--muted)}
+.sum{font:italic 14px/1.35 var(--display);color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:20px 16px;color:var(--muted)}
+
+/* Map key (bottom-left control) */
+.map-key{background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 8px rgb(0 0 0 / .18);width:250px;font:12px/1.3 var(--ui);margin-bottom:14px!important}
+.map-key summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font:700 14px var(--display)}
+.map-key summary::-webkit-details-marker{display:none}
+.map-key summary::after{content:"–";font:600 15px var(--ui);color:var(--muted)}
+.map-key:not([open]) summary::after{content:"+"}
+.map-key ul{list-style:none;margin:0;padding:2px 10px 8px;display:grid;gap:5px;border-top:1px solid var(--rule);padding-top:8px}
+.map-key li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:center}
+.map-key svg{width:30px;height:16px;display:block;margin-top:1px}
+.map-key b{font-weight:600}
+.map-key .act{color:var(--muted)}
+.map-key .foot{padding:6px 10px 8px;border-top:1px solid var(--rule);color:var(--muted)}
+/* Leaflet skinning */
+.leaflet-container{font:13px/1.35 var(--ui);background:var(--ocean)}
+/* Continent and ocean names */
+.geo{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none}
+.geo.continent{font:600 12px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);opacity:.8}
+.geo.ocean{font:italic 15px var(--display);letter-spacing:.1em;color:var(--ocean-ink)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);border-radius:6px;box-shadow:0 2px 14px rgb(0 0 0 / .25)}
+.leaflet-popup-content{margin:12px 14px;max-height:340px;overflow:auto}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-bar a{background:var(--panel);color:var(--ink);border-bottom-color:var(--rule)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 80%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--muted)}
+.plabel{background:none;border:0;box-shadow:none;padding:0;color:var(--ink);font:600 12px var(--ui);text-shadow:0 0 3px var(--paper),0 0 3px var(--paper),0 0 2px var(--paper)}
+.plabel::before{display:none}
+.plabel.origin{font:700 14px var(--display)}
+/* Destination stars */
+.dest-star svg{display:block;overflow:visible}
+.dest-star polygon{fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.dest-star.on polygon{stroke-width:2.5px}
+.dest-star:focus-visible{outline:2px solid var(--sun);outline-offset:2px;border-radius:50%}
+/* Ponce's bases: red triangle = Hong Kong, blue triangle = Yokohama */
+.base-tri svg{display:block;overflow:visible}
+.base-tri .halo{fill:none;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.base-tri .tri{stroke:var(--ink);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.base-tri.hk .tri{fill:var(--hk)} .base-tri.yk .tri{fill:var(--yk)}
+.base-tri.away{opacity:.35}
+.base-tri:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.pop h3{font:700 16px/1.2 var(--display);margin:0 0 4px}
+.pop .meta{color:var(--muted);margin-bottom:6px}
+.pop .sum{-webkit-line-clamp:unset;display:block;margin:6px 0;color:var(--ink)}
+.pop dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:6px 0 0;font-size:12px}
+.pop dt{color:var(--muted)} .pop dd{margin:0}
+.pop ul{margin:4px 0 0;padding-left:16px}
+.pop li{margin:2px 0}
+.pop .lk{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+
+@media (max-width:800px){
+  body{overflow:auto;height:auto}
+  main{grid-template-columns:1fr;flex:none}
+  #map{height:58vh}
+  aside{border-left:0;border-top:1px solid var(--rule)}
+  #list{max-height:none;overflow:visible}
+  main.reg-min{grid-template-columns:1fr}
+  main.reg-min .reg-head{padding:12px 16px;align-items:stretch}
+  main.reg-min .reg-title{flex-direction:row}
+  main.reg-min .reg-head h2{writing-mode:horizontal-tb;font-size:17px}
+  .legend{margin-left:0}
+  h1{font-size:19px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+/* Switch between the map pages */
+.views{display:inline-flex;gap:2px;border:1px solid var(--rule);border-radius:6px;padding:2px;align-self:center}
+.views a{padding:2px 10px;border-radius:4px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:600}
+.views a:hover{color:var(--ink);background:var(--band)}
+.views a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+/* Region / whole-route switch (top right of the map) */
+.view-switch{display:flex;gap:2px;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:2px;box-shadow:0 1px 8px rgb(0 0 0 / .18)}
+.view-switch button{border:0;background:none;border-radius:4px;padding:3px 10px;cursor:pointer;font:600 12px var(--ui);color:var(--muted)}
+.view-switch button:hover{color:var(--ink);background:var(--band)}
+.view-switch button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+/* Statistics bar along the foot */
+.statbar{flex:none;display:grid;grid-template-columns:minmax(170px,.9fr) repeat(4,minmax(170px,1fr));border-top:1px solid var(--rule);background:var(--panel);overflow-x:auto}
+.tile{padding:10px 16px 12px;border-right:1px solid var(--rule);min-width:0}
+.tile:last-child{border-right:0}
+.tile h3{font:600 11px var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.tile .big{font:700 34px/1 var(--display);font-variant-numeric:lining-nums}
+.tile .small{font-size:12px;color:var(--muted);margin-top:4px}
+.brow{display:grid;grid-template-columns:minmax(0,auto) 1fr 2.2em;gap:3px 8px;align-items:center;font-size:12px;font-variant-numeric:tabular-nums}
+.brow .lab{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:11em}
+.brow .bar{height:7px;background:var(--band);border-radius:4px;overflow:hidden;min-width:30px}
+.brow .bar i{display:block;height:100%;background:var(--c);border-radius:0 4px 4px 0}
+.brow .v{text-align:right}
+.who-mini{list-style:none;margin:0;padding:0;max-height:92px;overflow-y:auto;font-size:12px}
+.who-mini button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;justify-content:space-between;gap:8px;padding:1px 4px;border-radius:3px}
+.who-mini button:hover{background:var(--band)}
+.who-mini button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+.who-mini button[aria-pressed="true"]{background:var(--band);box-shadow:inset 3px 0 0 var(--sel);font-weight:600}
+.who-mini .v{color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:800px){ .statbar{grid-template-columns:1fr 1fr;overflow:visible} .tile{border-bottom:1px solid var(--rule)} }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
+  __NAV__
+  <span class="sub" id="stats"></span>
+  <div class="legend" aria-label="Legend">
+    <span class="key" style="color:var(--hk)"><span class="sw"></span>sent from Hong Kong</span>
+    <span class="key" style="color:var(--yk)"><span class="sw"></span>sent from Yokohama</span>
+    <span class="key"><span class="sw dash"></span>destination inferred</span>
+    <span class="key">line width = number of letters</span>
+  </div>
+</header>
+
+<main>
+  <div id="map" role="region" aria-label="Map of letters"></div>
+  <aside>
+    <div class="reg-head">
+      <div class="reg-title">
+        <h2>Letters in view</h2>
+        <button class="reg-toggle" id="regToggle" aria-expanded="true" aria-controls="list" title="Minimize the list of letters" aria-label="Minimize the list of letters">–</button>
+      </div>
+      <div class="reg-meta"><span id="count"></span><span id="filter"></span></div>
+      <label><input type="checkbox" id="inf" checked> Include inferred destinations</label>
+    </div>
+    <ul id="list"></ul>
+  </aside>
+</main>
+
+<section class="statbar" id="statbar" aria-label="Statistics: letters to __REGION_NAME__"></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script id="world" type="application/json">__WORLD__</script>
+<script id="data" type="application/json">__DATA__</script>
+<script id="region" type="application/json">__REGION__</script>
+<script>
+// ===== Background map ========================================================
+// A flat (two-dimensional) map of land, oceans and present-day country borders
+// from Natural Earth (1:50m, via world-atlas: map/countries-50m.json), drawn in
+// the page itself. No map tiles, no API key. The borders are modern, not 1897-1900.
+// =============================================================================
+(function(){
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const REGION = JSON.parse(document.getElementById('region').textContent);   // destinations covered, with their country in the 1890s
+const P = DATA.places, ALL = DATA.letters;
+const LET = ALL.filter(l => l.dest && REGION.places[l.dest]);              // only letters sent to this region
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MES = ['enero','feb.','marzo','abril','mayo','junio','julio','agosto','sept.','oct.','nov.','dic.'];
+const fmtDate = s => { const [y,m,d] = s.split('-').map(Number); return `${d} ${MON[m-1]} ${y}`; };
+const oKey = o => o === 'Hong Kong' ? 'hk' : 'yk';
+const shiftLon = lon => lon < -30 ? lon + 360 : lon;   // put the Americas east of Asia (trans-Pacific mail)
+const ll = name => [P[name].lat, shiftLon(P[name].lon)];
+
+const S = { place:null, sel:null, route:null, who:null };
+
+document.getElementById('stats').textContent =
+  `${LET.length} letters to ${REGION.name} · ${new Set(LET.map(l=>l.recipient)).size} correspondents · ${new Set(LET.map(l=>l.dest)).size} destinations`;
+
+// ---------- map ----------
+// The map scrolls sideways across exactly one world, from 31.5°W eastward to 31.5°W again, so the
+// routes can run east across the Pacific to the Americas. The edges fall in the mid-Atlantic, which
+// keeps the Azores, Iceland and Cabo Verde whole; only Greenland is split between the two edges.
+const WEST = -31.5, EAST = WEST + 360;
+// zoomSnap:0 lets the map zoom to any level, so it can fit the world exactly to the window
+const map = L.map('map', { worldCopyJump:false, zoomSnap:0, maxZoom:8, attributionControl:true,
+  maxBounds:[[-85, WEST], [85, EAST]], maxBoundsViscosity:1 });
+// never zoom out so far that the map is narrower than the window (which would show past the edges)
+const fitMinZoom = () => map.setMinZoom(Math.log2(map.getSize().x / 256) + 0.001);
+fitMinZoom(); map.on('resize', fitMinZoom);
+map.attributionControl.addAttribution('Borders: <a href="https://www.naturalearthdata.com">Natural Earth</a> · Data: Ponce, <i>Cartas sobre la revolución</i> (1932)');
+const dark = matchMedia('(prefers-color-scheme: dark)');
+
+const WORLD = JSON.parse(document.getElementById('world').textContent);
+// The border data is made for a globe. On a flat map, Russia and Fiji (which cross the
+// 180° meridian) and Antarctica (which surrounds the South Pole) need their outlines repaired.
+function fixRing(ring){
+  const out = [ring[0].slice()];
+  for (const [x0, y] of ring.slice(1)){            // keep longitudes continuous: no jump from 180° to -180°
+    const prev = out[out.length-1][0]; let x = x0;
+    while (x - prev > 180) x -= 360;
+    while (x - prev < -180) x += 360;
+    out.push([x, y]);
+  }
+  const first = out[0][0], last = out[out.length-1][0];
+  if (Math.abs(last - first) > 180) out.push([last, -90], [first, -90]);   // Antarctica: close the ring at the South Pole
+  return out;
+}
+const isPoleSliver = ring => ring.every(([, y]) => y <= -89.9);
+const fixPolygon = rings => rings.filter(r => !isPoleSliver(r)).map(fixRing);
+const COUNTRIES = topojson.feature(WORLD, WORLD.objects.countries);
+for (const f of COUNTRIES.features){
+  const g = f.geometry; if (!g) continue;
+  if (g.type === 'Polygon') g.coordinates = fixPolygon(g.coordinates);
+  if (g.type === 'MultiPolygon') g.coordinates = g.coordinates.map(fixPolygon).filter(r => r.length);
+}
+const BORDERS = topojson.mesh(WORLD, WORLD.objects.countries, (a, b) => a !== b);   // shared borders only
+// Coastlines, minus the cuts along the 180° meridian and the South Pole, which are not real coast
+const onCut = ([x, y]) => Math.abs(x) >= 179.99 || y <= -89.9;
+const isCut = (a, b) => Math.abs(a[0] - b[0]) > 180 || (onCut(a) && onCut(b));
+const COAST = { type:'MultiLineString', coordinates: topojson.mesh(WORLD, WORLD.objects.land).coordinates.flatMap(line => {
+  const out = []; let cur = [line[0]];
+  for (const pt of line.slice(1)){
+    if (isCut(cur[cur.length-1], pt)){ if (cur.length > 1) out.push(cur); cur = [pt]; }
+    else cur.push(pt);
+  }
+  if (cur.length > 1) out.push(cur);
+  return out;
+}) };
+const GEO_LABELS = [
+  ['continent','North America', 47,-102], ['continent','South America',-14,-58], ['continent','Europe',  57, 28],
+  ['continent','Africa',          6,  20], ['continent','Asia',          48, 92], ['continent','Australia',-24,134],
+  ['continent','Antarctica',    -75, 100],
+  ['ocean','Pacific Ocean',  12,-152], ['ocean','Pacific Ocean', -32,-120], ['ocean','Atlantic Ocean', 22,-52],
+  ['ocean','Indian Ocean',  -22,  78], ['ocean','Arctic Ocean',   75,172],
+  ['ocean','Southern Ocean',-58, 100],
+];
+map.createPane('base').style.zIndex = 200;
+const labelPane = map.createPane('geoLabels'); labelPane.style.zIndex = 350; labelPane.style.pointerEvents = 'none';
+const baseRenderer = L.canvas({ pane:'base', padding:0.5 });
+const baseLayer = L.layerGroup().addTo(map);
+function drawBase(){
+  baseLayer.clearLayers();
+  // two copies of the world (the second shifted 360° east) fill the span from WEST to EAST
+  for (const off of [0, 360]){
+    const opt = { pane:'base', renderer:baseRenderer, interactive:false, coordsToLatLng: c => L.latLng(c[1], c[0] + off) };
+    L.geoJSON(COUNTRIES, { ...opt, style:{ stroke:false, fillColor:css('--land'), fillOpacity:1 } }).addTo(baseLayer);
+    L.geoJSON(COAST,     { ...opt, style:{ color:css('--coast'),  weight:0.8, fill:false } }).addTo(baseLayer);
+    L.geoJSON(BORDERS,   { ...opt, style:{ color:css('--border'), weight:0.7, fill:false } }).addTo(baseLayer);
+    for (const [kind, name, lat, lon] of GEO_LABELS)
+      L.marker([lat, lon + off], { pane:'geoLabels', interactive:false, keyboard:false,
+        icon: L.divIcon({ className:'', iconSize:[0,0], html:`<span class="geo ${kind}">${name}</span>` }) }).addTo(baseLayer);
+  }
+}
+drawBase(); dark.addEventListener('change', () => { drawBase(); render(); });
+
+
+// ---------- destination stars ----------
+// A five-pointed star, point up, drawn in a box from -1 to 1
+const STAR_PTS = Array.from({length:10}, (_, i) => {
+  const a = Math.PI/2 + i*Math.PI/5, r = i % 2 ? 0.45 : 1;
+  return `${(r*Math.cos(a)).toFixed(3)},${(-r*Math.sin(a)).toFixed(3)}`;
+}).join(' ');
+// An equilateral triangle, point up, centred on the place
+const TRI_PTS = '0,-1 0.866,0.5 -0.866,0.5';
+function baseIcon(origin, here){
+  const size = 28;   // big enough to stand out from the destination star at the same place
+  return L.divIcon({ className: `base-tri ${oKey(origin)}${here ? '' : ' away'}`, iconSize:[size, size], iconAnchor:[size/2, size/2],
+    html: `<svg viewBox="-1.1 -1.1 2.2 2.2" width="${size}" height="${size}" aria-hidden="true"><polygon class="halo" points="${TRI_PTS}"/><polygon class="tri" points="${TRI_PTS}"/></svg>` });
+}
+function starIcon(size, on){
+  return L.divIcon({ className: 'dest-star' + (on ? ' on' : ''), iconSize:[size, size], iconAnchor:[size/2, size/2], tooltipAnchor:[size/2, 0],
+    html: `<svg viewBox="-1.1 -1.1 2.2 2.2" width="${size}" height="${size}" aria-hidden="true"><polygon points="${STAR_PTS}"/></svg>` });
+}
+
+// ---------- map key ----------
+const KeyCtl = L.Control.extend({ options:{position:'bottomleft'}, onAdd(){
+  const d = L.DomUtil.create('details','map-key');
+  if (innerWidth > 800) d.open = true;
+  const sq = c => `<svg viewBox="0 0 30 16" aria-hidden="true"><rect x="9" y="1" width="13" height="13" style="fill:var(${c});stroke:var(--panel);stroke-width:2"/><rect x="9" y="1" width="13" height="13" style="fill:none;stroke:var(--ink);stroke-width:.8"/></svg>`;
+  const ln = (c,w,dash,o=1) => `<svg viewBox="0 0 30 16" aria-hidden="true"><path d="M2 12 Q15 2 28 10" style="fill:none;stroke:var(${c});stroke-width:${w};stroke-linecap:round;opacity:${o}" ${dash?'stroke-dasharray="4 4"':''}/></svg>`;
+  d.innerHTML = `<summary>Map Key</summary><ul>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${TRI_PTS}" transform="translate(7 9) scale(7)" style="fill:var(--hk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${TRI_PTS}" transform="translate(22 9) scale(7)" style="fill:var(--yk);stroke:var(--ink);stroke-width:.8px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
+      <span><b>Ponce's base</b>: red = Hong Kong, blue = Yokohama <span class="act">· click: letters sent from here</span></span></li>
+    <li><svg viewBox="0 0 30 16" aria-hidden="true" style="overflow:visible"><polygon points="${STAR_PTS}" transform="translate(7 9) scale(4.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/><polygon points="${STAR_PTS}" transform="translate(21 8) scale(7.5)" style="fill:var(--star);stroke:var(--star-edge);stroke-width:1px;stroke-linejoin:round;vector-effect:non-scaling-stroke"/></svg>
+      <span><b>Destination</b>, sized by letters <span class="act">· click: letters and recipients</span></span></li>
+    <li>${ln('--hk',3)}<span><b>Route</b>, thicker = more letters <span class="act">· click: highlight it and see its letters</span></span></li>
+    <li>${ln('--sel',4)}<span><b>Green</b>: route you clicked; the others turn grey and its letters are listed on the right</span></li>
+    <li>${ln('--node',2,true)}<span><b>Dashed</b>: destination inferred</span></li>
+  </ul><div class="foot">Click a triangle or star again to clear its filter. Click the empty map or press Esc to clear a green route.</div>`;
+  L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+  return d;
+}});
+new KeyCtl().addTo(map);
+const routeLayer = L.layerGroup().addTo(map);
+const nodeLayer = L.layerGroup().addTo(map);
+
+function curve(a, b, bend=0.18, n=40){
+  const [y1,x1]=a, [y2,x2]=b, dx=x2-x1, dy=y2-y1;
+  const cx=(x1+x2)/2 - dy*bend, cy=(y1+y2)/2 + dx*bend;
+  const pts=[]; for(let i=0;i<=n;i++){ const t=i/n, u=1-t; pts.push([u*u*y1+2*u*t*cy+t*t*y2, u*u*x1+2*u*t*cx+t*t*x2]); }
+  return pts;
+}
+// start with the whole world in view: all seven continents and the oceans
+const WHOLE_WORLD = [[-80, WEST], [78, EAST]];
+map.fitBounds(REGION.view);   // start on the region's destinations
+const ViewCtl = L.Control.extend({ options:{position:'topright'}, onAdd(){
+  const d = L.DomUtil.create('div', 'view-switch');
+  d.innerHTML = `<button data-v="view" aria-pressed="true">${esc(REGION.name)}</button><button data-v="routes" aria-pressed="false">Whole routes</button>`;
+  d.querySelectorAll('button').forEach(b => b.onclick = () => {
+    map.fitBounds(REGION[b.dataset.v]);
+    d.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  });
+  L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+  return d;
+}});
+new ViewCtl().addTo(map);
+
+// ---------- selection ----------
+function shown(l){ return l.dest && (l.dest_kind !== 'inferred' || document.getElementById('inf').checked); }
+const routeKey = l => `${l.origin}|${l.dest}|${l.dest_kind==='inferred'?'i':'p'}`;
+// The list shows the letters of the clicked route, or of the clicked destination or base. Nothing is listed until one is clicked.
+function visibleLetters(){
+  if (S.who) return LET.filter(l => l.recipient === S.who);
+  if (S.route) return LET.filter(l => routeKey(l) === S.route);
+  if (S.place) return LET.filter(l => l.dest === S.place || (S.place.startsWith('from:') && l.origin === S.place.slice(5)));
+  return [];
+}
+
+function render(){
+  routeLayer.clearLayers(); nodeLayer.clearLayers();
+  const cur = LET;
+  const routes = new Map();
+  for (const l of cur.filter(shown)){
+    const k = routeKey(l);
+    (routes.get(k) || routes.set(k, {key:k, origin:l.origin, dest:l.dest, inf:l.dest_kind==='inferred', ls:[]}).get(k)).ls.push(l);
+  }
+  if (S.route && !routes.has(S.route)) S.route = null;   // e.g. its letters were hidden by a checkbox
+  // A clicked route turns green and every other route grey. It is drawn last, so it sits on top.
+  const isOn = r => r.key === S.route || (!!S.who && r.ls.some(l => l.recipient === S.who));   // a picked correspondent lights every route they received letters on
+  const sorted = [...routes.values()].sort((x,y)=> isOn(x) - isOn(y) || y.ls.length-x.ls.length);
+  for (const r of sorted){
+    if (r.origin === r.dest) continue;
+    const on = isOn(r), off = (S.route || S.who) && !on;
+    const line = L.polyline(curve(ll(r.origin), ll(r.dest)), {
+      color: css(on ? '--sel' : off ? '--trace' : (r.origin==='Hong Kong' ? '--hk' : '--yk')),
+      weight: 1.4 + Math.sqrt(r.ls.length)*1.5 + (on ? 1.5 : 0), opacity: on ? 1 : off ? .4 : .8,
+      dashArray: r.inf ? '5 6' : null, lineCap:'round',
+      bubblingMouseEvents:false   // a click on a route should not also count as a click on the empty map
+    }).addTo(routeLayer);
+    line.bindTooltip(`${esc(r.origin)} → ${esc(P[r.dest].label)}: ${r.ls.length} letter${r.ls.length>1?'s':''}${r.inf?' (inferred)':''}`, {sticky:true});
+    line.on('click', e => selectRoute(r, e.latlng));
+  }
+  // destination nodes
+  const byPlace = {}; cur.filter(shown).forEach(l => (byPlace[l.dest] ||= []).push(l));
+  const origins = new Set(cur.map(l=>l.origin));
+  for (const [name, ls] of Object.entries(byPlace)){
+    // a yellow star, larger for more letters (about the size the old circles were)
+    const size = Math.round(2.6 * (3 + Math.sqrt(ls.length)*2.2));
+    const m = L.marker(ll(name), { icon: starIcon(size, S.place===name), title:`${P[name].label}: ${ls.length} letter${ls.length>1?'s':''}`,
+      riseOnHover:true }).addTo(nodeLayer);
+    m.bindTooltip(`${esc(P[name].label)} <span style="opacity:.7">${ls.length}</span>`, {permanent:true, direction:'right', offset:[2,0], className:'plabel'});
+    m.on('click', () => { setPlace(S.place===name ? null : name); placePopup(name); });
+  }
+  // Ponce's two bases
+  for (const o of ['Hong Kong','Yokohama']){
+    const here = origins.has(o);
+    const mk = L.marker(ll(o), { icon: baseIcon(o, here), zIndexOffset:1000, keyboard:true, title:`Ponce in ${o}` }).addTo(nodeLayer);
+    mk.bindTooltip(`Ponce · ${o}`, {permanent:true, direction:'left', offset:[-10,0], className:'plabel origin'});
+    mk.on('click', () => setPlace(S.place===`from:${o}` ? null : `from:${o}`));
+  }
+  renderList(); renderStats();
+}
+
+function letterHTML(l){
+  const dest = l.dest ? `${esc(P[l.dest].label)}` : 'destination not identified';
+  return `<div class="pop"><h3>No. ${l.n} · ${fmtDate(l.date)}</h3>
+    <div class="meta">To <b>${esc(l.recipient)}</b> → ${dest}<br>From ${esc(l.origin)}${l.signed?` · signed “${esc(l.signed)}”`:''}</div>
+    ${l.summary?`<div class="sum">${esc(l.summary)}</div>`:''}
+    <dl>
+      <dt>Dateline</dt><dd>${esc(l.dateline)}</dd>
+      ${l.addressee?`<dt>Addressee</dt><dd>${esc(l.addressee).replace(/\n/g,' / ')}</dd>`:''}
+      <dt>Destination</dt><dd>${esc(l.dest_basis)}</dd>
+      <dt>Printed pp.</dt><dd>${esc(l.pages)} · ${esc(l.images)}</dd>
+      ${l.flags?`<dt>Review</dt><dd>${esc(l.flags)}</dd>`:''}
+    </dl></div>`;
+}
+function routePopup(r){
+  return `<div class="pop"><h3>${esc(r.origin)} → ${esc(P[r.dest].label)}</h3>
+    <div class="meta">${r.ls.length} letter${r.ls.length>1?'s':''}${r.inf?' · destination inferred':''}</div>
+    <ul>${r.ls.sort((a,b)=>a.date<b.date?-1:1).map(l=>`<li><button class="lk" data-n="${l.n}">No. ${l.n}</button>, ${fmtDate(l.date)}, to ${esc(l.recipient)}</li>`).join('')}</ul></div>`;
+}
+function placePopup(name){
+  const ls = LET.filter(l => l.dest===name && shown(l));
+  const who = {}; ls.forEach(l => who[l.recipient]=(who[l.recipient]||0)+1);
+  L.popup().setLatLng(ll(name)).setContent(`<div class="pop"><h3>${esc(P[name].label)}</h3>
+    <div class="meta">${ls.length} letter${ls.length>1?'s':''} received</div>
+    <ul>${Object.entries(who).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<li>${esc(k)} <span style="opacity:.7">(${v})</span></li>`).join('')}</ul></div>`).openOn(map);
+}
+map.on('popupopen', e => e.popup.getElement().querySelectorAll('.lk').forEach(b => b.addEventListener('click', () => selectLetter(+b.dataset.n, true))));
+
+// Click a route: it turns green and its letters open in a popup. Closing the popup (×, Esc,
+// or a click anywhere else on the map) clears the highlight.
+function selectRoute(r, latlng){
+  S.route = r.key; S.place = null; S.who = null; render();
+  L.popup().setLatLng(latlng).setContent(routePopup(r)).openOn(map);
+}
+// The route stays selected while its letters are opened from the list. It is cleared by a click
+// on the empty map, the Esc key, or the × next to the route's name in the list.
+function clearRoute(){ if (S.route || S.who){ S.route = null; S.who = null; map.closePopup(); render(); } }
+function selectWho(r){ S.who = S.who === r ? null : r; S.route = null; S.place = null; map.closePopup(); render(); }
+map.on('click', clearRoute);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') clearRoute(); });
+function openLetter(l){
+  L.popup({maxWidth:340}).setLatLng(l.dest ? ll(l.dest) : ll(l.origin)).setContent(letterHTML(l)).openOn(map);
+}
+function selectLetter(n, open){
+  const l = LET.find(x=>x.n===n); S.sel = l; if (open) openLetter(l);
+  document.querySelectorAll('#list li').forEach(li => li.classList.toggle('on', +li.dataset.n===n));
+  const li = document.querySelector(`#list li[data-n="${n}"]`); if (li) li.scrollIntoView({block:'nearest'});
+}
+
+// ---------- register ----------
+function renderList(){
+  const ls = visibleLetters().sort((a,b)=> a.date<b.date?-1:a.date>b.date?1:a.n-b.n);
+  document.getElementById('count').textContent = (S.route || S.place || S.who) ? `${ls.length} letter${ls.length===1?'':'s'}` : '';
+  const f = document.getElementById('filter');
+  if (S.who){
+    f.innerHTML = `<span class="chip">to ${esc(S.who)}<button aria-label="Clear correspondent">×</button></span>`;
+    f.querySelector('button').onclick = clearRoute;
+  } else if (S.route){
+    const [o, d, kind] = S.route.split('|');
+    f.innerHTML = `<span class="chip">${esc(o)} → ${esc(P[d].label)}${kind==='i'?' (inferred)':''}<button aria-label="Clear route">×</button></span>`;
+    f.querySelector('button').onclick = clearRoute;
+  } else {
+    f.innerHTML = S.place ? `<span class="chip">${S.place.startsWith('from:')?'sent from '+esc(S.place.slice(5)):'to '+esc(P[S.place].label)}<button aria-label="Clear place filter">×</button></span>` : '';
+    if (S.place) f.querySelector('button').onclick = () => setPlace(null);
+  }
+  const ul = document.getElementById('list');
+  ul.innerHTML = ls.length ? ls.map(l => `<li data-n="${l.n}" class="${S.sel&&S.sel.n===l.n?'on':''}"><button>
+      <span class="no">${l.n}<small>${l.date.slice(0,4)}</small></span>
+      <span class="who">${esc(l.recipient)}</span>
+      <span class="where"><span class="o ${oKey(l.origin)}">${esc(l.origin)}</span> → ${l.dest?esc(P[l.dest].label):'place unknown'}${l.dest_kind==='inferred'?'<span class="tag">inferred</span>':''}${l.dest_kind==='unlocated'?'<span class="tag">unplaced</span>':''} · ${fmtDate(l.date)}</span>
+      ${l.summary?`<span class="sum">${esc(l.summary)}</span>`:'<span></span>'}
+    </button></li>`).join('')
+    : (S.route || S.place || S.who) ? '<li class="empty">No letters.</li>'
+    : `<li class="empty">Click a route on the map to see its letters here. You can also click a destination star, one of Ponce's bases, or a correspondent in the bar below the map.</li>`;
+  ul.querySelectorAll('li[data-n] button').forEach(b => b.onclick = () => selectLetter(+b.parentElement.dataset.n, true));
+}
+function setPlace(p){ S.place = p; S.route = null; S.who = null; render(); }
+
+// ---------- statistics bar ----------
+// Counts cover every letter to the region, with printed and inferred addresses (the checkbox only changes the map).
+function renderStats(){
+  const total = ALL.length, n = LET.length, pct = k => `${Math.round(k / total * 100)}%`;
+  const countBy = f => { const c = {}; LET.forEach(l => { const k = f(l); c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0])); };
+  const bars = (rows, colour) => { const max = Math.max(...rows.map(([, v]) => v), 1);
+    return `<div class="brow">${rows.map(([k, v]) => `<span class="lab" title="${esc(k)}">${esc(k)}</span><span class="bar"><i style="width:${v / max * 100}%;--c:var(${colour(k)})"></i></span><span class="v">${v}</span>`).join('')}</div>`; };
+  const printed = LET.filter(l => l.dest_kind === 'printed').length;
+  const who = countBy(l => l.recipient);
+  const years = [1897, 1898, 1899, 1900].map((y, i) => [String(y), LET.filter(l => +l.date.slice(0, 4) === y).length]);
+  document.getElementById('statbar').innerHTML = `
+    <div class="tile"><h3>Letters to ${esc(REGION.name)}</h3><div class="big">${n}</div>
+      <div class="small">of all ${total} letters (${pct(n)})<br>${printed} with a printed address, ${n - printed} inferred</div></div>
+    <div class="tile"><h3>Sent from</h3>${bars(countBy(l => l.origin), k => k === 'Hong Kong' ? '--hk' : '--yk')}</div>
+    <div class="tile"><h3>By country (1890s borders)</h3>${bars(countBy(l => REGION.places[l.dest]), () => '--node')}</div>
+    <div class="tile"><h3>Correspondents in ${esc(REGION.name)} (${who.length})</h3>
+      <ul class="who-mini">${who.map(([k, v]) => `<li><button data-who="${esc(k)}" aria-pressed="${S.who === k}" title="Show the letters to ${esc(k)}"><span>${esc(k)}</span><span class="v">${v}</span></button></li>`).join('')}</ul></div>
+    <div class="tile"><h3>By year</h3>${bars(years, k => `--y${+k - 1896}`)}</div>`;
+  document.querySelectorAll('.who-mini button').forEach(b => b.onclick = () => selectWho(b.dataset.who));
+}
+
+document.getElementById('inf').onchange = render;
+
+// ---------- minimize / maximize the list of letters ----------
+const regToggle = document.getElementById('regToggle'), mainEl = document.querySelector('main');
+regToggle.onclick = () => {
+  const wasWholeWorld = map.getZoom() <= map.getMinZoom() + 0.01;
+  const min = mainEl.classList.toggle('reg-min');
+  const label = min ? 'Show the list of letters' : 'Minimize the list of letters';
+  regToggle.textContent = min ? '+' : '–';
+  regToggle.setAttribute('aria-expanded', String(!min));
+  regToggle.title = label; regToggle.setAttribute('aria-label', label);
+  map.invalidateSize();   // the map is now wider or narrower; this also updates the zoom-out limit
+  if (wasWholeWorld) map.fitBounds(WHOLE_WORLD, {animate:false});   // keep showing the whole world if it was in view
+};
+render();
+})();
+</script>
+</body>
+</html>

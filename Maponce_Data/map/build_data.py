@@ -6,6 +6,7 @@ Also writes two map pages from the templates in this script's folder:
   <outdir>/cartas_map_recipients.html  from template_recipients.html  (correspondents)
   <outdir>/cartas_map_years.html       from template_years.html       (years)
   <outdir>/cartas_map_themes.html      from template_themes.html      (themes confirmed in letter_themes.csv)
+  <outdir>/cartas_map_europe.html      from template_region.html      (letters to Europe; one page per entry in REGIONS)
 and adds any new correspondent to recipient_bios.csv (biographies written by hand)."""
 import csv, json, re, sys, collections, datetime
 
@@ -212,10 +213,36 @@ world = embed(open(os.path.join(here, 'countries-50m.json'), encoding='utf-8').r
 bios_json = embed(json.dumps(bios, ensure_ascii=False))
 themes_json = embed(json.dumps(themes, ensure_ascii=False))
 texts_json = embed(json.dumps(texts, ensure_ascii=False))
-for template, page in [('template.html', 'cartas_map.html'), ('template_recipients.html', 'cartas_map_recipients.html'),
-                       ('template_years.html', 'cartas_map_years.html'), ('template_themes.html', 'cartas_map_themes.html')]:
+# Regional maps: each shows only the letters sent to its destinations. Countries are those of the 1890s.
+# title = the map's name (its button and browser tab); view = the region on its own; routes = the whole routes from Hong Kong and Yokohama ([[south, west], [north, east]]).
+# To add a region (Asia, North America...), add an entry here and a link appears on every page.
+REGIONS = [
+    {'name': 'Europe', 'title': 'Ponce in Europe', 'page': 'cartas_map_europe.html',
+     'places': {'Leitmeritz (Litoměřice)': 'Austria-Hungary (Bohemia)', 'Paris': 'France',
+                'Madrid': 'Spain', 'Barcelona': 'Spain', 'Sant Climent de Llobregat': 'Spain',
+                'Vilanova i la Geltrú': 'Spain', 'Zaragoza': 'Spain',
+                'Berlin': 'Germany', 'Dresden': 'Germany', 'Haarlem': 'Netherlands'},
+     'view': [[36, -10], [55.5, 20]], 'routes': [[0, -12], [60, 146]]},
+]
+# every page, in the order of the buttons in each page's header
+PAGES = [('template.html', 'cartas_map.html', 'Routes', None),
+         ('template_recipients.html', 'cartas_map_recipients.html', 'Correspondents', None),
+         ('template_years.html', 'cartas_map_years.html', 'Years', None),
+         ('template_themes.html', 'cartas_map_themes.html', 'Themes', None)] + \
+        [('template_region.html', r['page'], r.get('title', r['name']), r) for r in REGIONS]
+def nav(current):
+    return '<nav class="views" aria-label="Map views">' + ''.join(
+        f'<a href="{page}"{" aria-current=" + chr(34) + "page" + chr(34) if name == current else ""}>{name}</a>' for _, page, name, _r in PAGES) + '</nav>'
+
+for template, page, name, region in PAGES:
     html = open(os.path.join(here, template), encoding='utf-8').read()
+    html = html.replace('__NAV__', nav(name))
     html = html.replace('__DATA__', data).replace('__WORLD__', world).replace('__BIOS__', bios_json)
     html = html.replace('__THEMES__', themes_json).replace('__TEXTS__', texts_json)
+    if region:
+        missing = [p for p in region['places'] if p not in PLACES]
+        assert not missing, f"{region['name']}: unknown places {missing}"
+        html = html.replace('__REGION__', embed(json.dumps(region, ensure_ascii=False))).replace('__REGION_NAME__', region['name'])
+        html = html.replace('__REGION_TITLE__', region.get('title', region['name']))
     open(f'{outdir}/{page}', 'w', encoding='utf-8').write(html)
     print('wrote', page)
