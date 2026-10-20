@@ -216,7 +216,7 @@ texts_json = embed(json.dumps(texts, ensure_ascii=False))
 # Regional maps: each shows only the letters sent to its destinations. Countries are those of the 1890s.
 # title = the map's name (its button and browser tab); view = the region on its own; routes (optional) =
 # the whole routes from Hong Kong and Yokohama, for regions they reach from outside ([[south, west], [north, east]]).
-# To add a region (North America...), add an entry here and a link appears on every page.
+# To add a region, add an entry here and a link appears on every page.
 REGIONS = [
     {'name': 'Europe', 'title': 'Ponce in Europe', 'page': 'cartas_map_europe.html',
      'places': {'Leitmeritz (Litoměřice)': 'Austria-Hungary (Bohemia)', 'Paris': 'France',
@@ -230,6 +230,11 @@ REGIONS = [
                 'Tokyo': 'Japan', 'Yokohama': 'Japan', 'Osaka': 'Japan', 'Nagahama': 'Japan',
                 'Manila': 'Philippines', 'Malolos': 'Philippines', 'Tarlac': 'Philippines'},
      'view': [[-8, 84], [44, 150]]},          # wide to the west so the map key does not cover Singapore; no whole-routes view (the routes stay in Asia)
+    # The maps put the Americas east of Asia (longitude + 360), so the views below use 240-300 for 120°W-60°W.
+    {'name': 'North America', 'title': 'Ponce in North America', 'page': 'cartas_map_north_america.html',
+     'places': {'New Orleans': 'United States', 'Washington, D.C.': 'United States', 'Philadelphia': 'United States',
+                'Montreal': 'Canada', 'Mexico City': 'Mexico'},
+     'view': [[10, 240], [54, 296]], 'routes': [[0, 105], [62, 300]]},
 ]
 # every page, in the order of the buttons in each page's header
 PAGES = [('template.html', 'cartas_map.html', 'Routes', None),
@@ -237,9 +242,19 @@ PAGES = [('template.html', 'cartas_map.html', 'Routes', None),
          ('template_years.html', 'cartas_map_years.html', 'Years', None),
          ('template_themes.html', 'cartas_map_themes.html', 'Themes', None)] + \
         [('template_region.html', r['page'], r.get('title', r['name']), r) for r in REGIONS]
+CUR = ' aria-current="page"'
 def nav(current):
-    return '<nav class="views" aria-label="Map views">' + ''.join(
-        f'<a href="{page}"{" aria-current=" + chr(34) + "page" + chr(34) if name == current else ""}>{name}</a>' for _, page, name, _r in PAGES) + '</nav>'
+    # the four maps as buttons, then the regional maps in a "Regions" drop-down menu (a list of links)
+    main = ''.join(f'<a href="{page}"{CUR if name == current else ""}>{name}</a>' for _, page, name, r in PAGES if not r)
+    here = next((r for _, _p, name, r in PAGES if r and name == current), None)
+    menu = ''.join(f'<a href="{r["page"]}"{CUR if r is here else ""}>{r["name"]}</a>' for r in REGIONS)
+    summary = f'Regions: {here["name"]}' if here else 'Regions'
+    return (f'<nav class="views" aria-label="Map views">{main}'
+            f'<details class="views-menu"><summary{" class=" + chr(34) + "current" + chr(34) if here else ""}>{summary}</summary>'
+            f'<div class="menu">{menu}</div></details></nav>'
+            # close the menu on a click elsewhere or the Esc key
+            '<script>document.addEventListener("click", e => document.querySelectorAll(".views-menu[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));'
+            'document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll(".views-menu[open]").forEach(d => { d.open = false; d.querySelector("summary").focus(); }); });</script>')
 
 for template, page, name, region in PAGES:
     html = open(os.path.join(here, template), encoding='utf-8').read()

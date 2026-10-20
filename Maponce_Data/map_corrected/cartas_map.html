@@ -148,12 +148,24 @@ main.reg-min .reg-meta, main.reg-min .reg-head label, main.reg-min #list{display
 .views a{padding:2px 10px;border-radius:4px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:600}
 .views a:hover{color:var(--ink);background:var(--band)}
 .views a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+/* "Regions" drop-down: the regional maps */
+.views-menu{position:relative}
+.views-menu summary{list-style:none;cursor:pointer;padding:2px 10px;border-radius:4px;color:var(--muted);font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.views-menu summary::-webkit-details-marker{display:none}
+.views-menu summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+.views-menu[open] summary::after{transform:translateY(1px) rotate(-135deg)}
+.views-menu summary:hover{color:var(--ink);background:var(--band)}
+.views-menu summary:focus-visible{outline:2px solid var(--sun);outline-offset:1px}
+.views-menu summary.current{background:var(--ink);color:var(--paper)}
+.views-menu .menu{position:absolute;top:calc(100% + 6px);left:0;z-index:2000;min-width:170px;background:var(--panel);border:1px solid var(--rule);border-radius:6px;box-shadow:0 4px 18px rgb(0 0 0 / .2);padding:4px;display:flex;flex-direction:column;gap:2px}
+.views-menu .menu a{padding:5px 10px;border-radius:4px}
+.views-menu .menu a[aria-current="page"]{background:var(--band);color:var(--ink);box-shadow:inset 3px 0 0 var(--ink)}
 </style>
 </head>
 <body>
 <header>
   <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
-  <nav class="views" aria-label="Map views"><a href="cartas_map.html" aria-current="page">Routes</a><a href="cartas_map_recipients.html">Correspondents</a><a href="cartas_map_years.html">Years</a><a href="cartas_map_themes.html">Themes</a><a href="cartas_map_europe.html">Ponce in Europe</a><a href="cartas_map_asia.html">Ponce in Asia</a></nav>
+  <nav class="views" aria-label="Map views"><a href="cartas_map.html" aria-current="page">Routes</a><a href="cartas_map_recipients.html">Correspondents</a><a href="cartas_map_years.html">Years</a><a href="cartas_map_themes.html">Themes</a><details class="views-menu"><summary>Regions</summary><div class="menu"><a href="cartas_map_europe.html">Europe</a><a href="cartas_map_asia.html">Asia</a><a href="cartas_map_north_america.html">North America</a></div></details></nav><script>document.addEventListener("click", e => document.querySelectorAll(".views-menu[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll(".views-menu[open]").forEach(d => { d.open = false; d.querySelector("summary").focus(); }); });</script>
   <span class="sub" id="stats"></span>
   <div class="legend" aria-label="Legend">
     <span class="key" style="color:var(--hk)"><span class="sw"></span>sent from Hong Kong</span>
