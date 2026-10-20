@@ -1,0 +1,68 @@
+﻿theme,word,source,similarity,use
+revolución,revolucion,seed,,yes
+revolución,revolucionaria,seed,,yes
+revolución,revolucionario,seed,,yes
+revolución,revolucionarios,seed,,yes
+revolución,aceptada,word2vec: like revolucionaria,0.85,maybe
+revolución,adoptar,word2vec: like revolucionaria,0.83,maybe
+revolución,apogeo,word2vec: like revolucion,0.68,maybe
+revolución,civilizacion,word2vec: like revolucion,0.65,maybe
+revolución,comienzos,word2vec: like revolucion,0.63,maybe
+revolución,constituido,word2vec: like revolucionario,0.79,maybe
+revolución,empezaron,word2vec: like revolucionarios,0.76,maybe
+revolución,estallo,word2vec: like revolucion,0.63,maybe
+revolución,gobierno,word2vec: like revolucionario,0.73,maybe
+revolución,hallan,word2vec: like revolucionarios,0.78,maybe
+revolución,indultados,word2vec: like revolucionarios,0.77,maybe
+revolución,infelices,word2vec: like revolucionarios,0.75,maybe
+revolución,insurreccion,word2vec: like revolucion,0.63,maybe
+revolución,juntas,word2vec: like revolucionaria,0.87,maybe
+revolución,lema,word2vec: like revolucion,0.65,maybe
+revolución,libertados,word2vec: like revolucionarios,0.75,maybe
+revolución,miseria,word2vec: like revolucion,0.62,maybe
+revolución,oficialmente,word2vec: like revolucionario,0.73,maybe
+revolución,organizado,word2vec: like revolucionario,0.71,maybe
+revolución,parlamento,word2vec: like revolucionario,0.73,maybe
+revolución,presidencia,word2vec: like revolucionario,0.72,maybe
+revolución,presos,word2vec: like revolucionarios,0.76,maybe
+revolución,prestado,word2vec: like revolucionaria,0.83,maybe
+revolución,procesados,word2vec: like revolucionario,0.73,maybe
+revolución,ratificacion,word2vec: like revolucion,0.62,maybe
+revolución,reanudar,word2vec: like revolucionaria,0.83,maybe
+revolución,salon,word2vec: like revolucionario,0.71,maybe
+revolución,tribunal,word2vec: like revolucionaria,0.83,maybe
+revolución,venia,word2vec: like revolucionaria,0.83,maybe
+revolución,verse,word2vec: like revolucionarios,0.81,maybe
+revolución,vertido,word2vec: like revolucionaria,0.84,maybe
+revolución,vieron,word2vec: like revolucionarios,0.76,maybe
+soberanía,soberana,seed,,yes
+soberanía,soberania,seed,,yes
+soberanía,soberano,seed,,yes
+soberanía,soberanos,seed,,yes
+soberanía,aceptacion,word2vec: like soberania,0.83,maybe
+soberanía,aceptara,word2vec: like soberania,0.81,maybe
+soberanía,crueldad,word2vec: like soberania,0.81,maybe
+soberanía,dominacion,word2vec: like soberania,0.82,maybe
+soberanía,espanola,word2vec: like soberania,0.83,maybe
+soberanía,jamas,word2vec: like soberania,0.80,maybe
+soberanía,ocupacion,word2vec: like soberania,0.80,maybe
+soberanía,prolongacion,word2vec: like soberania,0.81,maybe
+liberalismo,liberal,seed,,yes
+liberalismo,liberales,seed,,yes
+liberalismo,liberalismo,seed,,yes
+liberalismo,altamente,word2vec: like liberales,0.85,maybe
+liberalismo,capitaneado,word2vec: like liberal,0.86,maybe
+liberalismo,concedernos,word2vec: like liberales,0.80,maybe
+liberalismo,conocen,word2vec: like liberales,0.80,maybe
+liberalismo,implantar,word2vec: like liberales,0.82,maybe
+liberalismo,impolitico,word2vec: like liberales,0.82,maybe
+liberalismo,jiuto,word2vec: like liberal,0.89,maybe
+liberalismo,jiyuto,word2vec: like liberal,0.85,maybe
+liberalismo,okuma,word2vec: like liberal,0.84,maybe
+liberalismo,popular,word2vec: like liberal,0.81,maybe
+liberalismo,presidido,word2vec: like liberal,0.82,maybe
+liberalismo,progresista,word2vec: like liberal,0.83,maybe
+liberalismo,quejas,word2vec: like liberales,0.82,maybe
+liberalismo,radicales,word2vec: like liberales,0.81,maybe
+liberalismo,shimpoto,word2vec: like liberal,0.84,maybe
+liberalismo,vias,word2vec: like liberales,0.82,maybe

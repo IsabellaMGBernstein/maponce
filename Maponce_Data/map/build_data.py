@@ -5,6 +5,7 @@ Also writes two map pages from the templates in this script's folder:
   <outdir>/cartas_map.html             from template.html             (routes)
   <outdir>/cartas_map_recipients.html  from template_recipients.html  (correspondents)
   <outdir>/cartas_map_years.html       from template_years.html       (years)
+  <outdir>/cartas_map_themes.html      from template_themes.html      (themes confirmed in letter_themes.csv)
 and adds any new correspondent to recipient_bios.csv (biographies written by hand)."""
 import csv, json, re, sys, collections, datetime
 
@@ -182,14 +183,39 @@ if new_names:
     print(f'added {len(new_names)} correspondents to recipient_bios.csv')
 bios = {r['recipient']: r['biography'].strip() for r in bio_rows if r.get('biography', '').strip()}
 
-# ---------- map pages ----------
+# ---------- themes (suggested by suggest_themes.py, confirmed by the author) ----------
+# Only rows of letter_themes.csv whose status is "confirmed" are shown on the themes map.
+def read_csv(name):
+    path = os.path.join(here, name)
+    return list(csv.DictReader(open(path, encoding='utf-8-sig'))) if os.path.exists(path) else []
+theme_rows = [r for r in read_csv('themes.csv') if r['theme'].strip()]
+theme_words = read_csv('theme_words.csv')
+theme_marks = read_csv('letter_themes.csv')
+status = lambda r: r['status'].strip().lower()
+themes = {
+    'themes': [{'name': r['theme'].strip(), 'description': r.get('description', '').strip(),
+                'words': [w['word'] for w in theme_words if w['theme'] == r['theme'] and w['use'].strip().lower() == 'yes']}
+               for r in theme_rows],
+    'letters': {},    # letter number -> its confirmed themes
+    'pending': {r['theme'].strip(): sum(1 for m in theme_marks if m['theme'] == r['theme'] and status(m) == 'suggested') for r in theme_rows},
+}
+for m in theme_marks:
+    if status(m) == 'confirmed' and m['theme'] in themes['pending']:
+        themes['letters'].setdefault(m['letter'], []).append(m['theme'])
+print('themes:', {r['theme']: sum(1 for m in theme_marks if m['theme'] == r['theme'] and status(m) == 'confirmed') for r in theme_rows}, 'confirmed')
+# the full letter texts, for the transcripts on the themes map
+texts = {r['letter_number']: r.get('text_reading', '') for r in rows}
+
 def embed(text): return text.replace('</', '<\\/')   # keep embedded data from closing its <script> tag
 data = embed(open(f'{outdir}/cartas_map_data.json', encoding='utf-8').read())
 world = embed(open(os.path.join(here, 'countries-50m.json'), encoding='utf-8').read())   # Natural Earth borders
 bios_json = embed(json.dumps(bios, ensure_ascii=False))
+themes_json = embed(json.dumps(themes, ensure_ascii=False))
+texts_json = embed(json.dumps(texts, ensure_ascii=False))
 for template, page in [('template.html', 'cartas_map.html'), ('template_recipients.html', 'cartas_map_recipients.html'),
-                       ('template_years.html', 'cartas_map_years.html')]:
+                       ('template_years.html', 'cartas_map_years.html'), ('template_themes.html', 'cartas_map_themes.html')]:
     html = open(os.path.join(here, template), encoding='utf-8').read()
     html = html.replace('__DATA__', data).replace('__WORLD__', world).replace('__BIOS__', bios_json)
+    html = html.replace('__THEMES__', themes_json).replace('__TEXTS__', texts_json)
     open(f'{outdir}/{page}', 'w', encoding='utf-8').write(html)
     print('wrote', page)
