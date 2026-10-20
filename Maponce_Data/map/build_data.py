@@ -214,8 +214,9 @@ bios_json = embed(json.dumps(bios, ensure_ascii=False))
 themes_json = embed(json.dumps(themes, ensure_ascii=False))
 texts_json = embed(json.dumps(texts, ensure_ascii=False))
 # Regional maps: each shows only the letters sent to its destinations. Countries are those of the 1890s.
-# title = the map's name (its button and browser tab); view = the region on its own; routes = the whole routes from Hong Kong and Yokohama ([[south, west], [north, east]]).
-# To add a region (Asia, North America...), add an entry here and a link appears on every page.
+# title = the map's name (its button and browser tab); view = the region on its own; routes (optional) =
+# the whole routes from Hong Kong and Yokohama, for regions they reach from outside ([[south, west], [north, east]]).
+# To add a region (North America...), add an entry here and a link appears on every page.
 REGIONS = [
     {'name': 'Europe', 'title': 'Ponce in Europe', 'page': 'cartas_map_europe.html',
      'places': {'Leitmeritz (Litoměřice)': 'Austria-Hungary (Bohemia)', 'Paris': 'France',
@@ -223,6 +224,12 @@ REGIONS = [
                 'Vilanova i la Geltrú': 'Spain', 'Zaragoza': 'Spain',
                 'Berlin': 'Germany', 'Dresden': 'Germany', 'Haarlem': 'Netherlands'},
      'view': [[36, -10], [55.5, 20]], 'routes': [[0, -12], [60, 146]]},
+    {'name': 'Asia', 'title': 'Ponce in Asia', 'page': 'cartas_map_asia.html',
+     'places': {'Hong Kong': 'Hong Kong (British)', 'Macau': 'Macao (Portuguese)', 'Shanghai': 'China (Qing)',
+                'Singapore': 'Straits Settlements (British)',
+                'Tokyo': 'Japan', 'Yokohama': 'Japan', 'Osaka': 'Japan', 'Nagahama': 'Japan',
+                'Manila': 'Philippines', 'Malolos': 'Philippines', 'Tarlac': 'Philippines'},
+     'view': [[-8, 84], [44, 150]]},          # wide to the west so the map key does not cover Singapore; no whole-routes view (the routes stay in Asia)
 ]
 # every page, in the order of the buttons in each page's header
 PAGES = [('template.html', 'cartas_map.html', 'Routes', None),

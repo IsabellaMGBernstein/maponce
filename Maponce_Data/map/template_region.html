@@ -373,7 +373,7 @@ const ViewCtl = L.Control.extend({ options:{position:'topright'}, onAdd(){
   L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
   return d;
 }});
-new ViewCtl().addTo(map);
+if (REGION.routes) new ViewCtl().addTo(map);   // only regions whose routes reach beyond them (Europe, the Americas) need the switch
 
 // ---------- selection ----------
 function shown(l){ return l.dest && (l.dest_kind !== 'inferred' || document.getElementById('inf').checked); }
