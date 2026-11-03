@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ title }} · {{ site.title }}</title>
+<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Archivo+Narrow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-{{ mapKey }}">
+<header class="site-head">
+  <h1>Cartas de Mariano Ponce <em>1897–1900</em></h1>
+  <p class="intro">{{ intro }}</p>
+  <div class="legend" id="legend" aria-label="Legend"></div>
+</header>
+
+<main class="layout">
+  <div class="map-wrap">
+    <div id="map" role="region" aria-label="{{ title }} map"></div>
+    {%- if mapKey == "regions" %}
+    {# Upper-left corner: choose the region #}
+    <div class="pickers">
+      <label class="picker">Region
+        <select id="region-select">
+          {%- for r in site.regions %}<option value="{{ r.key }}">{{ r.name }}</option>{% endfor -%}
+        </select>
+      </label>
+    </div>
+    {%- endif %}
+  </div>
+  <aside class="panel" id="panel">
+    <div class="panel-head">
+      <div class="panel-title"><h2 id="panel-title">{{ title }}</h2>
+        <button class="panel-toggle" id="panel-toggle" aria-expanded="true" aria-controls="panel-body" aria-label="Minimize the side panel" title="Minimize the side panel">–</button></div>
+      <div class="panel-meta" id="panel-meta"></div>
+      <label class="check"><input type="checkbox" id="inferred" checked> Include inferred destinations</label>
+    </div>
+    <div class="panel-body" id="panel-body"></div>
+  </aside>
+</main>
+{%- if mapKey == "regions" %}
+<section class="statbar" id="statbar" aria-label="Statistics for the region"></section>
+{%- endif %}
+
+<script src="/vendor/leaflet/leaflet.js"></script>
+<script src="/vendor/topojson-client.min.js"></script>
+<script type="module" src="/assets/js/{{ mapKey }}.js"></script>
+</body>
+</html>

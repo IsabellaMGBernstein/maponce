@@ -59,6 +59,7 @@ Mariano Ponce, *Cartas sobre la revolución, 1897-1900* (Manila: Bureau of Print
 | `Maponce_Data/word2vec_corrected/` | Word2Vec model trained on the corrected letter texts, its cleaned text and its training script. |
 | `Maponce_Data/similar_words.py` | Looks up the most similar words in the corrected model. |
 | `Maponce_Data/clean_and_train.py`, `cartas_word2vec.model`, `Cartas_cleaned.txt`, `Cartas_sobre_la_revolucion.txt` | Older model trained on the library's own OCR text. Superseded by `word2vec_corrected/`. |
+| `newmaps_maponce/` | A second, simpler version of the site built with Eleventy 3 (Node.js): five maps (Routes, Correspondents, Years, Themes, Regions with a Region menu). Reads its data from `Maponce_Data` at build time. `npm install`, then `npm start` (http://localhost:8080) or `npm run build` (writes `_site/`). See its README. |
 | `cartas_letters_lowercase.csv`, `cartas_letters_editedcsv.numbers` | Earlier hand-edited copies of the raw letter table. Not used by any script. |
 | `spa.traineddata` | Tesseract's Spanish language data, used for the OCR. |
 | `.venv/` (Python 3.8), `.venv-1/` (Python 3.9, with Jupyter) | Virtual environments. Both have gensim and pandas. Neither has Pillow, which `corrected/crop_checks.py` needs. |
