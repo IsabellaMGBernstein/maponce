@@ -3,7 +3,6 @@
 export default {
   title: "Mapping Mariano Ponce's Letters",
   maps: [
-    { key: "correspondents", title: "Correspondents", url: "/correspondents/" },
     { key: "themes",         title: "Themes",         url: "/themes/" },
     { key: "regions",        title: "Regions",        url: "/regions/" },
   ],
