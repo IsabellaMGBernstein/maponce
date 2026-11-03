@@ -1,10 +1,9 @@
 // The maps that use the shared layout (src/_includes/base.njk), and the regions of the Regions map.
-// The Routes map (/) is separate: src/index.njk and src/routes/.
+// The Routes map (/) and the Years map (/years/) are separate: src/index.njk + src/routes/, src/years.njk + src/years/.
 export default {
   title: "Mapping Mariano Ponce's Letters",
   maps: [
     { key: "correspondents", title: "Correspondents", url: "/correspondents/" },
-    { key: "years",          title: "Years",          url: "/years/" },
     { key: "themes",         title: "Themes",         url: "/themes/" },
     { key: "regions",        title: "Regions",        url: "/regions/" },
   ],

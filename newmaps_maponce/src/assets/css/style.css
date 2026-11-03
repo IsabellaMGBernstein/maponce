@@ -1,4 +1,4 @@
-/* Styles shared by four maps (Correspondents, Years, Themes, Regions). The Routes map has its own: src/routes/routes.css. */
+/* Styles shared by three maps (Correspondents, Themes, Regions). The Routes and Years maps have their own (src/routes/, src/years/). */
 :root{
   --paper:#eef1f3; --panel:#f8f9fa; --ink:#1c2430; --muted:#5b6675; --rule:#cfd5dc; --band:#e2e6ea;
   --hk:#b3262e; --yk:#1f4f9a;                       /* letters sent from Hong Kong / Yokohama */

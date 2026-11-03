@@ -6,11 +6,11 @@ Five interactive maps of Mariano Ponce's letters (1897–1900), built with [Elev
 |---|---|---|
 | Routes | `/` | every letter as a route from where Ponce sent it (black circle) to its destination (red star) |
 | Correspondents | `/correspondents/` | one line per person; pick someone for their biography, letters per year and letters |
-| Years | `/years/` | the letters by year, 1897 (light) to 1900 (dark); pick a year for its months and correspondents |
+| Years | `/years/` | the letters by year, 1897 (light) to 1900 (dark); pick a route or year for everyone written to that year |
 | Themes | `/themes/` | the confirmed themes; pick one to read its letters in full |
 | Regions | `/regions/` | the letters to Europe, Asia or North America, chosen in the Region menu, with statistics below |
 
-The Routes map is fully separate: its own page (`src/index.njk`), styles, script and data in `src/routes/`, sharing no code with the other maps. Each map is a separate page with no menu linking it to the others (the Regions map has a Region menu at the top left), and a minimizable map key at the lower right.
+The Routes and Years maps are fully separate: each has its own page (`src/index.njk`, `src/years.njk`) and its own styles, script and data (`src/routes/`, `src/years/`), sharing no code with any other map. Each map is a separate page with no menu linking it to the others (the Regions map has a Region menu at the top left), and a minimizable map key at the lower right.
 
 ## Running it
 

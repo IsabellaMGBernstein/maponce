@@ -1,6 +1,6 @@
-// Shared by four maps (Correspondents, Years, Themes, Regions): data, the flat world map, routes, the red and
-// black circles, the map key, popups and the side panel. Each map's own file (years.js ...) decides what to draw.
-// The Routes map does not use this file: it has its own code in src/routes/.
+// Shared by three maps (Correspondents, Themes, Regions): data, the flat world map, routes, the red and black
+// circles, the map key, popups and the side panel. Each map's own file (themes.js ...) decides what to draw.
+// The Routes and Years maps do not use this file: they have their own code in src/routes/ and src/years/.
 const L = window.L, topojson = window.topojson;
 
 // ---------- small helpers ----------
