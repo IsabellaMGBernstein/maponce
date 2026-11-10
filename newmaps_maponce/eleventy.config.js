@@ -10,6 +10,8 @@ export default function (eleventyConfig) {
     "src/years/years.js": "years/years.js",
     "src/recipients/recipients.css": "recipients/recipients.css",   // the Recipients map's own files
     "src/recipients/recipients.js": "recipients/recipients.js",
+    "src/regions/regions.css": "regions/regions.css",   // the Regions map's own files
+    "src/regions/regions.js": "regions/regions.js",
     "node_modules/leaflet/dist/leaflet.js": "vendor/leaflet/leaflet.js",
     "node_modules/leaflet/dist/leaflet.css": "vendor/leaflet/leaflet.css",
     "node_modules/topojson-client/dist/topojson-client.min.js": "vendor/topojson-client.min.js",
@@ -18,6 +20,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/routes/");   // the Routes map's own styles and script
   eleventyConfig.addWatchTarget("src/years/");    // the Years map's own styles and script
   eleventyConfig.addWatchTarget("src/recipients/");   // the Recipients map's own styles and script
+  eleventyConfig.addWatchTarget("src/regions/");      // the Regions map's own styles and script
   // Nothing outside this folder is watched or copied: that makes Eleventy misread the paths of changed pages
   // and rebuild stale copies. The letter data is still read from ../Maponce_Data at build time; after editing
   // it, run `npm run build` (or restart `npm start`).

@@ -6,7 +6,7 @@
   --sel:#1f8a4c;                                    /* the route the reader picked */
   --trace:#8f99a6;                                  /* the other routes, while one is picked */
   --dest:#d7263d; --dest-alpha:.45;                 /* destinations: semi-transparent red circles */
-  --origin:#f5c518; --origin-ring:#3d3000;          /* where Ponce wrote: yellow circles with a dark outline */
+  --origin:#111111; --origin-ring:#ffffff;          /* where Ponce wrote: black circles with a white ring */
   --ocean:#cddce6; --ocean-ink:#55768d; --land:#f6f3ec; --border:#a7adb5; --coast:#8a9aa8;
   --display:"Old Standard TT", "Iowan Old Style", Georgia, serif;
   --ui:"Archivo Narrow", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
@@ -15,12 +15,12 @@
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e; --band:#232a33;
   --hk:#e0545b; --yk:#6f9be0; --line:#8ec5ff; --sel:#4cc47e; --trace:#5d6774;
-  --dest:#ef4a5c; --dest-alpha:.5; --origin:#ffd23f; --origin-ring:#1a1400;
+  --dest:#ef4a5c; --dest-alpha:.5; --origin:#0a0a0a; --origin-ring:#e4e8ec;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark } }
 :root[data-theme="dark"]{
   --paper:#12161c; --panel:#181d24; --ink:#e4e8ec; --muted:#98a3b0; --rule:#2c343e; --band:#232a33;
   --hk:#e0545b; --yk:#6f9be0; --line:#8ec5ff; --sel:#4cc47e; --trace:#5d6774;
-  --dest:#ef4a5c; --dest-alpha:.5; --origin:#ffd23f; --origin-ring:#1a1400;
+  --dest:#ef4a5c; --dest-alpha:.5; --origin:#0a0a0a; --origin-ring:#e4e8ec;
   --ocean:#0b1620; --ocean-ink:#6d90a8; --land:#2a313a; --border:#56606c; --coast:#48627a; color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -122,3 +122,7 @@ h1 em{font-weight:400}
   .layout.panel-min .panel-title{flex-direction:row}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+
+/* Inside the website: the site header replaces the map's own heading and introduction */
+.embedded h1, .embedded .intro{display:none}
+.embedded .site-head{padding-top:8px}

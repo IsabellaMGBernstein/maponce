@@ -1,0 +1,110 @@
+/* The website around the maps: header, menu, page text, map frames and footer.
+   Palette: archival paper and ink, with a deep blue, a crimson and a gold drawn (softened) from the
+   Philippine flag. Every text colour meets WCAG AA contrast (4.5:1) on its background, light and dark.
+   Fonts: Source Serif 4 for reading, Source Sans 3 for the header, menu and labels. */
+:root{
+  --paper:#f8f4ec;        /* page background: aged paper */
+  --card:#efe8da;         /* panels and cards */
+  --ink:#1f1b16;          /* body text            15.6:1 on paper */
+  --muted:#5a5248;        /* secondary text        7.0:1 */
+  --rule:#d9cfbd;         /* hairlines */
+  --blue:#1f3f73;         /* header, links         9.5:1 */
+  --blue-ink:#f8f4ec;     /* text on the header    9.5:1 */
+  --crimson:#9b2226;      /* accents, hover        7.2:1 */
+  --gold:#e3b448;         /* highlights on the header only, 5.4:1 on blue */
+  --header:#1f3f73;
+  --serif:"Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --sans:"Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --measure:68ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#15171c; --card:#1d2027; --ink:#ece6db; --muted:#a9a294; --rule:#323640;
+  --blue:#9cc0f5; --blue-ink:#ece6db; --crimson:#f08a7e; --gold:#e3b448; --header:#0f1f3a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#15171c; --card:#1d2027; --ink:#ece6db; --muted:#a9a294; --rule:#323640;
+  --blue:#9cc0f5; --blue-ink:#ece6db; --crimson:#f08a7e; --gold:#e3b448; --header:#0f1f3a; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.65 var(--serif);font-optical-sizing:auto}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--crimson)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:24px}
+.wrap-wide{max-width:1440px;margin:0 auto;padding-inline:24px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--gold);color:#1f1b16;padding:6px 12px;font:600 15px var(--sans);z-index:10}
+.skip:focus{left:8px}
+
+/* ---------- header and menu ---------- */
+.site-header{background:var(--header);color:var(--blue-ink);border-bottom:4px solid var(--gold)}
+.header-row{display:flex;align-items:center;gap:16px 32px;padding-block:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none;margin-right:auto}
+.brand:hover{color:inherit}
+.brand-mark{font-size:28px;line-height:1;color:var(--gold)}
+.brand-text{display:flex;flex-direction:column}
+.brand-title{font:700 22px/1.15 var(--serif)}
+.brand-sub{font:400 14px/1.3 var(--sans);opacity:.85}
+.site-menu ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px}
+.site-menu a{display:block;padding:8px 12px;border-radius:4px;color:var(--blue-ink);text-decoration:none;font:600 16px var(--sans)}
+.site-menu a:hover{background:rgb(255 255 255 / .1);color:var(--blue-ink)}
+.site-menu a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--gold);border-radius:4px 4px 0 0}
+.menu-toggle{display:none;font:600 16px var(--sans);color:var(--blue-ink);background:none;border:1px solid rgb(255 255 255 / .4);border-radius:4px;padding:6px 12px;cursor:pointer}
+
+/* ---------- page text ---------- */
+.page-intro{padding-block:48px 28px}
+.kicker{font:700 13px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin:0 0 8px}
+h1{font:700 clamp(32px, 4.5vw, 48px)/1.1 var(--serif);margin:0 0 18px;max-width:22ch;text-wrap:balance}
+h2{font:700 28px/1.2 var(--serif);margin:40px 0 12px;text-wrap:balance}
+h3{font:600 21px/1.3 var(--serif);margin:28px 0 8px}
+p{margin:0 0 16px;max-width:var(--measure)}
+.lede{font-size:21px;line-height:1.55;color:var(--ink)}
+.page-intro p:not(.lede):not(.kicker){color:var(--muted)}
+.page-body{padding-block:16px 64px}
+.two-col{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:8px 48px}
+.two-col p{max-width:none}
+blockquote{margin:28px 0;padding:4px 0 4px 20px;border-left:4px solid var(--gold);font-style:italic;font-size:21px;max-width:var(--measure)}
+blockquote cite{display:block;font:400 15px var(--sans);font-style:normal;color:var(--muted);margin-top:6px}
+
+/* ---------- the map frame ---------- */
+.map-section{background:var(--card);border-block:1px solid var(--rule);padding-block:24px}
+.map-frame{border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--paper);box-shadow:0 2px 14px rgb(0 0 0 / .08)}
+.map-frame iframe{display:block;width:100%;height:min(82vh, 820px);min-height:520px;border:0}
+.map-caption{font:400 15px/1.5 var(--sans);color:var(--muted);margin:12px 0 0;max-width:none}
+
+/* ---------- cards (homepage) ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));gap:20px;margin:28px 0 0}
+.card{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--blue);border-radius:6px;padding:20px;color:var(--ink);text-decoration:none}
+.card:hover{color:var(--ink);border-top-color:var(--crimson)}
+.card-kicker{font:700 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--crimson)}
+.card-title{font:700 22px/1.2 var(--serif)}
+.card p{font-size:16px;line-height:1.5;color:var(--muted);margin:0}
+.card-more{font:600 15px var(--sans);color:var(--blue);margin-top:auto;padding-top:8px}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--header);color:var(--blue-ink);font:400 15px/1.55 var(--sans);border-top:4px solid var(--gold)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:32px;padding-block:40px 24px}
+.site-footer p{max-width:none;margin:0 0 10px}
+.site-footer a{color:var(--blue-ink)}
+.site-footer a:hover{color:var(--gold)}
+.footer-title{font:700 20px var(--serif)}
+.footer-head{font:700 13px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.small{font-size:13px;opacity:.85}
+.footer-bottom{border-top:1px solid rgb(255 255 255 / .18);padding-block:14px 20px;font-size:13px;opacity:.85}
+
+/* ---------- small screens ---------- */
+@media (max-width:820px){
+  body{font-size:17px}
+  .menu-toggle{display:block}
+  .site-menu{display:none;width:100%}
+  .site-menu.open{display:block}
+  .site-menu ul{flex-direction:column}
+  .site-menu a[aria-current="page"]{box-shadow:inset 3px 0 0 var(--gold);border-radius:0 4px 4px 0}
+  .brand-sub{display:none}
+  .page-intro{padding-block:32px 20px}
+  .wrap, .wrap-wide{padding-inline:16px}
+  .map-frame iframe{height:78vh;min-height:480px}
+  .footer-grid{grid-template-columns:1fr;gap:20px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }

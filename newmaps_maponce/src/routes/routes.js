@@ -1,7 +1,7 @@
 // The Routes map, self-contained: it shares no code with the other maps.
-// A world map with all seven continents. Every letter is a route from where Ponce sent it (yellow circle)
+// A world map with all seven continents. Every letter is a route from where Ponce sent it (black circle)
 // to its destination (semi-transparent red circle). Click a route: it turns green and the others grey.
-// Click a red or yellow circle to list its letters. The key in the lower right can be minimized.
+// Click a red or black circle to list its letters. The key in the lower right can be minimized.
 (async function () {
 const L = window.L, topojson = window.topojson;
 
@@ -96,10 +96,10 @@ const Key = L.Control.extend({ options: { position: 'bottomright' }, onAdd() {
   if (innerWidth > 800) d.open = true;
   const rows = [
     ['<svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="15" cy="8" r="5.5" style="fill:var(--origin);stroke:var(--origin-ring);stroke-width:1.5"/></svg>',
-      '<b>Yellow circle</b>: where Ponce wrote the letters (Hong Kong, Yokohama)'],
+      '<b>Black circle</b>: where Ponce wrote the letters (Hong Kong, Yokohama)'],
     ['<svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="7" cy="9" r="3.5" style="fill:var(--dest);fill-opacity:var(--dest-alpha);stroke:var(--dest)"/><circle cx="20" cy="8" r="6.5" style="fill:var(--dest);fill-opacity:var(--dest-alpha);stroke:var(--dest)"/></svg>',
       '<b>Red circle</b>: destination, larger for more letters'],
-    [keyLine('--line'), '<b>Route</b> from a yellow circle to a red circle; thicker = more letters'],
+    [keyLine('--line'), '<b>Route</b> from a black circle to a red circle; thicker = more letters'],
     [keyLine('--sel', 4), '<b>Green</b>: the route you picked; the others turn grey'],
     [keyLine('--muted', 2, true), '<b>Dashed</b>: destination inferred'],
   ];
@@ -154,7 +154,7 @@ function render() {
     m.bindTooltip(`${esc(label)} <span style="opacity:.7">${pls.length}</span>`, { permanent: true, direction: 'right', offset: [2, 0], className: 'plabel' });
     m.on('click', () => { S.place = name; S.route = null; render(); });
   }
-  // where Ponce wrote: yellow circles, on top
+  // where Ponce wrote: black circles, on top
   for (const o of ['Hong Kong', 'Yokohama']) {
     const mk = L.marker(ll(o), { zIndexOffset: 1000, title: `Ponce in ${o}`,
       icon: L.divIcon({ className: 'origin-dot', iconSize: [18, 18], iconAnchor: [9, 9],
@@ -182,7 +182,7 @@ function renderPanel() {
   const clear = document.querySelector('#panel-meta .chip button'); if (clear) clear.onclick = reset;
   const body = document.getElementById('panel-body');
   body.innerHTML = !label
-    ? '<p class="hint">Click a route on the map to list its letters here. You can also click a red circle for the letters received there, or a yellow circle for every letter Ponce wrote there.</p>'
+    ? '<p class="hint">Click a route on the map to list its letters here. You can also click a red circle for the letters received there, or a black circle for every letter Ponce wrote there.</p>'
     : `<ul class="letters">${ls.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : a.n - b.n)).map((l) => `<li><button data-n="${l.n}">
         <span class="no">${l.n}<small>${l.date.slice(0, 4)}</small></span><span class="who">${esc(l.recipient)}</span>
         <span class="where"><span class="o ${oKey(l.origin)}">${esc(l.origin)}</span> → ${l.dest ? esc(D.places[l.dest].label) : 'place unknown'}${l.dest_kind === 'inferred' ? '<span class="tag">inferred</span>' : ''} · ${fmtDate(l.date)}</span>

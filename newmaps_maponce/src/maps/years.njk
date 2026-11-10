@@ -1,0 +1,42 @@
+---
+permalink: /maps/years/
+eleventyExcludeFromCollections: true
+---
+{#- The Years map is a page of its own: it uses none of the shared layout, styles or code (src/years/). -#}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>/* Inside the website (an iframe), the site header replaces this page's own heading. */
+if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Years · Mariano Ponce’s Letters</title>
+<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Archivo+Narrow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/years/years.css">
+</head>
+<body>
+<header class="site-head">
+  <h1>Mariano Ponce’s Letters: <em>1897–1900</em></h1>
+  <p class="intro">Select any route, or a year, to see where Mariano Ponce sent his letters that year, and to whom.</p>
+  <div class="legend" id="legend" aria-label="Years"></div>
+</header>
+<main class="layout">
+  <div class="map-wrap"><div id="map" role="region" aria-label="Map of Ponce's letters by year"></div></div>
+  <aside class="panel">
+    <div class="panel-head">
+      <div class="panel-title"><h2 id="panel-title">Years</h2>
+        <button class="panel-toggle" id="panel-toggle" aria-expanded="true" aria-controls="panel-body" aria-label="Minimize the side panel" title="Minimize the side panel">–</button></div>
+      <div class="panel-meta" id="panel-meta"></div>
+      <label class="check"><input type="checkbox" id="inferred" checked> Include inferred destinations</label>
+    </div>
+    <div class="panel-body" id="panel-body"></div>
+  </aside>
+</main>
+<script src="/vendor/leaflet/leaflet.js"></script>
+<script src="/vendor/topojson-client.min.js"></script>
+<script src="/years/years.js"></script>
+</body>
+</html>

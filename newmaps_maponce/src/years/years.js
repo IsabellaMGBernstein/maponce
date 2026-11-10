@@ -115,7 +115,7 @@ const Key = L.Control.extend({ options: { position: 'topleft' }, onAdd() {
   if (innerWidth > 800) d.open = true;
   const rows = [
     ['<svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="15" cy="8" r="5.5" style="fill:var(--origin);stroke:var(--origin-ring);stroke-width:1.5"/></svg>',
-      '<b>Yellow circle</b>: where Ponce wrote the letters (Hong Kong, Yokohama)'],
+      '<b>Black circle</b>: where Ponce wrote the letters (Hong Kong, Yokohama)'],
     ['<svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="7" cy="9" r="3.5" style="fill:var(--dest);fill-opacity:var(--dest-alpha);stroke:var(--dest)"/><circle cx="20" cy="8" r="6.5" style="fill:var(--dest);fill-opacity:var(--dest-alpha);stroke:var(--dest)"/></svg>',
       '<b>Red circle</b>: destination, larger for more letters'],
     ...YEARS.map((y) => [keyLine(yColour(y)), `<b>${y}</b>: route of a letter written in ${y}`]),
@@ -246,7 +246,7 @@ function render() {
     m.bindTooltip(`${esc(label)} <span style="opacity:.7">${pls.length}</span>`, { permanent: true, direction: 'right', offset: [2, 0], className: 'plabel' });
     m.on('click', () => yearsPopup(label, 'received', pls, ll(name)));
   }
-  // where Ponce wrote: yellow circles, on top
+  // where Ponce wrote: black circles, on top
   for (const o of ['Hong Kong', 'Yokohama']) {
     const mk = L.marker(ll(o), { zIndexOffset: 1000, title: `Ponce in ${o}`,
       icon: L.divIcon({ className: 'origin-dot', iconSize: [18, 18], iconAnchor: [9, 9],

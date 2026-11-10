@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>/* Inside the website (an iframe), the site header replaces this page's own heading. */
+if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ title }} · {{ site.title }}</title>
 <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
@@ -20,16 +22,6 @@
 <main class="layout">
   <div class="map-wrap">
     <div id="map" role="region" aria-label="{{ title }} map"></div>
-    {%- if mapKey == "regions" %}
-    {# Upper-left corner: choose the region #}
-    <div class="pickers">
-      <label class="picker">Region
-        <select id="region-select">
-          {%- for r in site.regions %}<option value="{{ r.key }}">{{ r.name }}</option>{% endfor -%}
-        </select>
-      </label>
-    </div>
-    {%- endif %}
   </div>
   <aside class="panel" id="panel">
     <div class="panel-head">
@@ -41,9 +33,6 @@
     <div class="panel-body" id="panel-body"></div>
   </aside>
 </main>
-{%- if mapKey == "regions" %}
-<section class="statbar" id="statbar" aria-label="Statistics for the region"></section>
-{%- endif %}
 
 <script src="/vendor/leaflet/leaflet.js"></script>
 <script src="/vendor/topojson-client.min.js"></script>

@@ -10,7 +10,7 @@ Five interactive maps of Mariano Ponce's letters (1897–1900), built with [Elev
 | Themes | `/themes/` | the confirmed themes; pick one to read its letters in full |
 | Regions | `/regions/` | the letters to Europe, Asia or North America, chosen in the Region menu, with statistics below |
 
-The Routes, Years and Recipients maps are fully separate: each has its own page (`src/index.njk`, `src/years.njk`, `src/recipients.njk`) and its own styles, script and data (`src/routes/`, `src/years/`, `src/recipients/`), sharing no code with any other map. Each map is a separate page with no menu linking it to the others (the Regions map has a Region menu at the top left), and a minimizable map key at the lower right.
+The Routes, Years, Recipients and Regions maps are fully separate: each has its own page (`src/index.njk`, `src/years.njk`, `src/recipients.njk`, `src/regions.njk`) and its own styles, script and data (`src/routes/`, `src/years/`, `src/recipients/`, `src/regions/`), sharing no code with any other map. Each map is a separate page with no menu linking it to the others (the Regions map has a Region menu at the top left), and a minimizable map key at the lower right.
 
 ## Running it
 
@@ -24,7 +24,8 @@ Needs Node.js (installed with `brew install node`). From this folder:
 
     eleventy.config.js        Eleventy settings
     src/_data/cartas.js       reads the letters from ../Maponce_Data (nothing is copied here)
-    src/_data/site.js         the five maps and the three regions (destinations, 1890s countries, map views)
+    src/_data/site.js         the maps that still use the shared layout (Themes)
+    src/regions/data.11ty.js  the three regions (destinations, 1890s countries, map views)
     src/_includes/base.njk    the page layout every map shares
     src/*.njk                 one page per map: its title and introduction
     src/data/*.11ty.js        write the data files the pages load (/data/site.json, /data/texts.json)

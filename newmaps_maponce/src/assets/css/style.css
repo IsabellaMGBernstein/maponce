@@ -188,3 +188,7 @@ h1 em{font-weight:400}
   .transcript{padding-left:16px}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+
+/* Inside the website: the site header replaces the map's own heading and introduction */
+.embedded h1, .embedded .intro{display:none}
+.embedded .site-head{padding-top:8px}
